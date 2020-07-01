@@ -1,4 +1,4 @@
-import React from 'react';
+import React from 'react'
 
 import '../styles/login_components.css'
 
@@ -14,4 +14,4 @@ class Card extends React.Component {
   }
 }
   
-export default Card;
+export default Card

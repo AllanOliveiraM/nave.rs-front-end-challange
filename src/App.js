@@ -3,52 +3,45 @@ import Axios from 'axios'
 import Cookies from 'universal-cookie'
 import LoadingBar from 'react-top-loading-bar'
 
-
-
 import Card from './components/card'
 import LogoFull from './components/logo'
 
 import './styles/login_components.css'
 
+
 const cookies = new Cookies()
 
 const UrlAPI = 'https://navedex-api.herokuapp.com/v1'
 
-
-let bodyParams
 // let authToken
 // authToken = {
 //   headers: { Authorization: `Bearer ${null}` }
 // }
 
 
-
-
-
-
 class LoginCenterCard extends React.Component {
   constructor(props) {
-    super(props);
+    super(props)
     this.state = {
       email: '',
       password: ''
-    };
+    }
 
-    this.emailChange = this.emailChange.bind(this);
-    this.passwordChange = this.passwordChange.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
+    this.emailChange = this.emailChange.bind(this)
+    this.passwordChange = this.passwordChange.bind(this)
+    this.handleSubmit = this.handleSubmit.bind(this)
   }
 
   emailChange(event) { 
-    this.setState({email: event.target.value});
+    this.setState({email: event.target.value})
   }
 
   passwordChange(event) {
-    this.setState({password: event.target.value});
+    this.setState({password: event.target.value})
   }
 
   handleSubmit(event) {
-    event.preventDefault();
+    event.preventDefault()
     this.props.login(this.state.email, this.state.password)
   }
 
@@ -112,52 +105,63 @@ class LoginCenterCard extends React.Component {
 
 class App extends React.Component {
   constructor(props) {
-    super(props);
+    super(props)
     this.state = {
+      passwordMessage: '',
       authToken: cookies.get('sessionAuth'),
       passwordMessageClass: 'no-show'
     }
 
     this.login = this.login.bind(this)
-    this.invalidPassword = this.invalidPassword.bind(this)
+    this.loginMessageSetState = this.loginMessageSetState.bind(this)
     this.setAuthToken = this.setAuthToken.bind(this)
   }
 
-  invalidPassword(){
+  loginMessageSetState(message){
     this.setState({
-      passwordMessageClass: 'show'
+      passwordMessageClass: 'show',
+      passwordMessage: message
     })
   }
 
   login(email, password){
-    let invalidPassword = this.invalidPassword
+    let bodyParams
+    let loginMessage = this.loginMessageSetState
     let LoadingBar = this.LoadingBar
     let setToken = this.setAuthToken
-    LoadingBar.continuousStart()
 
-    bodyParams = {
-      email: email,
-      password: password
-    }
+    if(email !== ''){
+      LoadingBar.continuousStart()
 
-    Axios.post( 
-    UrlAPI + '/users/login',
-    bodyParams
-    ).then(
-      function (response) {
-        LoadingBar.complete()
-        setToken(response.data.token)
+      bodyParams = {
+        email: email,
+        password: password
       }
-    ).catch(
-      function (data) {
-        if(data.response){
-          console.log('RESPONSE KARAI')
+
+      Axios.post(
+      UrlAPI + '/users/login',
+      bodyParams
+      ).then(
+        function (response) {
+          LoadingBar.complete()
+          setToken(response.data.token)
         }
-        LoadingBar.complete()
-        invalidPassword()
-        setToken('')
-      }
-    )
+      ).catch(
+        function (data) {
+          setToken('')
+          if(data.response){
+            console.log('RESPONSE KARAI')
+            loginMessage('Senha invália')
+          } else {
+            loginMessage('Oops! Verifique sua conexão.')
+          }
+          LoadingBar.complete()
+        }
+      )
+    } else {
+      LoadingBar.complete()
+      loginMessage('Email inválido.')
+    }
   }
 
   setAuthToken(token){
@@ -172,7 +176,7 @@ class App extends React.Component {
     return (
       <div>
         <LoginCenterCard
-          passwordMessage='oi'
+          passwordMessage={this.state.passwordMessage}
           passwordMessageClass={this.state.passwordMessageClass}
           login={this.login}
         />
@@ -186,4 +190,4 @@ class App extends React.Component {
   }
 }
 
-export default App;
+export default App
