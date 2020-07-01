@@ -10,6 +10,7 @@
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-scripts": "3.4.1",
+    "react-toastify": "^6.0.6",
     "react-top-loading-bar": "^1.2.0",
     "universal-cookie": "^4.0.3"
   },

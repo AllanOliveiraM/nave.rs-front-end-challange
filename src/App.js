@@ -15,8 +15,8 @@ const cookies = new Cookies()
 const UrlAPI = 'https://navedex-api.herokuapp.com/v1'
 
 
-let authToken
 let bodyParams
+// let authToken
 // authToken = {
 //   headers: { Authorization: `Bearer ${null}` }
 // }
@@ -29,7 +29,10 @@ let bodyParams
 class LoginCenterCard extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {email: '', password: ''};
+    this.state = {
+      email: '',
+      password: ''
+    };
 
     this.emailChange = this.emailChange.bind(this);
     this.passwordChange = this.passwordChange.bind(this);
@@ -60,7 +63,7 @@ class LoginCenterCard extends React.Component {
               <LogoFull className='logo-full' />
             </div>
 
-            <div className='card-input-container'>
+            <div className='card-input-container-m'>
 
               <label htmlFor='login-email'>
                 E-mail
@@ -93,6 +96,10 @@ class LoginCenterCard extends React.Component {
 
             </div>
 
+            <div className={this.props.passwordMessageClass}>
+              <p id='password-invalid'>{this.props.passwordMessage}</p>
+            </div>
+
             <button type="submit">Entrar</button>
 
           </form>
@@ -106,37 +113,75 @@ class LoginCenterCard extends React.Component {
 class App extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {authToken: cookies.get('sessionAuth')}
+    this.state = {
+      authToken: cookies.get('sessionAuth'),
+      passwordMessageClass: 'no-show'
+    }
 
     this.login = this.login.bind(this)
+    this.invalidPassword = this.invalidPassword.bind(this)
+    this.setAuthToken = this.setAuthToken.bind(this)
+  }
+
+  invalidPassword(){
+    this.setState({
+      passwordMessageClass: 'show'
+    })
   }
 
   login(email, password){
+    let invalidPassword = this.invalidPassword
+    let LoadingBar = this.LoadingBar
+    let setToken = this.setAuthToken
+    LoadingBar.continuousStart()
 
     bodyParams = {
       email: email,
       password: password
-     }
+    }
 
-     Axios.post( 
-     UrlAPI + '/users/login',
-     bodyParams
-     ).then(
-       function (response) {
-          console.log(response)
-          this.state.authToken = response.data.token
-          cookies.set('sessionAuth', response.data.token)
-       }
-     ).catch(
-      function (params) {
-        cookies.set('sessionAuth', '')
+    Axios.post( 
+    UrlAPI + '/users/login',
+    bodyParams
+    ).then(
+      function (response) {
+        LoadingBar.complete()
+        setToken(response.data.token)
+      }
+    ).catch(
+      function (data) {
+        if(data.response){
+          console.log('RESPONSE KARAI')
+        }
+        LoadingBar.complete()
+        invalidPassword()
+        setToken('')
       }
     )
   }
 
+  setAuthToken(token){
+    cookies.set('sessionAuth', token)
+    this.setState({
+      authToken: token
+    })
+    console.log(this.state.authToken)
+  }
+
   render(){
     return (
-      <LoginCenterCard login={this.login}/>
+      <div>
+        <LoginCenterCard
+          passwordMessage='oi'
+          passwordMessageClass={this.state.passwordMessageClass}
+          login={this.login}
+        />
+        <LoadingBar
+          height={3}
+          color='#212121'
+          onRef={ref => (this.LoadingBar = ref)}
+        />
+      </div>
     )
   }
 }
