@@ -13,10 +13,7 @@ const cookies = new Cookies()
 
 const UrlAPI = 'https://navedex-api.herokuapp.com/v1'
 
-// let authToken
-// authToken = {
-//   headers: { Authorization: `Bearer ${null}` }
-// }
+let authTokenObject
 
 
 class LoginCenterCard extends React.Component {
@@ -104,13 +101,34 @@ class LoginCenterCard extends React.Component {
 }
 
 
+class Home extends React.Component {
+  constructor(props) {
+    super(props)
+  }
+
+  render(){
+    return (
+      <div>Home</div>
+    )
+  }
+}
+
+
 class App extends React.Component {
   constructor(props) {
     super(props)
-    this.state = {
-      passwordMessage: '',
-      authToken: cookies.get('sessionAuth'),
-      passwordMessageClass: 'no-show'
+
+    let getCookie = cookies.get('sessionAuth')
+    if (getCookie === undefined){
+      this.state = {
+        authToken: 'undefined'
+      }
+    } else {
+      this.state = {
+        passwordMessage: '',
+        authToken: getCookie,
+        passwordMessageClass: 'no-show',
+      }
     }
 
     this.login = this.login.bind(this)
@@ -140,11 +158,10 @@ class App extends React.Component {
       }
 
       Axios.post(
-      UrlAPI + '/users/login',
-      bodyParams
+        UrlAPI + '/users/login',
+        bodyParams
       ).then(
         function (response) {
-          LoadingBar.complete()
           setToken(response.data.token)
         }
       ).catch(
@@ -165,35 +182,77 @@ class App extends React.Component {
   }
 
   setAuthToken(token){
-    console.log(token)
     cookies.set('sessionAuth', token)
     this.setState({
       authToken: token
     })
   }
 
-  
+  getJsonPOST(path, paramsObject, token){
+    authTokenObject = {
+      headers: { Authorization: `Bearer ${token}` }
+    }
+    
+    Axios.post(
+      UrlAPI + path,
+      paramsObject,
+      authTokenObject
+    ).then(
+      function (response) {
+        return response
+      }
+    ).catch(
+      function (data) {
+        return data
+      }
+    )
+  }
+
+  getJsonGET(path, token){
+    authTokenObject = {
+      headers: { Authorization: `Bearer ${token}` }
+    }
+    
+    Axios.get(
+      UrlAPI + path,
+      authTokenObject
+    ).then(
+      function (response) {
+        console.log(response)
+      }
+    ).catch(
+      function (data) {
+        console.log(data)
+      }
+    )
+  }
 
   render(){
-    if(this.state.authToken !== 'undefined' && this.state.authToken !== undefined){
-      return <p>OOOOOI</p>
+
+    const login = (
+      <main>
+        <LoginCenterCard
+          passwordMessage={this.state.passwordMessage}
+          passwordMessageClass={this.state.passwordMessageClass}
+          login={this.login}
+        />
+        <LoadingBar
+          height={3}
+          color='#212121'
+          onRef={ref => (this.LoadingBar = ref)}
+        />
+      </main>
+    )
+
+
+    if(this.state.authToken !== 'undefined'){
+      this.getJsonGET('/navers', this.state.authToken)
+      return <Home />
     } else {
-      return (
-        <main>
-          <LoginCenterCard
-            passwordMessage={this.state.passwordMessage}
-            passwordMessageClass={this.state.passwordMessageClass}
-            login={this.login}
-          />
-          <LoadingBar
-            height={3}
-            color='#212121'
-            onRef={ref => (this.LoadingBar = ref)}
-          />
-        </main>
-      )
+      return login
     }
   }
 }
+
 
 export default App
