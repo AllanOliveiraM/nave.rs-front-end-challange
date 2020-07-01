@@ -3,7 +3,7 @@ import Axios from 'axios'
 import Cookies from 'universal-cookie'
 import LoadingBar from 'react-top-loading-bar'
 
-import Card from './components/card'
+import CardLogin from './components/cardLogin'
 import LogoFull from './components/logo'
 
 import './styles/login_components.css'
@@ -49,7 +49,7 @@ class LoginCenterCard extends React.Component {
   render(){
     return (
       <div className='flexbox-center-x-y height-100'>
-        <Card>
+        <CardLogin>
           <form onSubmit={this.handleSubmit}>
 
             <div className='logo-full-container'>
@@ -96,7 +96,7 @@ class LoginCenterCard extends React.Component {
             <button type="submit">Entrar</button>
 
           </form>
-        </Card>
+        </CardLogin>
       </div>
     )
   }
@@ -148,7 +148,7 @@ class App extends React.Component {
         }
       ).catch(
         function (data) {
-          setToken('')
+          setToken(undefined)
           if(data.response){
             console.log('RESPONSE KARAI')
             loginMessage('Senha invália')
@@ -173,20 +173,24 @@ class App extends React.Component {
   }
 
   render(){
-    return (
-      <div>
-        <LoginCenterCard
-          passwordMessage={this.state.passwordMessage}
-          passwordMessageClass={this.state.passwordMessageClass}
-          login={this.login}
-        />
-        <LoadingBar
-          height={3}
-          color='#212121'
-          onRef={ref => (this.LoadingBar = ref)}
-        />
-      </div>
-    )
+    if(this.state.authToken !== 'undefined' && this.state.authToken !== undefined){
+      return <p>OOOOOI</p>
+    } else {
+      return (
+        <main>
+          <LoginCenterCard
+            passwordMessage={this.state.passwordMessage}
+            passwordMessageClass={this.state.passwordMessageClass}
+            login={this.login}
+          />
+          <LoadingBar
+            height={3}
+            color='#212121'
+            onRef={ref => (this.LoadingBar = ref)}
+          />
+        </main>
+      )
+    }
   }
 }
 
