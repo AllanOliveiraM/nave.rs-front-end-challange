@@ -85,12 +85,13 @@ class LoginCenterCard extends React.Component {
                 id='login-password'
                 type='password'
                 name='name'
+                required
               />
 
             </div>
 
             <div className={this.props.passwordMessageClass}>
-              <p id='password-invalid'>{this.props.passwordMessage}</p>
+              <p id='message-login'>{this.props.passwordMessage}</p>
             </div>
 
             <button type="submit">Entrar</button>
@@ -150,8 +151,7 @@ class App extends React.Component {
         function (data) {
           setToken(undefined)
           if(data.response){
-            console.log('RESPONSE KARAI')
-            loginMessage('Senha invália')
+            loginMessage('Dados incorretos.')
           } else {
             loginMessage('Oops! Verifique sua conexão.')
           }
@@ -165,12 +165,14 @@ class App extends React.Component {
   }
 
   setAuthToken(token){
+    console.log(token)
     cookies.set('sessionAuth', token)
     this.setState({
       authToken: token
     })
-    console.log(this.state.authToken)
   }
+
+  
 
   render(){
     if(this.state.authToken !== 'undefined' && this.state.authToken !== undefined){
