@@ -5,6 +5,7 @@
     <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="theme-color" content="#212121" />
+    <!-- No index - For Challenge Only -->
     <meta name="robots" content="noindex, nofollow" />
     <meta name="googlebot" content="noindex, nofollow" />
     <meta name="application-name" content="Navedex" />
@@ -14,9 +15,13 @@
       content="Navedex React App - Front-End Challenge"
     />
     <title>Navedex</title>
+    <link rel="stylesheet" href="%PUBLIC_URL%/no_script.css" />
   </head>
   <body>
-    <noscript>Oops! <br> Você precisa ativar o recurso de JavaScript para visualizar esta App.</noscript>
+    <noscript>
+      <p id="noscript-title">Oops! :(</p>
+      <p id="noscript-body">Você precisa ativar o recurso de JavaScript para visualizar esta aplicação.</p>
+    </noscript>
     <div id="root"></div>
   </body>
 </html>
