@@ -1,0 +1,96 @@
+form > div > input {
+    padding: 0;
+    height: 40px;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 16px;
+    line-height: 24px;
+    border: 1px solid #424242;
+    box-sizing: border-box;
+    color: #424242;
+}
+
+form > div > label {
+    font-family: sans-serif;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 0.9rem;
+    line-height: 18px;
+    color: #212121;
+}
+
+form > button {
+    font-family: sans-serif;
+    color: white;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 24px;
+    background-color: #212121;
+    height: 40px;
+    width: 384px;
+    cursor: pointer;
+}
+
+.flexbox-center-x-y {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.height-100 {
+    height: 100vh;
+}
+
+.card-container {
+    width: 448px;
+    height: 408px;
+    border: 1px solid #212121;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.logo-full-container {
+    display: flex;
+    justify-content: center;
+}
+
+.card-input-container {
+    width: 384px;
+    height: 62px;
+    margin-bottom: 32px;
+    display: flex;
+    flex-direction: column;
+}
+
+.logo-full {
+    width: 236px;
+    margin: 40px 0;
+}
+
+
+@media (max-width:420px){
+    .card-container {
+        width: 300px;
+        height: 297px;
+    }
+    .logo-full {
+        width: 146px;
+        margin: 20px 0 10px 0;
+    }
+    form > div > input {
+        padding: 0;
+        height: 30px;
+    }
+    .card-input-container {
+        width: 220px;
+        height: 62px;
+        margin-bottom: 13px;
+    }
+    form > button {
+        height: 30px;
+        width: 220px;
+    }
+}
