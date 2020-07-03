@@ -16,13 +16,13 @@ class IndexCard extends React.Component {
 
     render(){
 
-        let cardContentId = this.props.cardContent.id
+        // let cardContentId = this.props.cardContent.id
         let cardContentName = this.props.cardContent.name
-        let cardContentAdmissionDate = this.props.cardContent.admission_date
+        // let cardContentAdmissionDate = this.props.cardContent.admission_date
         let cardContentJobRole = this.props.cardContent.job_role
-        let cardContentUserId = this.props.cardContent.user_id
-        let cardContentProject = this.props.cardContent.project
-        let cardContentBirthdate = this.props.cardContent.birthdate
+        // let cardContentUserId = this.props.cardContent.user_id
+        // let cardContentProject = this.props.cardContent.project
+        // let cardContentBirthdate = this.props.cardContent.birthdate
         // let cardContentUrl = this.props.cardContent.url
         let cardContentUrl = 'https://source.unsplash.com/280x280/?nature,water'
 
