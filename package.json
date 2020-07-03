@@ -9,8 +9,8 @@
     "axios": "^0.19.2",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
+    "react-helmet": "^6.1.0",
     "react-scripts": "3.4.1",
-    "react-toastify": "^6.0.6",
     "react-top-loading-bar": "^1.2.0",
     "universal-cookie": "^4.0.3"
   },

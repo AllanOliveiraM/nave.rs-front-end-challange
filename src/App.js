@@ -1,19 +1,93 @@
-import React from 'react'
-import Axios from 'axios'
-import Cookies from 'universal-cookie'
+import React      from 'react'
+import Axios      from 'axios'
+import Cookies    from 'universal-cookie'
 import LoadingBar from 'react-top-loading-bar'
+import Helmet     from 'react-helmet'
 
-import CardLogin from './components/cardLogin'
-import LogoFull from './components/logo'
+// Components
+import CardLogin  from './components/cardLogin'
+import LogoFull   from './components/logo'
 
+// Styles
 import './styles/login_components.css'
 
+// Languages: String Mapping
+import languagePackage from './languages/pt-br.js'
+//
+const homeDOMTitle         = languagePackage.homeDOMTitle
+const stringEmail          = languagePackage.stringEmail
+const stringPassword       = languagePackage.stringPassword
+const stringSubmit         = languagePackage.stringSubmit
+const stringLongData       = languagePackage.stringLongData
+const stringBadConnection  = languagePackage.stringBadConnection
+const stringWrongEmail     = languagePackage.stringWrongEmail
 
-const cookies = new Cookies()
 
-const UrlAPI = 'https://navedex-api.herokuapp.com/v1'
+// Global Var's
+const cookies              = new Cookies()
 
-let authTokenObject
+const UrlAPI               = 'https://navedex-api.herokuapp.com/v1'
+const pathAPILogin         = '/users/login'
+const pathAPIListNavers    = '/navers'
+
+let   authTokenObject
+
+let loadingBarRef
+
+
+// eslint-disable-next-line
+function getJsonPOST (path, paramsObject, token){
+  authTokenObject = {
+    headers: { Authorization: `Bearer ${token}` }
+  }
+
+  Axios.post(
+    UrlAPI + path,
+    paramsObject,
+    authTokenObject
+  ).then(
+    function (response) {
+      return response
+    }
+  ).catch(
+    function (data) {
+      return data
+    }
+  )
+}
+
+// eslint-disable-next-line
+function getJsonGET (path, token){
+  authTokenObject = {
+    headers: { Authorization: `Bearer ${token}` }
+  }
+  
+  Axios.get(
+    UrlAPI + path,
+    authTokenObject
+  ).then(
+    function (response) {
+      return response
+    }
+  ).catch(
+    function (data) {
+      return data
+    }
+  )
+}
+
+
+class LoadBar extends React.Component {
+  render(){
+    return (
+      <LoadingBar
+        height={ 3 }
+        color='#212121'
+        onRef={ ref => (loadingBarRef = ref) }
+      />
+    )
+  }
+}
 
 
 class LoginCenterCard extends React.Component {
@@ -42,12 +116,11 @@ class LoginCenterCard extends React.Component {
     this.props.login(this.state.email, this.state.password)
   }
 
-
   render(){
     return (
       <div className='flexbox-center-x-y height-100'>
         <CardLogin>
-          <form onSubmit={this.handleSubmit}>
+          <form onSubmit={ this.handleSubmit }>
 
             <div className='logo-full-container'>
               <LogoFull className='logo-full' />
@@ -56,13 +129,13 @@ class LoginCenterCard extends React.Component {
             <div className='card-input-container-m'>
 
               <label htmlFor='login-email'>
-                E-mail
+                { stringEmail }
               </label>
               <input
-                value={this.state.email}
-                onChange={this.emailChange}
+                value={ this.state.email }
+                onChange={ this.emailChange }
                 autoComplete='email'
-                placeholder='E-mail'
+                placeholder={ stringEmail }
                 id='login-email'
                 type='email'
                 name='name'
@@ -72,13 +145,13 @@ class LoginCenterCard extends React.Component {
             <div className='card-input-container'>
 
               <label htmlFor='login-password'>
-                Senha
+                { stringPassword }
               </label>
               <input
-                value={this.state.password}
-                onChange={this.passwordChange}
+                value={ this.state.password }
+                onChange={ this.passwordChange }
                 autoComplete='password'
-                placeholder='Senha'
+                placeholder={ stringPassword }
                 id='login-password'
                 type='password'
                 name='name'
@@ -87,11 +160,11 @@ class LoginCenterCard extends React.Component {
 
             </div>
 
-            <div className={this.props.passwordMessageClass}>
-              <p id='message-login'>{this.props.passwordMessage}</p>
+            <div className={ this.props.passwordMessageClass }>
+              <p id='message-login'>{ this.props.passwordMessage }</p>
             </div>
 
-            <button type="submit">Entrar</button>
+            <button type="submit">{ stringSubmit }</button>
 
           </form>
         </CardLogin>
@@ -101,14 +174,35 @@ class LoginCenterCard extends React.Component {
 }
 
 
-class Home extends React.Component {
-  constructor(props) {
-    super(props)
-  }
+class LoginPage extends React.Component {
 
   render(){
     return (
-      <div>Home</div>
+      <main>
+        <LoginCenterCard
+          passwordMessage={ this.props.passwordMessage }
+          passwordMessageClass={ this.props.passwordMessageClass }
+          login={ this.props.login }
+        />
+      </main>
+    )
+  }
+}
+
+
+class Home extends React.Component {
+  // constructor(props) {
+  //   super(props)
+  // }
+
+  render(){
+    return (
+      <main>
+        <div>Home - Test string</div>
+        <Helmet>
+          <title>{ homeDOMTitle }</title>
+        </Helmet>
+      </main>
     )
   }
 }
@@ -121,13 +215,15 @@ class App extends React.Component {
     let getCookie = cookies.get('sessionAuth')
     if (getCookie === undefined){
       this.state = {
-        authToken: 'undefined'
+        passwordMessage: '',
+        authToken: 'undefined',
+        passwordMessageClass: 'no-show'
       }
     } else {
       this.state = {
         passwordMessage: '',
         authToken: getCookie,
-        passwordMessageClass: 'no-show',
+        passwordMessageClass: 'no-show'
       }
     }
 
@@ -146,11 +242,10 @@ class App extends React.Component {
   login(email, password){
     let bodyParams
     let loginMessage = this.loginMessageSetState
-    let LoadingBar = this.LoadingBar
     let setToken = this.setAuthToken
 
     if(email !== ''){
-      LoadingBar.continuousStart()
+      loadingBarRef.continuousStart()
 
       bodyParams = {
         email: email,
@@ -158,26 +253,27 @@ class App extends React.Component {
       }
 
       Axios.post(
-        UrlAPI + '/users/login',
+        UrlAPI + pathAPILogin,
         bodyParams
       ).then(
         function (response) {
           setToken(response.data.token)
+          loadingBarRef.complete()
         }
       ).catch(
         function (data) {
           setToken(undefined)
           if(data.response){
-            loginMessage('Dados incorretos.')
+            loginMessage(stringLongData)
           } else {
-            loginMessage('Oops! Verifique sua conexão.')
+            loginMessage(stringBadConnection)
           }
-          LoadingBar.complete()
+          loadingBarRef.complete()
         }
       )
     } else {
-      LoadingBar.complete()
-      loginMessage('Email inválido.')
+      loadingBarRef.complete()
+      loginMessage(stringWrongEmail)
     }
   }
 
@@ -188,71 +284,26 @@ class App extends React.Component {
     })
   }
 
-  getJsonPOST(path, paramsObject, token){
-    authTokenObject = {
-      headers: { Authorization: `Bearer ${token}` }
-    }
-    
-    Axios.post(
-      UrlAPI + path,
-      paramsObject,
-      authTokenObject
-    ).then(
-      function (response) {
-        return response
-      }
-    ).catch(
-      function (data) {
-        return data
-      }
-    )
-  }
-
-  getJsonGET(path, token){
-    authTokenObject = {
-      headers: { Authorization: `Bearer ${token}` }
-    }
-    
-    Axios.get(
-      UrlAPI + path,
-      authTokenObject
-    ).then(
-      function (response) {
-        console.log(response)
-      }
-    ).catch(
-      function (data) {
-        console.log(data)
-      }
-    )
-  }
 
   render(){
 
-    const login = (
-      <main>
-        <LoginCenterCard
-          passwordMessage={this.state.passwordMessage}
-          passwordMessageClass={this.state.passwordMessageClass}
-          login={this.login}
-        />
-        <LoadingBar
-          height={3}
-          color='#212121'
-          onRef={ref => (this.LoadingBar = ref)}
-        />
-      </main>
-    )
-
-
     if(this.state.authToken !== 'undefined'){
-      this.getJsonGET('/navers', this.state.authToken)
-      return <Home />
+      getJsonGET(pathAPIListNavers, this.state.authToken)
+      return (
+        <Home />
+      )
+
     } else {
-      return login
+      return (
+        <LoginPage
+          passwordMessage={ this.state.passwordMessage }
+          passwordMessageClass={ this.state.passwordMessageClass }
+          login={ this.login }
+        />
+      )
     }
   }
 }
 
 
-export default App
+export default {App, LoadBar}

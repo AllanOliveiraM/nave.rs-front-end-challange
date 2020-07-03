@@ -4,11 +4,16 @@ import * as serviceWorker from './serviceWorker'
 
 import './styles/index.css'
 
-import App from './App'
+import AppComponents from './App'
 
 
 ReactDOM.render(
-  <App />,
+  <AppComponents.LoadBar />,
+  document.getElementById('load-bar')
+)
+
+ReactDOM.render(
+  <AppComponents.App />,
   document.getElementById('root')
 )
 
