@@ -8,9 +8,11 @@ import Helmet         from 'react-helmet'
 import CardLogin      from './components/cardLogin'
 import LogoFull       from './components/logo'
 import FullPageLoader from './components/fullPageLoader'
+import IndexCard      from './components/indexCard'
 
 // Styles
 import './styles/login_components.css'
+import './styles/indexCards.css'
 
 // Languages: String Mapping
 import languagePackage from './languages/pt-br.js'
@@ -182,11 +184,34 @@ class LoginPage extends React.Component {
 
 
 class Home extends React.Component {
-  // constructor(props) {
-  //   super(props)
-  // }
+  constructor(props) {
+    super(props)
+
+    this.resolveIndexCards = this.resolveIndexCards.bind(this)
+  }
+
+  resolveIndexCards(indexData){
+    try {
+      console.log(indexData)
+      let indexCards=[];
+      let i
+      for (i = 0; i < indexData.length; i++) {
+        indexCards.push(
+        <IndexCard key={ indexData[i].id } cardContent={ indexData[i] } />
+        )
+      }
+      return indexCards
+    } catch (error) {
+      return (
+        <p>Algo deu errado! :(</p>
+      )
+    }
+  }
 
   render(){
+
+    let cardsResolved = this.resolveIndexCards(this.props.indexContent.data)
+
     return (
       <main className='in-animation'>
         <Helmet>
@@ -204,6 +229,9 @@ class Home extends React.Component {
             </button>
           </div>
         </header>
+        <section className='cards-container'>
+          { cardsResolved }
+        </section>
       </main>
     )
   }
@@ -372,7 +400,7 @@ class App extends React.Component {
         return (
           <div>
             <Home
-              indexContent={ this.indexContent }
+              indexContent={ this.state.indexContent }
               logout={ this.logout }
             />
           </div>

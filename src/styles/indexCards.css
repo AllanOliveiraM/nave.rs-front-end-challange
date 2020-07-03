@@ -1,0 +1,11 @@
+.index-card {
+    width: 280px;
+    height: 376px;
+    background-color: violet;
+}
+
+.cards-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
