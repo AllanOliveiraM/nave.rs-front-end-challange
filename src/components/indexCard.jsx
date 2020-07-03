@@ -31,7 +31,7 @@ class IndexCard extends React.Component {
             <section className='col col-4 col-3 col-2'>
 
                 <div className='card-index-container'>
-                    <img src={ cardContentUrl } />
+                    <img src={ cardContentUrl } alt='Imagem do Usuário.'/> // TODO stringVar
                     <div className='card-index-footer'>
                         <p>{ cardContentName }</p>
                         <p>{ cardContentJobRole }</p>
