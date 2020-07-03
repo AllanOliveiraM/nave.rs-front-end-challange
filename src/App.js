@@ -197,10 +197,12 @@ class Home extends React.Component {
     try {
       let indexCards=[];
       let i
+      let animDuration = 0.8
       for (i = 0; i < indexData.length; i++) {
         indexCards.push(
-        <IndexCard key={ indexData[i].id } cardContent={ indexData[i] } />
-        )
+          <IndexCard key={ indexData[i].id } cardContent={ indexData[i] } animationDuration={`${animDuration}s`}/>
+          )
+        animDuration = animDuration + 0.4
       }
       return indexCards
     } catch (error) {

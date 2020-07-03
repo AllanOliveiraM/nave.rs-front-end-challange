@@ -41,6 +41,7 @@ class IndexCard extends React.Component {
                     <ReactImageAppear 
                         src={ cardContentUrl }
                         onClick={ callBackCardClicked }
+                        animationDuration={ this.props.animationDuration }
                     />
                     <div className='card-index-footer'>
                         <p>{ cardContentName }</p>
