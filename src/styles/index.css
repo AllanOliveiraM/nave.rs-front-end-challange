@@ -52,6 +52,52 @@ header {
     outline: none;
 }
 
+#navers-title {
+  font-style: normal;
+  font-weight: 600;
+  font-size: 40px;
+  line-height: 48px;
+  margin: 40px 0 0 32px;
+}
+
+#title-subheader {
+  height: 120px;
+  width: 100vw;
+  display: flex;
+  justify-content: space-between;
+}
+
+#add-naver {
+  width: 176px;
+  height: 40px;
+  background-color: #212121;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 24px;
+  color: white;
+  margin: 40px 32px 0 0;
+  cursor: pointer;
+  border: none;
+  outline: none;
+}
+
+@media (max-width: 450px) {
+  #title-subheader {
+    height: 120px;
+    width: 100vw;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  #navers-title {
+    margin: 0;
+  }
+  #add-naver {
+    margin: 0 0 20px 0;
+  }
+}
+
 .loader {
     color: #2e2e2e;
     font-size: 10px;

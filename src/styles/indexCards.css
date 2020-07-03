@@ -1,11 +1,9 @@
-.index-card {
+.card-index-container {
     width: 280px;
-    height: 376px;
-    background-color: violet;
+    margin: 0 auto 0 auto;
 }
 
-.cards-container {
-    display: flex;
-    align-items: center;
-    justify-content: space-around;
+.card-index-container > .card-index-footer {
+    display: block;
+    text-align: start;
 }

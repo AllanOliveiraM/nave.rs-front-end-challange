@@ -17,16 +17,19 @@ import './styles/indexCards.css'
 // Languages: String Mapping
 import languagePackage from './languages/pt-br.js'
 //
-const consoleSecurityMessage = languagePackage.consoleSecurityMessage
-const homeDOMTitle           = languagePackage.homeDOMTitle
-const homeDOMLoginTitle      = languagePackage.homeDOMLoginTitle
-const stringExit             = languagePackage.stringExit
-const stringEmail            = languagePackage.stringEmail
-const stringPassword         = languagePackage.stringPassword
-const stringSubmit           = languagePackage.stringSubmit
-const stringLongData         = languagePackage.stringLongData
-const stringBadConnection    = languagePackage.stringBadConnection
-const stringWrongEmail       = languagePackage.stringWrongEmail
+const consoleSecurityMessage       = languagePackage.consoleSecurityMessage
+const homeDOMTitle                 = languagePackage.homeDOMTitle
+const homeDOMLoginTitle            = languagePackage.homeDOMLoginTitle
+const stringExit                   = languagePackage.stringExit
+const stringEmail                  = languagePackage.stringEmail
+const stringPassword               = languagePackage.stringPassword
+const stringSubmit                 = languagePackage.stringSubmit
+const stringLongData               = languagePackage.stringLongData
+const stringBadConnection          = languagePackage.stringBadConnection
+const stringWrongEmail             = languagePackage.stringWrongEmail
+const stringErrorLoadIndexContent  = languagePackage.stringErrorLoadIndexContent
+const stringAddNaver               = languagePackage.stringAddNaver
+const stringNaversTitle            = languagePackage.stringNaversTitle
 
 
 // Global Var's
@@ -192,7 +195,6 @@ class Home extends React.Component {
 
   resolveIndexCards(indexData){
     try {
-      console.log(indexData)
       let indexCards=[];
       let i
       for (i = 0; i < indexData.length; i++) {
@@ -203,7 +205,7 @@ class Home extends React.Component {
       return indexCards
     } catch (error) {
       return (
-        <p>Algo deu errado! :(</p>
+        <p> { stringErrorLoadIndexContent }</p>
       )
     }
   }
@@ -229,8 +231,14 @@ class Home extends React.Component {
             </button>
           </div>
         </header>
-        <section className='cards-container'>
-          { cardsResolved }
+        <section id='title-subheader'>
+          <p id='navers-title'>{ stringNaversTitle }</p>
+          <button id='add-naver' type='button'>{ stringAddNaver }</button>
+        </section>
+        <section className='container'>
+          <div className='row'>
+            { cardsResolved }
+          </div>
         </section>
       </main>
     )

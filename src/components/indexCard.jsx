@@ -4,6 +4,7 @@ import DeleteIcon     from '../components/deleteIcon'
 import EditIcon       from '../components/editIcon'
 
 import '../styles/indexCards.css'
+import '../tools/grid.css'
 
 
 class IndexCard extends React.Component {
@@ -27,15 +28,16 @@ class IndexCard extends React.Component {
 
         let CardContentResolved = (
 
-            <section className='index-card'>
-                <div>
+            <section className='col col-4 col-3 col-2'>
+
+                <div className='card-index-container'>
                     <img src={ cardContentUrl } />
-                </div>
-                <p>{ cardContentName }</p>
-                <p>{ cardContentJobRole }</p>
-                <div>
-                    <DeleteIcon />
-                    <EditIcon />
+                    <div className='card-index-footer'>
+                        <p>{ cardContentName }</p>
+                        <p>{ cardContentJobRole }</p>
+                        <DeleteIcon />
+                        <EditIcon />
+                    </div>
                 </div>
             </section>
         )
