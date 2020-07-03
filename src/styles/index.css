@@ -24,6 +24,34 @@ body {
     justify-content: center;
 }
 
+header {
+    height: 85px;
+    width: 100vw;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo-full-home {
+    width: 145.12px;
+    margin-left: 32px;
+}
+
+.button-logout {
+    background-color: transparent;
+    border: none;
+    margin-right: 32px;
+    font-size: 16px;
+    line-height: 24px;
+    cursor: pointer;
+    color: black;
+}
+
+.button-logout:focus {
+    border: none;
+    outline: none;
+}
+
 .loader {
     color: #2e2e2e;
     font-size: 10px;

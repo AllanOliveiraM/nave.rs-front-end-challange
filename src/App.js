@@ -15,26 +15,32 @@ import './styles/login_components.css'
 // Languages: String Mapping
 import languagePackage from './languages/pt-br.js'
 //
-const homeDOMTitle         = languagePackage.homeDOMTitle
-const stringEmail          = languagePackage.stringEmail
-const stringPassword       = languagePackage.stringPassword
-const stringSubmit         = languagePackage.stringSubmit
-const stringLongData       = languagePackage.stringLongData
-const stringBadConnection  = languagePackage.stringBadConnection
-const stringWrongEmail     = languagePackage.stringWrongEmail
+const consoleSecurityMessage = languagePackage.consoleSecurityMessage
+const homeDOMTitle           = languagePackage.homeDOMTitle
+const homeDOMLoginTitle      = languagePackage.homeDOMLoginTitle
+const stringExit             = languagePackage.stringExit
+const stringEmail            = languagePackage.stringEmail
+const stringPassword         = languagePackage.stringPassword
+const stringSubmit           = languagePackage.stringSubmit
+const stringLongData         = languagePackage.stringLongData
+const stringBadConnection    = languagePackage.stringBadConnection
+const stringWrongEmail       = languagePackage.stringWrongEmail
 
 
 // Global Var's
-const cookies              = new Cookies()
+const cookies                = new Cookies()
 
-const UrlAPI               = 'https://navedex-api.herokuapp.com/v1'
-const pathAPILogin         = '/users/login'
-const pathAPIListNavers    = '/navers'
+const UrlAPI                 = 'https://navedex-api.herokuapp.com/v1'
+const pathAPILogin           = '/users/login'
+const pathAPIListNavers      = '/navers'
 
-let isPendingAuthValidtn   = true
+let isPendingAuthValidtn     = true
 let authTokenObject
 let loadingBarRef
 
+
+// Console Security Message
+console.log('%c' + consoleSecurityMessage, "background: rgb(205, 35, 35); color: yellow; font-size: large")
 
 // eslint-disable-next-line
 function getJsonPOST (path, paramsObject, token){
@@ -49,7 +55,7 @@ function getJsonPOST (path, paramsObject, token){
   )
 }
 
-// eslint-disable-next-line
+
 function getJsonGET (path, token){
   authTokenObject = {
     headers: { Authorization: `Bearer ${token}` }
@@ -182,12 +188,23 @@ class Home extends React.Component {
 
   render(){
     return (
-      <div className='in-animation'>
-        <div>Home - Test string</div>
+      <main className='in-animation'>
         <Helmet>
           <title>{ homeDOMTitle }</title>
         </Helmet>
-      </div>
+        <header>
+          <div>
+            <LogoFull className='logo-full-home' />
+          </div>
+          <div>
+            <button
+              onClick={ this.props.logout }
+              type='button'
+              className='button-logout'>{ stringExit }
+            </button>
+          </div>
+        </header>
+      </main>
     )
   }
 }
@@ -221,6 +238,7 @@ class App extends React.Component {
     this.setAuthToken = this.setAuthToken.bind(this)
     this.validateCookie = this.validateCookie.bind(this)
     this.resolveRender = this.resolveRender.bind(this)
+    this.logout = this.logout.bind(this)
     // this.componentDidMount = this.componentDidMount.bind(this)
   }
 
@@ -282,6 +300,15 @@ class App extends React.Component {
     })
   }
 
+  logout(){
+    this.setAuthToken('undefined')
+    this.setState({
+      authentication: {
+        isAuthTokenValid: false
+      }
+    })
+  }
+
   validateCookie(){
     let thisInside = this
     getJsonGET(
@@ -298,7 +325,7 @@ class App extends React.Component {
         })
       }
     ).catch(
-      function () {
+      function (data) {
         isPendingAuthValidtn = false
         thisInside.setState({
           authentication: {
@@ -322,23 +349,33 @@ class App extends React.Component {
 
   resolveRender(){
     let loginPageWithProps = (
-      <LoginPage
-        loginMessage={ this.state.loginMessage }
-        loginMessageClass={ this.state.loginMessageClass }
-        login={ this.login }
-      />
+      <div>
+        <Helmet>
+          <title>{ homeDOMLoginTitle }</title>
+        </Helmet>
+        <LoginPage
+          loginMessage={ this.state.loginMessage }
+          loginMessageClass={ this.state.loginMessageClass }
+          login={ this.login }
+        />
+      </div>
     )
 
     let LoadPage = (
-      <FullPageLoader />
+      <div>
+        <FullPageLoader />
+      </div>
     )
 
     if(this.state.authToken !== 'undefined'){
       if(this.state.authentication.isAuthTokenValid){
         return (
-          <Home
-            indexContent={ null }
-          />
+          <div>
+            <Home
+              indexContent={ this.indexContent }
+              logout={ this.logout }
+            />
+          </div>
         )
       } else {
         if(isPendingAuthValidtn){
@@ -354,9 +391,9 @@ class App extends React.Component {
 
   render(){
     return (
-      <main>
-        {this.resolveRender()}
-      </main>
+      <div>
+        { this.resolveRender() }
+      </div>
     )
   }
 }
