@@ -15,6 +15,11 @@ body {
     animation: inAnimation 0.5s forwards 0s ease;
 }
 
+.in-animation-delay {
+  opacity: 0;
+  animation: inAnimation 0.5s forwards 1.5s ease;
+}
+
 .loader-container {
     width: 100vw;
     height: 100vh;

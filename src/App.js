@@ -204,14 +204,14 @@ class Home extends React.Component {
       }
       return indexCards
     } catch (error) {
+      this.props.validateCookie()
       return (
-        <p> { stringErrorLoadIndexContent }</p>
+        <p className='in-animation-delay'> { stringErrorLoadIndexContent }</p>
       )
     }
   }
 
   render(){
-
     let cardsResolved = this.resolveIndexCards(this.props.indexContent.data)
 
     return (
@@ -275,7 +275,7 @@ class App extends React.Component {
     this.validateCookie = this.validateCookie.bind(this)
     this.resolveRender = this.resolveRender.bind(this)
     this.logout = this.logout.bind(this)
-    // this.componentDidMount = this.componentDidMount.bind(this)
+    this.componentDidMount = this.componentDidMount.bind(this)
   }
 
   loginMessageSetState(message){
@@ -410,6 +410,7 @@ class App extends React.Component {
             <Home
               indexContent={ this.state.indexContent }
               logout={ this.logout }
+              validateCookie={this.validateCookie}
             />
           </div>
         )
