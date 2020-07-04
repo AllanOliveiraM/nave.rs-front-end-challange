@@ -2,23 +2,39 @@
     <img src="https://raw.githubusercontent.com/AllanOliveiraM/nave.rs-front-end-challange/master/docs_images/logo.svg?token=AJ4EG2UPQT6NHF7J7BSQT6K7ADZBE" width="350">
 </p>
 
-<br>
+<br />
 
 <p align="center">
     <img height="20" src="https://img.shields.io/github/license/AllanOliveiraM/nave.rs-front-end-challange">
 </p>
 
-<br>
+<br />
 
-**Navedex** é um sistema Web Front End desenvolvido em JavaScript utilizando a biblioteca [React](https://reactjs.org/), que foi desenvolvido como teste proposto pela empresa [Nave.rs](https://nave.rs/), descrito no seu respectivo [repositório oficial](https://github.com/naveteam/front-end-challenge). <br />
+**Navedex** é um sistema Web Front End escrito em JavaScript utilizando a biblioteca [React](https://reactjs.org/), que foi desenvolvido como teste proposto pela empresa [Nave.rs](https://nave.rs/) - [@naveteam](https://github.com/naveteam/), descrito no seu respectivo [repositório oficial](https://github.com/naveteam/front-end-challenge). <br />
 
-São dependências do projeto os seguintes pacotes `node`
+### Demo
 
-<br>
+Uma demonstração em produção com build automatizada do App se encontra hospedada pelo Netlify, disponível [aqui](https://navedex.netlify.app/)! <br />
+
+### Dependências
+
+São dependências do projeto, descitas no arquivo de controle `package.json`, os seguintes pacotes `node`:
+
+- axios: ^0.19.2
+- react: ^16.13.1
+- react-dom: ^16.13.1
+- react-helmet: ^6.1.0
+- react-image-appear: ^1.3.24
+- react-modal: ^3.11.2
+- react-scripts: 3.4.1
+- react-top-loading-bar: ^1.2.0
+- universal-cookie: ^4.0.3
+
+<br />
 
 ### Scripts Disponíveis
 
-No diretório do projeto, você pode rodar:
+No diretório do projeto, você pode executar:
 
 #### `npm start`
 
@@ -35,7 +51,7 @@ O comando `npm run build` cria uma versão de produção do website e a salva em
 
 Para mais informações visite a [documentação](https://facebook.github.io/create-react-app/docs/deployment) oficial do React.
 
-<br /><br />
+<br />
 
 ### Autor
 
