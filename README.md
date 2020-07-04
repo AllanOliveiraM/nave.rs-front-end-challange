@@ -1,5 +1,5 @@
 <p align="center">
-    <img src="https://raw.githubusercontent.com/AllanOliveiraM/nave.rs-front-end-challange/master/docs_images/logo.svg" width="350">
+    <img src="https://raw.githubusercontent.com/AllanOliveiraM/nave.rs-front-end-challange/master/docs_images/logo.png" width="350">
 </p>
 
 <br />
