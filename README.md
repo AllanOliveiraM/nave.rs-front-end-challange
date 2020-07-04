@@ -5,7 +5,7 @@
 <br />
 
 <p align="center">
-    <!-- <img height="20" src="https://img.shields.io/github/license/AllanOliveiraM/nave.rs-front-end-challange"> -->
+    <img height="20" src="https://img.shields.io/github/license/AllanOliveiraM/nave.rs-front-end-challange">
 </p>
 
 <br />
