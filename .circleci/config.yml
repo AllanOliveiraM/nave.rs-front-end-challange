@@ -1,4 +1,3 @@
-version: 2.1
 orbs:
   react: thefrontside/react@0.2.0
 version: 2.1
