@@ -6,6 +6,7 @@ import './styles/index.css'
 import AppComponents from './App'
 
 it('renders without crashing', () => {
+
   const divLoadBar = document.createElement('div');
   const divApp = document.createElement('div');
   ReactDOM.render(
