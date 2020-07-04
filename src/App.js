@@ -1,8 +1,13 @@
-import React          from 'react'
-import Axios          from 'axios'
-import Cookies        from 'universal-cookie'
-import LoadingBar     from 'react-top-loading-bar'
-import Helmet         from 'react-helmet'
+/*
+NEEDS REFACTORING AND ORGANIZATION
+*/
+
+
+import React            from 'react'
+import Axios            from 'axios'
+import Cookies          from 'universal-cookie'
+import LoadingBar       from 'react-top-loading-bar'
+import Helmet           from 'react-helmet'
 import ReactImageAppear from 'react-image-appear'
 
 // Components
