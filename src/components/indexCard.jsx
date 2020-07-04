@@ -1,8 +1,8 @@
-import React          from 'react'
+import React            from 'react'
 
-import DeleteIcon     from '../components/deleteIcon'
-import EditIcon       from '../components/editIcon'
-import ReactImageAppear from 'react-image-appear';
+import DeleteIcon       from '../components/deleteIcon'
+import EditIcon         from '../components/editIcon'
+import ReactImageAppear from 'react-image-appear'
 
 import '../styles/indexCards.css'
 import '../tools/grid.css'
