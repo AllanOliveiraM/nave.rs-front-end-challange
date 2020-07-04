@@ -1,5 +1,5 @@
 <p align="center">
-    <img src="https://raw.githubusercontent.com/AllanOliveiraM/nave.rs-front-end-challange/master/docs_images/logo.svg?token=AJ4EG2UPQT6NHF7J7BSQT6K7ADZBE" width="350">
+    <img src="https://raw.githubusercontent.com/AllanOliveiraM/nave.rs-front-end-challange/master/docs_images/logo.svg" width="350">
 </p>
 
 <br />
@@ -10,7 +10,7 @@
 
 <br />
 
-**Navedex** é um sistema Web Front End escrito em JavaScript utilizando a biblioteca [React](https://reactjs.org/), que foi desenvolvido como teste proposto pela empresa [Nave.rs](https://nave.rs/) - [@naveteam](https://github.com/naveteam/), descrito no seu respectivo [repositório oficial](https://github.com/naveteam/front-end-challenge). <br />
+**Navedex** é um sistema Web Front End escrito em JavaScript utilizando Node.js e a biblioteca [React](https://reactjs.org/), e foi desenvolvido como teste proposto pela empresa [Nave.rs](https://nave.rs/) - [@naveteam](https://github.com/naveteam/), descrito no seu respectivo [repositório oficial](https://github.com/naveteam/front-end-challenge). <br /> <br />
 
 ### Demo
 
@@ -18,6 +18,7 @@ Uma demonstração em produção com build automatizada do App se encontra hospe
 
 ### Dependências
 
+Use o comando `npm install` para preparar as dependências.
 São dependências do projeto, descitas no arquivo de controle `package.json`, os seguintes pacotes `node`:
 
 - axios: ^0.19.2
