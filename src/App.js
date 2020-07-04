@@ -3,12 +3,13 @@ import Axios          from 'axios'
 import Cookies        from 'universal-cookie'
 import LoadingBar     from 'react-top-loading-bar'
 import Helmet         from 'react-helmet'
+import ReactImageAppear from 'react-image-appear'
 
 // Components
-import CardLogin      from './components/cardLogin'
-import LogoFull       from './components/logo'
-import FullPageLoader from './components/fullPageLoader'
-import IndexCard      from './components/indexCard'
+import CardLogin        from './components/cardLogin'
+import LogoFull         from './components/logo'
+import FullPageLoader   from './components/fullPageLoader'
+import IndexCard        from './components/indexCard'
 
 // Styles
 import './styles/login_components.css'
@@ -200,7 +201,7 @@ class Home extends React.Component {
       let animDuration = 0.8
       for (i = 0; i < indexData.length; i++) {
         indexCards.push(
-          <IndexCard key={ indexData[i].id } cardContent={ indexData[i] } animationDuration={`${animDuration}s`}/>
+          <IndexCard key={ indexData[i].id } cardContent={ indexData[i] } animationDuration={`${animDuration}s`} ReactImageAppear={ ReactImageAppear }/>
           )
         animDuration = animDuration + 0.4
       }

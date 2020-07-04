@@ -2,7 +2,7 @@ import React            from 'react'
 
 import DeleteIcon       from '../components/deleteIcon'
 import EditIcon         from '../components/editIcon'
-import ReactImageAppear from 'react-image-appear'
+
 
 import '../styles/indexCards.css'
 import '../tools/grid.css'
@@ -32,6 +32,8 @@ class IndexCard extends React.Component {
 
         // let cardContentUrl = this.props.cardContent.url
         let cardContentUrl = 'https://source.unsplash.com/280x280/?people,person,men'
+
+        let ReactImageAppear = this.props.ReactImageAppear
 
         let CardContentResolved = (
 
