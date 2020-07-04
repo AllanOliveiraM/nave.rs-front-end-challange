@@ -6,6 +6,7 @@
 
 <p align="center">
     <img height="20" src="https://img.shields.io/badge/license-MIT-green">
+    <img height="20" src="https://circleci.com/gh/AllanOliveiraM/nave.rs-front-end-challange.svg?style=svg">
 </p>
 
 <br />
