@@ -1,5 +1,5 @@
 <p align="center">
-    <img src="https://raw.githubusercontent.com/AllanOliveiraM/jaqueline-furtado-web-system/master/docs/logotype.jpg" width="350">
+    <img src="https://raw.githubusercontent.com/AllanOliveiraM/nave.rs-front-end-challange/master/docs_images/logo.svg?token=AJ4EG2UPQT6NHF7J7BSQT6K7ADZBE" width="350">
 </p>
 
 <br>
