@@ -24,6 +24,8 @@ class IndexCard extends React.Component {
 
         let cardContentUrl = this.props.cardContent.url
 
+        let cardContentId = this.props.cardContent.id
+
         let ReactImageAppear = this.props.ReactImageAppear
 
         let slideRightKeyFrame = keyframes`
@@ -55,7 +57,7 @@ class IndexCard extends React.Component {
                         <div className='image-card-container'>
                             <ReactImageAppear 
                                 src={ cardContentUrl }
-                                onClick={ this.props.callBackCardClicked }
+                                onClick={ () => {this.props.callBackCardClicked(cardContentId)} }
                                 animationDuration={ `${this.props.animationDuration}s` }
                                 className='zoom-in card-image-style'
                             />
@@ -65,10 +67,10 @@ class IndexCard extends React.Component {
                             <p>{ cardContentName }</p>
                             <p>{ cardContentJobRole }</p>
                             <DeleteIcon 
-                                onClick={ this.props.callBackCardDelete }
+                                onClick={ () => {this.props.callBackCardDelete(cardContentId)} }
                             />
                             <EditIcon
-                                onClick={ this.props.callBackCardEdit }
+                                onClick={ () => {this.props.callBackCardEdit(cardContentId)} }
                             />
                         </div>
                     </div>

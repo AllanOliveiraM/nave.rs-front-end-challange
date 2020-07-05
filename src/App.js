@@ -20,6 +20,8 @@ import IndexCard             from './components/indexCard'
 // Styles
 import './styles/login_components.css'
 import './styles/indexCards.css'
+import './styles/index.css'
+
 
 
 // Language Package
@@ -180,7 +182,7 @@ class LoginCenterCard extends React.Component {
               <p id='message-login'>{ this.props.loginMessage }</p>
             </div>
 
-            <button type="submit">{ stringSubmit }</button>
+            <button id='button-submit-login' type="submit">{ stringSubmit }</button>
 
           </form>
         </CardLogin>
@@ -214,19 +216,27 @@ class Home extends React.Component {
   }
 
   addNaver(){
-    alert('Clicked! Add Naver')
+    setTimeout(() => {
+      alert('Clicked! Add Naver')
+    }, 160)
   }
 
-  cardClicked(){
-    alert('Clicked! view')
+  cardClicked(id){
+    setTimeout(() => {
+      alert('Clicked! view ' + id)
+    }, 160)
   }
 
-  deleteClick(){
-    alert('Clicked! delete')
+  deleteClick(id){
+    setTimeout(() => {
+      alert('Clicked! delete ' + id)
+    }, 160)
   }
 
-  editClick(){
-    alert('Clicked! edit')
+  editClick(id){
+    setTimeout(() => {
+      alert('Clicked! edit ' + id)
+    }, 160)
   }
 
   resolveIndexCards(indexData){
@@ -283,7 +293,10 @@ class Home extends React.Component {
           <button
             onClick={ this.addNaver }
             id='add-naver'
-            type='button'>{ stringAddNaver }
+            className='hoverable'
+            type='button'
+            >
+            { stringAddNaver }
           </button>
         </section>
         <section className='container'>

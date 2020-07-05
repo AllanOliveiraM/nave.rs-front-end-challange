@@ -42,6 +42,10 @@
     transform: scale(1.05);
 }
 
+.zoom-in:active {
+    transform: scale(0.97);
+}
+
 .slide-right {
     opacity: 0;
     transform: translateX(-30px);
