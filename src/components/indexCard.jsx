@@ -4,10 +4,13 @@ import styled, { keyframes } from 'styled-components'
 import DeleteIcon            from '../components/deleteIcon'
 import EditIcon              from '../components/editIcon'
 import Modal                 from '../components/modal'
-
+import ReactImageAppearEmpty from '../components/reactImageAppearEmpty'
 
 import '../styles/indexCards.css'
 import '../tools/grid.css'
+
+
+let ReactImageAppear
 
 
 class IndexCard extends React.Component {
@@ -25,9 +28,11 @@ class IndexCard extends React.Component {
     }
 
     showMore(id){
-        this.setState({
-            modalShowMoreIsOpen: true
-        })
+        setTimeout(() => {
+            this.setState({
+                modalShowMoreIsOpen: true
+            })
+        }, 160)
     }
 
     showMoreClose(){
@@ -41,6 +46,9 @@ class IndexCard extends React.Component {
         this.setState({
             loaded: true
         })
+        setTimeout(() => {
+            ReactImageAppear = ReactImageAppearEmpty
+        }, 1000)
     }
 
     render(){
@@ -51,8 +59,6 @@ class IndexCard extends React.Component {
         let cardContentUrl = this.props.cardContent.url
 
         let cardContentId = this.props.cardContent.id
-
-        let ReactImageAppear = this.props.ReactImageAppear
 
         let slideRightKeyFrame = keyframes`
             0% {
@@ -67,11 +73,12 @@ class IndexCard extends React.Component {
                 transform: translateX(0);
             }
         `
+
         let SlidedRight
         let animationDurationResolved = this.props.animationDuration
 
         if(!this.state.loaded){
-            
+            ReactImageAppear = this.props.ReactImageAppear
             SlidedRight = styled.div`
                 opacity: 0;
                 transform: translateX(-30px);
@@ -84,9 +91,31 @@ class IndexCard extends React.Component {
             `
         }
 
+
+        const customStylesModalShowMore = {
+            overlay: {
+                position: 'fixed',
+                top: 0,
+                left: 0,
+                right: 0,
+                bottom: 0,
+                backgroundColor: 'rgba(0, 0, 0, 0.4)'
+              },
+            content : {
+                top                   : '50%',
+                left                  : '50%',
+                right                 : 'auto',
+                bottom                : 'auto',
+                marginRight           : '-50%',
+                transform             : 'translate(-50%, -50%)'
+            }
+        }
+
+
         let CardContentResolved = (
             <section className='col col-4 col-3 col-2'>
                 <Modal
+                    customStyles={ customStylesModalShowMore }
                     modalIsOpen={ this.state.modalShowMoreIsOpen }
                 >
                     <p>OKOK</p>

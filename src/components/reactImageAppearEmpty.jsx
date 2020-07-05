@@ -4,7 +4,7 @@ import React            from 'react'
 class ReactImageAppearEmpty extends React.Component {
     render(){
         return (
-            <img onClick={ this.props.onClick } className={'in-animation'} src={this.props.src} alt={ this.props.alt } />
+            <img className={ this.props.className } onClick={ this.props.onClick } src={this.props.src} alt={ this.props.alt } />
         )
     }
 }
