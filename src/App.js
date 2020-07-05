@@ -212,31 +212,23 @@ class Home extends React.Component {
   constructor(props) {
     super(props)
 
+    this.state = {
+      isModalOpen: false
+    }
+
+    this.refreshResolveIndex = this.refreshResolveIndex.bind(this)
+    this.addNaver = this.addNaver.bind(this)
     this.resolveIndexCards = this.resolveIndexCards.bind(this)
+  }
+
+  refreshResolveIndex(){
+    this.props.resolveIndexValidateCookie()
   }
 
   addNaver(){
     setTimeout(() => {
-      alert('Clicked! Add Naver')
-    }, 160)
-  }
-
-  cardClicked(id){
-    setTimeout(() => {
-      alert('Clicked! view ' + id)
-    }, 160)
-  }
-
-  deleteClick(id){
-    setTimeout(() => {
-      alert('Clicked! delete ' + id)
-    }, 160)
-  }
-
-  editClick(id){
-    setTimeout(() => {
-      alert('Clicked! edit ' + id)
-    }, 160)
+      console.log('Add naver')
+    },160)
   }
 
   resolveIndexCards(indexData){
@@ -247,9 +239,6 @@ class Home extends React.Component {
       for (i = 0; i < indexData.length; i++) {
         indexCards.push(
           <IndexCard
-            callBackCardClicked={ this.cardClicked }
-            callBackCardDelete={ this.deleteClick }
-            callBackCardEdit={ this.editClick }
             alt={ stringUserImageAlt }
             key={ indexData[i].id }
             cardContent={ indexData[i] }
@@ -261,7 +250,7 @@ class Home extends React.Component {
       }
       return indexCards
     } catch (error) {
-      this.props.validateCookie()
+      this.props.resolveIndexValidateCookie()
       return (
         <p className='in-animation-delay'> { stringErrorLoadIndexContent }</p>
       )
@@ -276,28 +265,30 @@ class Home extends React.Component {
         <Helmet>
           <title>{ homeDOMTitle }</title>
         </Helmet>
-        <header>
-          <div>
-            <LogoFull className='logo-full-home' />
-          </div>
-          <div>
+        <section className='container-h'>
+          <header>
+            <div>
+              <LogoFull className='logo-full-home margin-header-left' />
+            </div>
+            <div>
+              <button
+                onClick={ this.props.logout }
+                type='button'
+                className='button-logout margin-header-right'>{ stringExit }
+              </button>
+            </div>
+          </header>
+          <section id='title-subheader'>
+            <p className='margin-header-left' id='navers-title'>{ stringNaversTitle }</p>
             <button
-              onClick={ this.props.logout }
+              onClick={ this.addNaver }
+              id='add-naver'
+              className='hoverable margin-header-right'
               type='button'
-              className='button-logout'>{ stringExit }
+              >
+              { stringAddNaver }
             </button>
-          </div>
-        </header>
-        <section id='title-subheader'>
-          <p id='navers-title'>{ stringNaversTitle }</p>
-          <button
-            onClick={ this.addNaver }
-            id='add-naver'
-            className='hoverable'
-            type='button'
-            >
-            { stringAddNaver }
-          </button>
+          </section>
         </section>
         <section className='container'>
           <div className='row'>
@@ -336,7 +327,7 @@ class App extends React.Component {
     this.login = this.login.bind(this)
     this.loginMessageSetState = this.loginMessageSetState.bind(this)
     this.setAuthToken = this.setAuthToken.bind(this)
-    this.validateCookie = this.validateCookie.bind(this)
+    this.resolveIndexValidateCookie = this.resolveIndexValidateCookie.bind(this)
     this.resolveRender = this.resolveRender.bind(this)
     this.logout = this.logout.bind(this)
     this.componentDidMount = this.componentDidMount.bind(this)
@@ -409,7 +400,7 @@ class App extends React.Component {
     })
   }
 
-  validateCookie(){
+  resolveIndexValidateCookie(){
     let thisInside = this
     getJsonGET(
       pathAPIListNavers,
@@ -439,7 +430,7 @@ class App extends React.Component {
   componentDidMount(){
     if(isPendingAuthValidtn){
       if(this.state.authToken !== 'undefined'){
-        this.validateCookie()
+        this.resolveIndexValidateCookie()
         isPendingAuthValidtn = false
       } else {
         isPendingAuthValidtn = false
@@ -474,7 +465,7 @@ class App extends React.Component {
             <Home
               indexContent={ this.state.indexContent }
               logout={ this.logout }
-              validateCookie={this.validateCookie}
+              resolveIndexValidateCookie={this.resolveIndexValidateCookie}
             />
           </div>
         )
