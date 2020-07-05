@@ -53,7 +53,7 @@ Abra [http://localhost:3000](http://localhost:3000) para visualizar no seu naveg
 
 #### `npm test`
 
-Para testar o script, você pode usar o comando `npm test`. Visite a [documentação](https://facebook.github.io/create-react-app/docs/running-tests) para mais informaçõs.
+Para testar o script, você pode usar o comando `npm test`. Visite a [documentação](https://facebook.github.io/create-react-app/docs/running-tests) para mais informações.
 
 #### `npm run build`
 
