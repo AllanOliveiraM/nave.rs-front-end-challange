@@ -3,26 +3,38 @@ NEEDS REFACTORING AND ORGANIZATION
 */
 
 
-import React            from 'react'
-import Axios            from 'axios'
-import Cookies          from 'universal-cookie'
-import LoadingBar       from 'react-top-loading-bar'
-import Helmet           from 'react-helmet'
-import ReactImageAppear from 'react-image-appear'
+import React                 from 'react'
+import Axios                 from 'axios'
+import Cookies               from 'universal-cookie'
+import LoadingBar            from 'react-top-loading-bar'
+import Helmet                from 'react-helmet'
+
 
 // Components
-import CardLogin        from './components/cardLogin'
-import LogoFull         from './components/logo'
-import FullPageLoader   from './components/fullPageLoader'
-import IndexCard        from './components/indexCard'
+import CardLogin             from './components/cardLogin'
+import LogoFull              from './components/logo'
+import FullPageLoader        from './components/fullPageLoader'
+import IndexCard             from './components/indexCard'
+
 
 // Styles
 import './styles/login_components.css'
 import './styles/indexCards.css'
 
-// Languages: String Mapping
+
+// Language Package
 import languagePackage from './languages/pt-br.js'
-//
+
+
+// Image Loader Option > Toggle comments bellow for testing
+import ReactImageAppearEmpty from './components/reactImageAppearEmpty'
+// import ReactImageAppear      from 'react-image-appear'
+let ReactImageAppearComponent
+ReactImageAppearComponent = ReactImageAppearEmpty
+// ReactImageAppearComponent = ReactImageAppear
+
+
+// Language Mapping
 const consoleSecurityMessage       = languagePackage.consoleSecurityMessage
 const homeDOMTitle                 = languagePackage.homeDOMTitle
 const homeDOMLoginTitle            = languagePackage.homeDOMLoginTitle
@@ -36,6 +48,7 @@ const stringWrongEmail             = languagePackage.stringWrongEmail
 const stringErrorLoadIndexContent  = languagePackage.stringErrorLoadIndexContent
 const stringAddNaver               = languagePackage.stringAddNaver
 const stringNaversTitle            = languagePackage.stringNaversTitle
+const stringUserImageAlt           = languagePackage.stringUserImageAlt
 
 
 // Global Var's
@@ -52,6 +65,7 @@ let loadingBarRef
 
 // Console Security Message
 console.log('%c' + consoleSecurityMessage, "background: rgb(205, 35, 35); color: yellow; font-size: large")
+
 
 // eslint-disable-next-line
 function getJsonPOST (path, paramsObject, token){
@@ -206,8 +220,8 @@ class Home extends React.Component {
       let animDuration = 0.8
       for (i = 0; i < indexData.length; i++) {
         indexCards.push(
-          <IndexCard key={ indexData[i].id } cardContent={ indexData[i] } animationDuration={`${animDuration}s`} ReactImageAppear={ ReactImageAppear }/>
-          )
+          <IndexCard alt={ stringUserImageAlt } key={ indexData[i].id } cardContent={ indexData[i] } animationDuration={`${animDuration}s`} ReactImageAppear={ ReactImageAppearComponent }/>
+        )
         animDuration = animDuration + 0.4
       }
       return indexCards

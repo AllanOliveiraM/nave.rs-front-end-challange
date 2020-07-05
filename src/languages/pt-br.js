@@ -14,7 +14,8 @@ const languagePackage__PT_BR__ = {
     stringSubmit:                  'Entrar',
     stringErrorLoadIndexContent:   'Algo deu errado com a sua conexão! :(',
     stringAddNaver:                'Adicionar Naver',
-    stringNaversTitle:             'Navers'
+    stringNaversTitle:             'Navers',
+    stringUserImageAlt:            'Imagem de um usuário',
 }
 
 
