@@ -71,14 +71,16 @@ header {
   font-weight: 600;
   font-size: 40px;
   line-height: 48px;
-  margin: 40px 0 0 32px;
+  margin: 0 0 0 32px;
 }
 
 #title-subheader {
+  cursor: default;
   height: 120px;
   width: 100%;
   display: flex;
   justify-content: space-between;
+  align-items: center;
 }
 
 #add-naver {
@@ -90,7 +92,7 @@ header {
   font-size: 14px;
   line-height: 24px;
   color: white;
-  margin: 40px 32px 0 0;
+  margin: 0 32px 0 0;
   cursor: pointer;
   border: none;
   outline: none;
@@ -222,4 +224,13 @@ header {
     100%{
         opacity: 1;
         }
+}
+
+@media (min-width: 1570px){
+  .margin-header-left {
+    margin-left: 53px !important;
+  }
+  .margin-header-right {
+    margin-right: 53px !important;
+  }
 }
