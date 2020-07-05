@@ -57,7 +57,7 @@ class IndexCard extends React.Component {
                                 src={ cardContentUrl }
                                 onClick={ this.props.callBackCardClicked }
                                 animationDuration={ `${this.props.animationDuration}s` }
-                                className='zoom-in'
+                                className='zoom-in card-image-style'
                             />
                         </div>
 

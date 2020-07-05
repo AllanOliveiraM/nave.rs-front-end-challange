@@ -10,12 +10,12 @@
     overflow: hidden;
 }
 
-.card-index-container > .card-index-footer {
+.card-index-footer {
     display: block;
     text-align: start;
 }
 
-.card-index-container > .image-card-container > div > img {
+.card-image-style {
     cursor: pointer;
     position: relative;
     top: 0;
