@@ -86,7 +86,7 @@ Nenhum dos pacotes/bibliotecas utilizadas neste projeto foram utilizadas por mim
 
 Via Postman, é possível verificar aparentemente a utilização de urls relativas ao própio servidor de API, mas com a sua implementação não obtive êxito.
 
-- Layout dá página é dinâmico.
+- Layout da página é dinâmico.
 
 Na apresentação das telas do Figma, com o link descrito no README do projeto oficial, verifica-se o alinhamento absoluto de alguns elementos. Neste projeto, foi utilizado o desenvolvimento responsivo otimizado para Mobile, portanto, as telas baseiam-se em modelos de `Grid CSS`, tornando a página 'mutável' de acordo com o dispositivo a ser utilizado.
 
