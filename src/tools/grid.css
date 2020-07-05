@@ -12,11 +12,22 @@
 
 }
 
+.container-h {
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
 @media (min-width: 1570px){
     .container {
         max-width: 1570px;
         padding: 0;
     }
+    .container-h {
+        max-width: 1570px;
+        padding: 0;
+    }
+    
 }
 
 .row {
@@ -39,7 +50,6 @@
     padding-left: 5px;
     padding-right: 5px;
     width: 100%;
-    margin-right: -4px;
     -webkit-zoom: 1;
     -moz-zoom: 1;
     -ms-zoom: 1;
