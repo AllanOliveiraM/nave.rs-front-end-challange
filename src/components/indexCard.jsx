@@ -52,12 +52,14 @@ class IndexCard extends React.Component {
 
                 <SlidedRight>
                     <div className='card-index-container'>
+                        <div className='image-card-container'>
                             <ReactImageAppear 
                                 src={ cardContentUrl }
                                 onClick={ this.props.callBackCardClicked }
                                 animationDuration={ `${this.props.animationDuration}s` }
                                 className='zoom-in'
                             />
+                        </div>
 
                         <div className='card-index-footer'>
                             <p>{ cardContentName }</p>

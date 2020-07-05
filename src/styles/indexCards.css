@@ -4,12 +4,18 @@
     overflow: hidden;
 }
 
+.image-card-container {
+    height: 280px;
+    display: block;
+    overflow: hidden;
+}
+
 .card-index-container > .card-index-footer {
     display: block;
     text-align: start;
 }
 
-.card-index-container > img {
+.card-index-container > .image-card-container > div > img {
     cursor: pointer;
     position: relative;
     top: 0;
