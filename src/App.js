@@ -27,11 +27,11 @@ import languagePackage from './languages/pt-br.js'
 
 
 // Image Loader Option > Toggle comments bellow for testing
-import ReactImageAppearEmpty from './components/reactImageAppearEmpty'
-// import ReactImageAppear      from 'react-image-appear'
+// import ReactImageAppearEmpty from './components/reactImageAppearEmpty'
+import ReactImageAppear      from 'react-image-appear'
 let ReactImageAppearComponent
-ReactImageAppearComponent = ReactImageAppearEmpty
-// ReactImageAppearComponent = ReactImageAppear
+// ReactImageAppearComponent = ReactImageAppearEmpty
+ReactImageAppearComponent = ReactImageAppear
 
 
 // Language Mapping
@@ -213,16 +213,41 @@ class Home extends React.Component {
     this.resolveIndexCards = this.resolveIndexCards.bind(this)
   }
 
+  addNaver(){
+    alert('Clicked! Add Naver')
+  }
+
+  cardClicked(){
+    alert('Clicked! view')
+  }
+
+  deleteClick(){
+    alert('Clicked! delete')
+  }
+
+  editClick(){
+    alert('Clicked! edit')
+  }
+
   resolveIndexCards(indexData){
     try {
       let indexCards=[];
       let i
-      let animDuration = 0.8
+      let animDuration = 0.6
       for (i = 0; i < indexData.length; i++) {
         indexCards.push(
-          <IndexCard alt={ stringUserImageAlt } key={ indexData[i].id } cardContent={ indexData[i] } animationDuration={`${animDuration}s`} ReactImageAppear={ ReactImageAppearComponent }/>
+          <IndexCard
+            callBackCardClicked={ this.cardClicked }
+            callBackCardDelete={ this.deleteClick }
+            callBackCardEdit={ this.editClick }
+            alt={ stringUserImageAlt }
+            key={ indexData[i].id }
+            cardContent={ indexData[i] }
+            animationDuration={ animDuration }
+            ReactImageAppear={ ReactImageAppearComponent }
+          />
         )
-        animDuration = animDuration + 0.4
+        animDuration = animDuration + 0.1
       }
       return indexCards
     } catch (error) {
@@ -255,7 +280,11 @@ class Home extends React.Component {
         </header>
         <section id='title-subheader'>
           <p id='navers-title'>{ stringNaversTitle }</p>
-          <button id='add-naver' type='button'>{ stringAddNaver }</button>
+          <button
+            onClick={ this.addNaver }
+            id='add-naver'
+            type='button'>{ stringAddNaver }
+          </button>
         </section>
         <section className='container'>
           <div className='row'>
