@@ -1,4 +1,5 @@
 import React            from 'react'
+import styled, { keyframes } from 'styled-components'
 
 import DeleteIcon       from '../components/deleteIcon'
 import EditIcon         from '../components/editIcon'
@@ -17,41 +18,59 @@ class IndexCard extends React.Component {
     componentDidMount(){}
 
     render(){
-
-        function callBackCardClicked(){
-            alert('clicked!')
-        }
-
-        // let cardContentId = this.props.cardContent.id
         let cardContentName = this.props.cardContent.name
-        // let cardContentAdmissionDate = this.props.cardContent.admission_date
-        let cardContentJobRole = this.props.cardContent.job_role
-        // let cardContentUserId = this.props.cardContent.user_id
-        // let cardContentProject = this.props.cardContent.project
-        // let cardContentBirthdate = this.props.cardContent.birthdate
 
-        // let cardContentUrl = this.props.cardContent.url
-        let cardContentUrl = 'https://source.unsplash.com/280x280/?people,person,men'
+        let cardContentJobRole = this.props.cardContent.job_role
+
+        let cardContentUrl = this.props.cardContent.url
 
         let ReactImageAppear = this.props.ReactImageAppear
+
+        let slideRightKeyFrame = keyframes`
+            0% {
+                opacity: 0;
+                transform: translateX(-30px);
+            }
+            85% {
+                opacity: 1;
+            }
+            100% {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        `
+
+        let SlidedRight = styled.div`
+            opacity: 0;
+            transform: translateX(-30px);
+            animation: ${slideRightKeyFrame} 0.3s ease-in-out ${ this.props.animationDuration }s both;
+        `
 
         let CardContentResolved = (
 
             <section className='col col-4 col-3 col-2'>
 
-                <div className='card-index-container'>
-                    <ReactImageAppear 
-                        src={ cardContentUrl }
-                        onClick={ callBackCardClicked }
-                        animationDuration={ this.props.animationDuration }
-                    />
-                    <div className='card-index-footer'>
-                        <p>{ cardContentName }</p>
-                        <p>{ cardContentJobRole }</p>
-                        <DeleteIcon />
-                        <EditIcon />
+                <SlidedRight>
+                    <div className='card-index-container'>
+                            <ReactImageAppear 
+                                src={ cardContentUrl }
+                                onClick={ this.props.callBackCardClicked }
+                                animationDuration={ `${this.props.animationDuration}s` }
+                                className='zoom-in'
+                            />
+
+                        <div className='card-index-footer'>
+                            <p>{ cardContentName }</p>
+                            <p>{ cardContentJobRole }</p>
+                            <DeleteIcon 
+                                onClick={ this.props.callBackCardDelete }
+                            />
+                            <EditIcon
+                                onClick={ this.props.callBackCardEdit }
+                            />
+                        </div>
                     </div>
-                </div>
+                </SlidedRight>
             </section>
         )
 
