@@ -9,7 +9,7 @@ const languagePackage__PT_BR__ = {
     stringExit:                    'Sair',
     stringEmail:                   'E-mail',
     stringLongData:                'Dados incorretos.',
-    stringBadConnection:           'Oops! Verifique sua conexão.',
+    stringBadConnection:           'Oops! Você está Offline.',
     stringWrongEmail:              'Email inválido.',
     stringSubmit:                  'Entrar',
     stringErrorLoadIndexContent:   'Algo deu errado com a sua conexão! :(',
