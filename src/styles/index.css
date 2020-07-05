@@ -5,6 +5,15 @@ body {
     font-family: sans-serif;
 }
 
+.hoverable {
+  box-shadow: 0 0 0 0 rgba(0, 0, 0, 0.3);
+  transition: box-shadow 500ms;
+}
+
+.hoverable:hover {
+  box-shadow: 0 5px 20px 0 rgba(0, 0, 0, 0.5);
+}
+
 .in-animation-faster {
     opacity: 0;
     animation: inAnimation 0.3s forwards 0s ease;

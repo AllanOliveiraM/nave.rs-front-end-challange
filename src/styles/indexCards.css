@@ -1,6 +1,6 @@
 .card-index-container {
     width: 280px;
-    margin: 0 auto 0 auto;
+    margin: 0 auto 20px auto;
     overflow: hidden;
 }
 
@@ -18,3 +18,40 @@
     width: 280px;
     height: 280px;
 }
+
+.delete-icon {
+    cursor: pointer;
+}
+
+.edit-icon {
+    cursor: pointer;
+}
+
+.zoom-in {
+    transform: scale(1.0);
+    transition: transform 300ms;
+}
+
+.zoom-in:hover {
+    transform: scale(1.05);
+}
+
+.slide-right {
+    opacity: 0;
+    transform: translateX(-30px);
+    animation: slide-right 0.3s ease-in-out 0s both;
+}
+
+  @keyframes slide-right {
+    0% {
+        opacity: 0;
+        transform: translateX(-30px);
+    }
+    85% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 1;
+        transform: translateX(0);
+    }
+  }
