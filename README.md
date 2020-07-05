@@ -80,7 +80,7 @@ Nenhum dos pacotes/bibliotecas utilizadas neste projeto foram utilizadas por mim
 
 #### Divergências
 
-É possível encontrar algumas divregências previstas do projeto original proposto pela Nave.rs, e são:
+É possível encontrar algumas divergências previstas do projeto original proposto pela Nave.rs, e são:
 
 - A URL das imagens dos Navers, neste projeto, é externa.
 
