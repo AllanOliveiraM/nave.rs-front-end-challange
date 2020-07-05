@@ -1,8 +1,8 @@
-import React            from 'react'
+import React                 from 'react'
 import styled, { keyframes } from 'styled-components'
 
-import DeleteIcon       from '../components/deleteIcon'
-import EditIcon         from '../components/editIcon'
+import DeleteIcon            from '../components/deleteIcon'
+import EditIcon              from '../components/editIcon'
 
 
 import '../styles/indexCards.css'
@@ -13,6 +13,11 @@ class IndexCard extends React.Component {
     constructor(props) {
     super(props)
         this.componentDidMount = this.componentDidMount.bind(this)
+        this.showMore = this.showMore.bind(this)
+    }
+
+    showMore(id){
+        console.log(id)
     }
 
     componentDidMount(){}
@@ -57,7 +62,7 @@ class IndexCard extends React.Component {
                         <div className='image-card-container'>
                             <ReactImageAppear 
                                 src={ cardContentUrl }
-                                onClick={ () => {this.props.callBackCardClicked(cardContentId)} }
+                                onClick={ () => {this.showMore(cardContentId)} }
                                 animationDuration={ `${this.props.animationDuration}s` }
                                 className='zoom-in card-image-style'
                             />
@@ -67,10 +72,10 @@ class IndexCard extends React.Component {
                             <p>{ cardContentName }</p>
                             <p>{ cardContentJobRole }</p>
                             <DeleteIcon 
-                                onClick={ () => {this.props.callBackCardDelete(cardContentId)} }
+                                onClick={ () => {alert(cardContentId)} }
                             />
                             <EditIcon
-                                onClick={ () => {this.props.callBackCardEdit(cardContentId)} }
+                                onClick={ () => {alert(cardContentId)} }
                             />
                         </div>
                     </div>
