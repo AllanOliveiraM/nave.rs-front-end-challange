@@ -1,38 +1,35 @@
-import React            from 'react'
+import React from 'react'
+import Modal from 'react-modal';
 
 
-class Modal extends React.Component {
-    constructor(props) {
-    super(props)
-
-        this.state = {
-            isModalOpen: false
-        }
-
-        this.handleModalOpen = this.handleModalOpen.bind(this)
-        this.handleModalClose = this.handleModalClose.bind(this)
+const customStyles = {
+    content : {
+        // top                   : '50%',
+        // left                  : '50%',
+        // right                 : 'auto',
+        // bottom                : 'auto',
+        // marginRight           : '-50%',
+        // transform             : 'translate(-50%, -50%)'
     }
+}
 
-    handleModalOpen(){
-        this.setState({
-            isModalOpen: true
-        })
-    }
 
-    handleModalClose(){
-        this.setState({
-            isModalOpen: false
-        })
-    }
+Modal.setAppElement('#modals')
+
+
+class IndexModal extends React.Component {
 
     render(){
         return (
-            <div>
+            <Modal
+                isOpen={ this.props.modalIsOpen }
+                style={ customStyles }
+            >
                 { this.props.children }
-            </div>
+            </Modal>
         )
     }
 }
 
 
-export default Modal
+export default IndexModal

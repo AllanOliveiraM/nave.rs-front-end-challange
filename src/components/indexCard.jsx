@@ -3,6 +3,7 @@ import styled, { keyframes } from 'styled-components'
 
 import DeleteIcon            from '../components/deleteIcon'
 import EditIcon              from '../components/editIcon'
+import Modal                 from '../components/modal'
 
 
 import '../styles/indexCards.css'
@@ -12,15 +13,35 @@ import '../tools/grid.css'
 class IndexCard extends React.Component {
     constructor(props) {
     super(props)
-        this.componentDidMount = this.componentDidMount.bind(this)
+
+        this.state = {
+            loaded: false,
+            modalShowMoreIsOpen: false
+        }    
+
         this.showMore = this.showMore.bind(this)
+        this.showMoreClose = this.showMoreClose.bind(this)
+        this.componentDidMount = this.componentDidMount.bind(this)
     }
 
     showMore(id){
-        console.log(id)
+        this.setState({
+            modalShowMoreIsOpen: true
+        })
     }
 
-    componentDidMount(){}
+    showMoreClose(){
+        this.setState({
+            modalShowMoreIsOpen: false
+        })
+    }
+
+
+    componentDidMount(){
+        this.setState({
+            loaded: true
+        })
+    }
 
     render(){
         let cardContentName = this.props.cardContent.name
@@ -46,24 +67,38 @@ class IndexCard extends React.Component {
                 transform: translateX(0);
             }
         `
+        let SlidedRight
+        let animationDurationResolved = this.props.animationDuration
 
-        let SlidedRight = styled.div`
-            opacity: 0;
-            transform: translateX(-30px);
-            animation: ${slideRightKeyFrame} 0.3s ease-in-out ${ this.props.animationDuration }s both;
-        `
+        if(!this.state.loaded){
+            
+            SlidedRight = styled.div`
+                opacity: 0;
+                transform: translateX(-30px);
+                animation: ${slideRightKeyFrame} 0.3s ease-in-out ${ this.props.animationDuration }s both;
+            `
+        } else {
+            animationDurationResolved = 0
+            SlidedRight = styled.div`
+                opacity: 1;
+            `
+        }
 
         let CardContentResolved = (
-
             <section className='col col-4 col-3 col-2'>
-
+                <Modal
+                    modalIsOpen={ this.state.modalShowMoreIsOpen }
+                >
+                    <p>OKOK</p>
+                    <button onClick={ this.showMoreClose } type='button'>Close</button>
+                </Modal>
                 <SlidedRight>
                     <div className='card-index-container'>
                         <div className='image-card-container'>
                             <ReactImageAppear 
                                 src={ cardContentUrl }
                                 onClick={ () => {this.showMore(cardContentId)} }
-                                animationDuration={ `${this.props.animationDuration}s` }
+                                animationDuration={ `${animationDurationResolved}s` }
                                 className='zoom-in card-image-style'
                             />
                         </div>
