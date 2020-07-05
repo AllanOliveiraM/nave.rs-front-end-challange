@@ -33,6 +33,7 @@ São dependências do projeto, descitas no arquivo de controle `package.json`, o
 - react-scripts: 3.4.1
 - react-top-loading-bar: ^1.2.0
 - universal-cookie: ^4.0.3
+- styled-components: ^5.1.1
 
 <br />
 
