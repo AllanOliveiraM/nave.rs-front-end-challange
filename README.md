@@ -64,6 +64,22 @@ Para mais informações visite a [documentação](https://facebook.github.io/cre
 <br />
 <br />
 
+### Features!
+
+- Pacote de linguagens utilizado no App para facilitar internacionalização dos textos.
+
+No diretório `src/` você encontra o diretório `languages`, que contém o pacote de idioma que está sendo utilizado no momento. Este pacote se assemelha com um objeto JSON, e sua configuração do Main App é super fácil, possibilitando assim, possíveis traduções do App simplificadas, ou a substituição de algum texto de forma simples.
+
+- Lazy Loading após carregamento inicial.
+
+Após o carregamento dos cards, os componentes de Loading das imagem são automaticamente subtiuídos por simples `sections`, e as animações iniciais são reduzidas. Atualizações de alterações só ocorrem se posteriormente solicitadas. Isso ajuda no processamento posterior dos dados, aprimorando a performance.
+
+- Mobile First!
+
+App responsivo para ser utilizado em qualquer dispositivo.
+
+<br />
+
 ### História de Desenvolvimento
 
 Em todos os aspectos, este sem dúvida foi o projeto que mais me trouxe novidades em tão pouco tempo até então. Meus projetos anteriores sempre foram focados em desenvolvimento Web Back End em Python, e alguns em Desktop. Na Web, sempre usei opções mais simples e relativamente antigas para o desenvolvimento, como HTML5 puro, com a interatividade escrita em JavaScript Vanilla ou em bibliotecas como jQuery, estilização em CSS puro ou frameworks como MaterializeCSS e Bootstrap.
