@@ -34,6 +34,10 @@ const languagePackage__PT_BR__ = {
     stringProjects:                'Projetos que participou',
     stringImage:                   'URL da foto do Naver',
     stringSave:                    'Salvar',
+    stringMinLengthThree:          ' - Mínimo três caracteres.',
+    stringCreatedNaver:            'Naver criado',
+    stringCreatedNaverSubTitle:    'Naver criado com sucesso!',
+    stringWrongDataAddNavers:      'Verifique se os dados estão corretos e tente novamente!',
 }
 
 
