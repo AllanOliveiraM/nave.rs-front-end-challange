@@ -167,18 +167,18 @@ class IndexCard extends React.Component {
     let cardContentId = this.props.cardContent.id
 
     let slideRightKeyFrame = keyframes`
-            0% {
-                opacity: 0;
-                transform: translateX(-30px);
-            }
-            85% {
-                opacity: 1;
-            }
-            100% {
-                opacity: 1;
-                transform: translateX(0);
-            }
-        `
+      0% {
+          opacity: 0;
+          transform: translateX(-30px);
+      }
+      85% {
+          opacity: 1;
+      }
+      100% {
+          opacity: 1;
+          transform: translateX(0);
+      }
+    `
 
     let SlidedRight
     let animationDurationResolved = this.props.animationDuration
