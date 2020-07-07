@@ -521,8 +521,8 @@ class ModalAddNaver extends React.Component {
           customStyles={customStylesModalOk}
           modalIsOpen={this.state.modalOkIsOpen}
         >
-          <div className='delete-ok-header-container'>
-            <p className='delete-ok-title' >{stringTitleAddNaver}</p>
+          <div className='add-navers-message-container'>
+            <p className='add-navers-message-title' >{stringTitleAddNaver}</p>
             <button className='close-button zoom-in' onClick={this.modalOkClose} type='button'>
               <CloseIcon />
             </button>
