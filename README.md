@@ -62,7 +62,6 @@ O comando `npm run build` cria uma versão de produção do website e a salva em
 Para mais informações visite a [documentação](https://facebook.github.io/create-react-app/docs/deployment) oficial do React.
 
 <br />
-<br />
 
 ### Features!
 
