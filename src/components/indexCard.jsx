@@ -1,14 +1,14 @@
 import React                 from 'react'
 import styled, { keyframes } from 'styled-components'
 import Helmet                from 'react-helmet'
-import Axios            from 'axios'
+import Axios                 from 'axios'
 
 import DeleteIcon            from '../components/deleteIcon'
 import EditIcon              from '../components/editIcon'
 import Modal                 from '../components/modal'
+import CloseIcon             from '../components/closeIcon'
 import ReactImageAppearEmpty from '../components/reactImageAppearEmpty'
 import LogoFull              from '../components/logo'
-import CloseIcon             from '../components/closeIcon'
 
 import '../styles/indexCards.css'
 import '../tools/grid.css'
@@ -80,6 +80,8 @@ class IndexCard extends React.Component {
     this.state = {
       modalShowMoreIsOpen: false,
       modalDeleteIsOpen: false,
+      modalDeleteOkIsOpen: false,
+      modalDeleteErrorIsOpen: false,
       modalEditIsOpen: false
     }
 
@@ -91,6 +93,8 @@ class IndexCard extends React.Component {
     this.deleteThisClose = this.deleteThisClose.bind(this)
     this.editThis = this.editThis.bind(this)
     this.editThisClose = this.editThisClose.bind(this)
+    this.deleteThisOkClose = this.deleteThisOkClose.bind(this)
+    this.deleteThisErrorClose = this.deleteThisErrorClose.bind(this)
     this.deleteNaver = this.deleteNaver.bind(this)
   }
 
@@ -124,6 +128,20 @@ class IndexCard extends React.Component {
     })
   }
 
+  deleteThisOkClose() {
+    this.props.refreshResolveIndex()
+    this.setState({
+      modalDeleteOkIsOpen: false
+    })
+  }
+
+  deleteThisErrorClose() {
+    this.props.refreshResolveIndex()
+    this.setState({
+      modalDeleteErrorIsOpen: false
+    })
+  }
+
   editThis() {
     this.props.loadingBarRef.continuousStart()
     setTimeout(() => {
@@ -141,18 +159,30 @@ class IndexCard extends React.Component {
   }
 
 
-  deleteNaver(cardContentId){
+  deleteNaver(cardContentId) {
     this.props.loadingBarRef.continuousStart()
-    Axios.delete(this.props.UrlAPI+'/navers/'+cardContentId, {
+    Axios.delete(this.props.UrlAPI + '/navers/' + cardContentId, {
       headers: { Authorization: `Bearer ${this.props.authToken}` }
-    }).then((response)=>{
-      if(response.status === 200){
+    }).then((response) => {
+      if (response.status === 200) {
         this.props.loadingBarRef.complete()
         this.deleteThisClose()
-        this.props.refreshResolveIndex()
+        this.setState({
+          modalDeleteOkIsOpen: true
+        })
+      } else {
+        this.props.loadingBarRef.complete()
+        this.deleteThisClose()
+        this.setState({
+          modalDeleteErrorIsOpen: true
+        })
       }
-    }).catch((data)=>{
-      console.log(data)
+    }).catch((data) => {
+      this.props.loadingBarRef.complete()
+      this.deleteThisClose()
+      this.setState({
+        modalDeleteErrorIsOpen: true
+      })
     })
   }
 
@@ -201,6 +231,8 @@ class IndexCard extends React.Component {
 
     let CardContentResolved = (
       <section className='col col-4 col-3 col-2'>
+
+        {/* to do */}
         <Modal
           customStyles={customStylesModalShowMore}
           modalIsOpen={this.state.modalShowMoreIsOpen}
@@ -211,6 +243,9 @@ class IndexCard extends React.Component {
           </button>
         </Modal>
 
+
+
+        {/* ok */}
         <Modal
           customStyles={customStylesModalDelete}
           modalIsOpen={this.state.modalDeleteIsOpen}
@@ -218,17 +253,57 @@ class IndexCard extends React.Component {
           <p className='delete-title' >{this.props.stringDeleteNaver}</p>
           <p className='delete-subtitle' >{this.props.stringDeleteNaverSubTitle}</p>
           <div className='delete-footer-container'>
-            <button className='zoom-in cancel-delete-button' onClick={this.deleteThisClose} type='button'>{this.props.stringCancel}</button>
-            <button className='zoom-in ok-delete-button' onClick={() => this.deleteNaver(cardContentId)} type='button'>{this.props.stringDelete}</button>
+            <button
+              className='zoom-in cancel-delete-button'
+              onClick={this.deleteThisClose}
+              type='button'>{this.props.stringCancel}
+            </button>
+            <button
+              className='zoom-in ok-delete-button'
+              onClick={() => this.deleteNaver(cardContentId)}
+              type='button'>{this.props.stringDelete}
+            </button>
           </div>
         </Modal>
 
+        <Modal
+          customStyles={customStylesModalDelete}
+          modalIsOpen={this.state.modalDeleteOkIsOpen}
+        >
+          <div className='delete-ok-header-container'>
+            <p className='delete-ok-title' >{this.props.stringDeletedNaver}</p>
+            <button className='close-button zoom-in' onClick={this.deleteThisOkClose} type='button'>
+              <CloseIcon />
+            </button>
+          </div>
+          <p className='delete-ok-subtitle' >{this.props.stringDeletedNaverOk}</p>
+        </Modal>
+
+        <Modal
+          customStyles={customStylesModalDelete}
+          modalIsOpen={this.state.modalDeleteErrorIsOpen}
+        >
+          <div className='delete-ok-header-container'>
+            <p className='delete-ok-title' >{this.props.stringOops}</p>
+            <button className='close-button zoom-in' onClick={this.deleteThisErrorClose} type='button'>
+              <CloseIcon />
+            </button>
+          </div>
+          <p className='delete-ok-subtitle' >{this.props.stringDeleteNaverError}</p>
+        </Modal>
+
+
+
+
+
+        {/* to do */}
         <Modal
           customStyles={customStylesModalEdit}
           modalIsOpen={this.state.modalEditIsOpen}
         >
           <Helmet>
             <title>{this.props.homeDOMEdit}</title>
+            <style>{'body{overflow-y:hidden;}'}</style>
           </Helmet>
           <div className='header-modal-edit'>
             <div>
