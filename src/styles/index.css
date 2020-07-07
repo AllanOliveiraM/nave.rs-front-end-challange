@@ -112,6 +112,106 @@ input, textarea, button, select, a, svg {
   cursor: default;
 }
 
+.add-naver-container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.add-naver-sub-container {
+  max-width: 592px;
+  width: 95vw;
+}
+
+.add-naver-input-container {
+  display: flex;
+  align-items: flex-start;
+  flex-direction: column;
+  width: 280px;
+}
+
+.add-naver-labels {
+  font-style: normal;
+  margin-bottom: 4px;
+  margin-left: 1px;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 18px;
+  color: #212121;
+}
+
+.add-naver-labels-right {
+  font-style: normal;
+  margin-bottom: 4px;
+  margin-left: 12px;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 18px;
+  color: #212121;
+}
+
+.add-naver-inputs {
+  width: 280px;
+  height: 40px;
+  box-sizing: border-box;
+  border: 1px solid #424242;
+  background: white;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 16px;
+  line-height: 24px;
+  margin-bottom: 32px;
+}
+
+.add-naver-inputs-right {
+  width: 280px;
+  height: 40px;
+  box-sizing: border-box;
+  border: 1px solid #424242;
+  background: white;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 16px;
+  line-height: 24px;
+  margin-bottom: 32px;
+  margin-left: 11px;
+}
+
+.save-add-naver-button {
+  color: white;
+  border: 1px solid #212121;
+  width: 176px;
+  height: 40px;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 24px;
+  background: #212121;
+  cursor: pointer;
+}
+
+.add-naver-footer-container {
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.add-naver-title {
+  font-style: normal;
+  font-weight: 600;
+  font-size: 24px;
+  line-height: 36px;
+  margin-left: 16px;
+}
+
+.add-naver-header {
+  margin-top: 40px;
+  margin-bottom: 32px;
+  display: flex;
+  justify-content: flex-start;
+}
+
 #navers-title {
   font-style: normal;
   font-weight: 600;
@@ -202,6 +302,29 @@ input, textarea, button, select, a, svg {
   }
 }
 
+@media (max-width: 660px) {
+  .add-naver-inputs-right {
+    margin-left: 0;
+  }
+  .add-naver-labels-right {
+    margin-left: 1px;
+  }
+  .add-naver-header {
+    justify-content: center !important;
+  }
+  .center-media-inputs-add-navers {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+  }
+  .add-naver-footer-container {
+    justify-content: center;
+  }
+  .save-add-naver-button {
+    width: 280px;
+    margin-bottom: 50px;
+  }
+}
 
 @-webkit-keyframes load4 {
     0%,

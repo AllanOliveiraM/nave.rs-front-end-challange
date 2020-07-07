@@ -60,6 +60,14 @@
     outline: none;
 }
 
+.close-button:focus {
+    cursor: pointer;
+    background-color: transparent;
+    border: none;
+    outline: none;
+}
+
+
 .delete-title {
     width: 163px;
     height: 36px;
@@ -106,6 +114,27 @@
     margin: 12px;
     cursor: pointer;
 }
+
+.delete-ok-header-container {
+    display: flex;
+    align-content: center;
+    justify-content: space-between;
+}
+
+.delete-ok-title {
+    display: inline;
+    height: 36px;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 24px;
+    line-height: 36px;
+    margin: 0;
+}
+
+.delete-ok-subtitle {
+    margin: 24px 0 21px 0;
+}
+
 
 @media (max-width: 660px) {
     .delete-footer-container{
