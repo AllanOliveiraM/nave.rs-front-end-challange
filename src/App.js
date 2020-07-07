@@ -3,18 +3,18 @@ NEEDS REFACTORING AND ORGANIZATION
 */
 
 
-import React                 from 'react'
-import Axios                 from 'axios'
-import Cookies               from 'universal-cookie'
-import LoadingBar            from 'react-top-loading-bar'
-import Helmet                from 'react-helmet'
+import React            from 'react'
+import Axios            from 'axios'
+import Cookies          from 'universal-cookie'
+import LoadingBar       from 'react-top-loading-bar'
+import Helmet           from 'react-helmet'
 
 
 // Components
-import CardLogin             from './components/cardLogin'
-import LogoFull              from './components/logo'
-import FullPageLoader        from './components/fullPageLoader'
-import IndexCard             from './components/indexCard'
+import CardLogin        from './components/cardLogin'
+import LogoFull         from './components/logo'
+import FullPageLoader   from './components/fullPageLoader'
+import IndexCard        from './components/indexCard'
 
 
 // Styles
@@ -25,42 +25,48 @@ import './styles/index.css'
 
 
 // Language Package
-import languagePackage from './languages/pt-br.js'
+import languagePackage          from './languages/pt-br.js'
 
 
 // Image Loader Option > Toggle comments bellow for testing
 // import ReactImageAppearEmpty from './components/reactImageAppearEmpty'
-import ReactImageAppear      from 'react-image-appear'
+import ReactImageAppear         from 'react-image-appear'
 let ReactImageAppearComponent
 // ReactImageAppearComponent = ReactImageAppearEmpty
-ReactImageAppearComponent = ReactImageAppear
+ReactImageAppearComponent    = ReactImageAppear
 
 
 // Language Mapping
-const consoleSecurityMessage       = languagePackage.consoleSecurityMessage
-const homeDOMTitle                 = languagePackage.homeDOMTitle
-const homeDOMLoginTitle            = languagePackage.homeDOMLoginTitle
-const stringExit                   = languagePackage.stringExit
-const stringEmail                  = languagePackage.stringEmail
-const stringPassword               = languagePackage.stringPassword
-const stringSubmit                 = languagePackage.stringSubmit
-const stringLongData               = languagePackage.stringLongData
-const stringBadConnection          = languagePackage.stringBadConnection
-const stringWrongEmail             = languagePackage.stringWrongEmail
-const stringErrorLoadIndexContent  = languagePackage.stringErrorLoadIndexContent
-const stringAddNaver               = languagePackage.stringAddNaver
-const stringNaversTitle            = languagePackage.stringNaversTitle
-const stringUserImageAlt           = languagePackage.stringUserImageAlt
+const consoleSecurityMessage      = languagePackage.consoleSecurityMessage
+const homeDOMTitle                = languagePackage.homeDOMTitle
+const homeDOMLoginTitle           = languagePackage.homeDOMLoginTitle
+const homeDOMEdit                 = languagePackage.homeDOMEdit
+const stringExit                  = languagePackage.stringExit
+const stringEmail                 = languagePackage.stringEmail
+const stringPassword              = languagePackage.stringPassword
+const stringSubmit                = languagePackage.stringSubmit
+const stringLongData              = languagePackage.stringLongData
+const stringBadConnection         = languagePackage.stringBadConnection
+const stringWrongEmail            = languagePackage.stringWrongEmail
+const stringErrorLoadIndexContent = languagePackage.stringErrorLoadIndexContent
+const stringAddNaver              = languagePackage.stringAddNaver
+const stringNaversTitle           = languagePackage.stringNaversTitle
+const stringUserImageAlt          = languagePackage.stringUserImageAlt
+const stringDeleteNaver           = languagePackage.stringDeleteNaver
+const stringDeleteNaverSubTitle   = languagePackage.stringDeleteNaverSubTitle
+const stringCancel                = languagePackage.stringCancel
+const stringDelete                = languagePackage.stringDelete
+const stringNoNavers              = languagePackage.stringNoNavers
 
 
 // Global Var's
-const cookies                = new Cookies()
+const cookies             = new Cookies()
 
-const UrlAPI                 = 'https://navedex-api.herokuapp.com/v1'
-const pathAPILogin           = '/users/login'
-const pathAPIListNavers      = '/navers'
+const UrlAPI              = 'https://navedex-api.herokuapp.com/v1'
+const pathAPILogin        = '/users/login'
+const pathAPIListNavers   = '/navers'
 
-let isPendingAuthValidtn     = true
+let isPendingAuthValidtn  = true
 let authTokenObject
 let loadingBarRef
 
@@ -69,25 +75,11 @@ let loadingBarRef
 console.log('%c' + consoleSecurityMessage, "background: rgb(205, 35, 35); color: yellow; font-size: large")
 
 
-// eslint-disable-next-line
-function getJsonPOST (path, paramsObject, token){
+function getJsonGET(path, token) {
   authTokenObject = {
     headers: { Authorization: `Bearer ${token}` }
   }
 
-  return Axios.post(
-    UrlAPI + path,
-    paramsObject,
-    authTokenObject
-  )
-}
-
-
-function getJsonGET (path, token){
-  authTokenObject = {
-    headers: { Authorization: `Bearer ${token}` }
-  }
-  
   return Axios.get(
     UrlAPI + path,
     authTokenObject
@@ -96,12 +88,12 @@ function getJsonGET (path, token){
 
 
 class LoadBar extends React.Component {
-  render(){
+  render() {
     return (
       <LoadingBar
-        height={ 3 }
+        height={3}
         color='#212121'
-        onRef={ ref => (loadingBarRef = ref) }
+        onRef={ref => (loadingBarRef = ref)}
       />
     )
   }
@@ -121,12 +113,12 @@ class LoginCenterCard extends React.Component {
     this.handleSubmit = this.handleSubmit.bind(this)
   }
 
-  emailChange(event) { 
-    this.setState({email: event.target.value})
+  emailChange(event) {
+    this.setState({ email: event.target.value })
   }
 
   passwordChange(event) {
-    this.setState({password: event.target.value})
+    this.setState({ password: event.target.value })
   }
 
   handleSubmit(event) {
@@ -134,11 +126,11 @@ class LoginCenterCard extends React.Component {
     this.props.login(this.state.email, this.state.password)
   }
 
-  render(){
+  render() {
     return (
       <div className='flexbox-center-x-y height-100'>
         <CardLogin>
-          <form onSubmit={ this.handleSubmit }>
+          <form onSubmit={this.handleSubmit}>
 
             <div className='logo-full-container'>
               <LogoFull className='logo-full' />
@@ -147,13 +139,13 @@ class LoginCenterCard extends React.Component {
             <div className='card-input-container-m'>
 
               <label htmlFor='login-email'>
-                { stringEmail }
+                {stringEmail}
               </label>
               <input
-                value={ this.state.email }
-                onChange={ this.emailChange }
+                value={this.state.email}
+                onChange={this.emailChange}
                 autoComplete='email'
-                placeholder={ stringEmail }
+                placeholder={stringEmail}
                 id='login-email'
                 type='email'
                 name='name'
@@ -163,13 +155,13 @@ class LoginCenterCard extends React.Component {
             <div className='card-input-container'>
 
               <label htmlFor='login-password'>
-                { stringPassword }
+                {stringPassword}
               </label>
               <input
-                value={ this.state.password }
-                onChange={ this.passwordChange }
+                value={this.state.password}
+                onChange={this.passwordChange}
                 autoComplete='password'
-                placeholder={ stringPassword }
+                placeholder={stringPassword}
                 id='login-password'
                 type='password'
                 name='name'
@@ -178,11 +170,11 @@ class LoginCenterCard extends React.Component {
 
             </div>
 
-            <div className={ this.props.loginMessageClass }>
-              <p id='message-login'>{ this.props.loginMessage }</p>
+            <div className={this.props.loginMessageClass}>
+              <p id='message-login'>{this.props.loginMessage}</p>
             </div>
 
-            <button id='button-submit-login' type="submit">{ stringSubmit }</button>
+            <button id='button-submit-login' type="submit">{stringSubmit}</button>
 
           </form>
         </CardLogin>
@@ -194,13 +186,13 @@ class LoginCenterCard extends React.Component {
 
 class LoginPage extends React.Component {
 
-  render(){
+  render() {
     return (
       <div className='in-animation-faster'>
         <LoginCenterCard
-          loginMessage={ this.props.loginMessage }
-          loginMessageClass={ this.props.loginMessageClass }
-          login={ this.props.login }
+          loginMessage={this.props.loginMessage}
+          loginMessageClass={this.props.loginMessageClass}
+          login={this.props.login}
         />
       </div>
     )
@@ -221,49 +213,64 @@ class Home extends React.Component {
     this.resolveIndexCards = this.resolveIndexCards.bind(this)
   }
 
-  refreshResolveIndex(){
+  refreshResolveIndex() {
     this.props.resolveIndexValidateCookie()
   }
 
-  addNaver(){
+  addNaver() {
     setTimeout(() => {
       console.log('Add naver')
-    },160)
+    }, 160)
   }
 
-  resolveIndexCards(indexData){
+  resolveIndexCards(indexData) {
     try {
-      let indexCards=[];
+      let indexCards = [];
       let i
       let animDuration = 0.6
-      for (i = 0; i < indexData.length; i++) {
-        indexCards.push(
-          <IndexCard
-            alt={ stringUserImageAlt }
-            key={ indexData[i].id }
-            cardContent={ indexData[i] }
-            animationDuration={ animDuration }
-            ReactImageAppear={ ReactImageAppearComponent }
-          />
-        )
-        animDuration = animDuration + 0.1
+      if(indexData.length === 0){
+        indexCards = <div className='no-naver in-animation'>{stringNoNavers}</div>
+      } else {
+        for (i = 0; i < indexData.length; i++) {
+          indexCards.push(
+            <IndexCard
+              refreshResolveIndex={this.refreshResolveIndex}
+              UrlAPI={UrlAPI}
+              authToken={this.props.authToken}
+              stringDeleteNaver={stringDeleteNaver}
+              stringDeleteNaverSubTitle={stringDeleteNaverSubTitle}
+              stringCancel={stringCancel}
+              stringDelete={stringDelete}
+              logout={this.props.logout}
+              homeDOMEdit={homeDOMEdit}
+              stringExit={stringExit}
+              loadingBarRef={loadingBarRef}
+              alt={stringUserImageAlt}
+              key={i}
+              cardContent={indexData[i]}
+              animationDuration={animDuration}
+              ReactImageAppear={ReactImageAppearComponent}
+            />
+          )
+          animDuration = animDuration + 0.1
+        }
       }
       return indexCards
     } catch (error) {
       this.props.resolveIndexValidateCookie()
       return (
-        <p className='in-animation-delay'> { stringErrorLoadIndexContent }</p>
+        <p className='in-animation-delay'> {stringErrorLoadIndexContent}</p>
       )
     }
   }
 
-  render(){
+  render() {
     let cardsResolved = this.resolveIndexCards(this.props.indexContent.data)
 
     return (
       <main className='in-animation'>
         <Helmet>
-          <title>{ homeDOMTitle }</title>
+          <title>{homeDOMTitle}</title>
         </Helmet>
         <section className='container-h'>
           <header>
@@ -272,27 +279,27 @@ class Home extends React.Component {
             </div>
             <div>
               <button
-                onClick={ this.props.logout }
+                onClick={this.props.logout}
                 type='button'
-                className='button-logout margin-header-right'>{ stringExit }
+                className='button-logout margin-header-right'>{stringExit}
               </button>
             </div>
           </header>
           <section id='title-subheader'>
-            <p className='margin-header-left' id='navers-title'>{ stringNaversTitle }</p>
+            <p className='margin-header-left' id='navers-title'>{stringNaversTitle}</p>
             <button
-              onClick={ this.addNaver }
+              onClick={this.addNaver}
               id='add-naver'
               className='hoverable margin-header-right'
               type='button'
-              >
-              { stringAddNaver }
+            >
+              {stringAddNaver}
             </button>
           </section>
         </section>
         <section className='container'>
           <div className='row'>
-            { cardsResolved }
+            {cardsResolved}
           </div>
         </section>
       </main>
@@ -305,9 +312,9 @@ class App extends React.Component {
   constructor(props) {
     super(props)
 
-    function setCookie () {
+    function setCookie() {
       let getCookie = cookies.get('sessionAuth')
-      if (getCookie === undefined){
+      if (getCookie === undefined) {
         getCookie = 'undefined'
       }
       return getCookie
@@ -333,20 +340,20 @@ class App extends React.Component {
     this.componentDidMount = this.componentDidMount.bind(this)
   }
 
-  loginMessageSetState(message){
+  loginMessageSetState(message) {
     this.setState({
       loginMessageClass: 'show',
       loginMessage: message
     })
   }
 
-  login(email, password){
+  login(email, password) {
     let bodyParams
     let loginMessage = this.loginMessageSetState
     let setToken = this.setAuthToken
     let thisInside = this
 
-    if(email !== ''){
+    if (email !== '') {
       loadingBarRef.continuousStart()
 
       bodyParams = {
@@ -370,7 +377,7 @@ class App extends React.Component {
       ).catch(
         function (data) {
           setToken(undefined)
-          if(data.response){
+          if (data.response) {
             loginMessage(stringLongData)
           } else {
             loginMessage(stringBadConnection)
@@ -384,14 +391,15 @@ class App extends React.Component {
     }
   }
 
-  setAuthToken(token){
+  setAuthToken(token) {
     cookies.set('sessionAuth', token)
     this.setState({
       authToken: token
     })
   }
 
-  logout(){
+  logout() {
+    loadingBarRef.complete()
     this.setAuthToken('undefined')
     this.setState({
       authentication: {
@@ -400,13 +408,13 @@ class App extends React.Component {
     })
   }
 
-  resolveIndexValidateCookie(){
+  resolveIndexValidateCookie() {
     let thisInside = this
     getJsonGET(
       pathAPIListNavers,
       thisInside.state.authToken
     ).then(
-      function (response){
+      function (response) {
         isPendingAuthValidtn = false
         thisInside.setState({
           authentication: {
@@ -427,9 +435,9 @@ class App extends React.Component {
     )
   }
 
-  componentDidMount(){
-    if(isPendingAuthValidtn){
-      if(this.state.authToken !== 'undefined'){
+  componentDidMount() {
+    if (isPendingAuthValidtn) {
+      if (this.state.authToken !== 'undefined') {
         this.resolveIndexValidateCookie()
         isPendingAuthValidtn = false
       } else {
@@ -438,16 +446,16 @@ class App extends React.Component {
     }
   }
 
-  resolveRender(){
+  resolveRender() {
     let loginPageWithProps = (
       <div>
         <Helmet>
-          <title>{ homeDOMLoginTitle }</title>
+          <title>{homeDOMLoginTitle}</title>
         </Helmet>
         <LoginPage
-          loginMessage={ this.state.loginMessage }
-          loginMessageClass={ this.state.loginMessageClass }
-          login={ this.login }
+          loginMessage={this.state.loginMessage}
+          loginMessageClass={this.state.loginMessageClass}
+          login={this.login}
         />
       </div>
     )
@@ -458,19 +466,20 @@ class App extends React.Component {
       </div>
     )
 
-    if(this.state.authToken !== 'undefined'){
-      if(this.state.authentication.isAuthTokenValid){
+    if (this.state.authToken !== 'undefined') {
+      if (this.state.authentication.isAuthTokenValid) {
         return (
           <div>
             <Home
-              indexContent={ this.state.indexContent }
-              logout={ this.logout }
+              authToken={this.state.authToken}
+              indexContent={this.state.indexContent}
+              logout={this.logout}
               resolveIndexValidateCookie={this.resolveIndexValidateCookie}
             />
           </div>
         )
       } else {
-        if(isPendingAuthValidtn){
+        if (isPendingAuthValidtn) {
           return LoadPage
         } else {
           return loginPageWithProps
@@ -481,14 +490,14 @@ class App extends React.Component {
     }
   }
 
-  render(){
+  render() {
     return (
       <div>
-        { this.resolveRender() }
+        {this.resolveRender()}
       </div>
     )
   }
 }
 
 
-export default {App, LoadBar}
+export default { App, LoadBar }
