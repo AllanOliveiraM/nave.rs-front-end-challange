@@ -6,6 +6,7 @@ const languagePackage__PT_BR__ = {
     homeDOMTitle:                  'Navedex - Home',
     homeDOMLoginTitle:             'Navedex - Login',
     homeDOMEdit:                   'Navedex - Editar',
+    stringDOMAddNaverTitle:        'Navedex - Adicionar Naver',
     stringPassword:                'Senha',
     stringExit:                    'Sair',
     stringEmail:                   'E-mail',
@@ -21,7 +22,18 @@ const languagePackage__PT_BR__ = {
     stringDeleteNaverSubTitle:     'Tem certeza que deseja excluir este Naver?',
     stringCancel:                  'Cancelar',
     stringDelete:                  'Excluir',
-    stringNoNavers:                  'Nenhum Naver cadastrado :(',
+    stringNoNavers:                'Nenhum Naver cadastrado :(',
+    stringDeletedNaver:            'Naver excluído',
+    stringDeletedNaverOk:          'Naver excluído com sucesso!',
+    stringOops:                    'Oops!',
+    stringDeleteNaverError:        'Não foi possível excluir.',
+    stringName:                    'Nome',
+    stringOffice:                  'Cargo',
+    stringYears:                   'Idade',
+    stringCompanyTime:             'Tempo de empresa',
+    stringProjects:                'Projetos que participou',
+    stringImage:                   'URL da foto do Naver',
+    stringSave:                    'Salvar',
 }
 
 
