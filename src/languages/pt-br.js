@@ -5,6 +5,7 @@ const languagePackage__PT_BR__ = {
     consoleSecurityMessage:        `ATENÇÃO!\n\nEste é um recurso do navegador WEB voltado para desenvolvedores. A inserção de conteúdo neste ambiente pode comprometer a usabilidade da Aplicação Nave.rs ou até mesmo comprometer a sua segurança.`,
     homeDOMTitle:                  'Navedex - Home',
     homeDOMLoginTitle:             'Navedex - Login',
+    homeDOMEdit:                   'Navedex - Editar',
     stringPassword:                'Senha',
     stringExit:                    'Sair',
     stringEmail:                   'E-mail',
@@ -16,6 +17,11 @@ const languagePackage__PT_BR__ = {
     stringAddNaver:                'Adicionar Naver',
     stringNaversTitle:             'Navers',
     stringUserImageAlt:            'Imagem de um usuário',
+    stringDeleteNaver:             'Excluir Naver',
+    stringDeleteNaverSubTitle:     'Tem certeza que deseja excluir este Naver?',
+    stringCancel:                  'Cancelar',
+    stringDelete:                  'Excluir',
+    stringNoNavers:                  'Nenhum Naver cadastrado :(',
 }
 
 
