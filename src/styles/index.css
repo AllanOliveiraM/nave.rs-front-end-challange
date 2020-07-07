@@ -5,6 +5,22 @@ body {
     font-family: sans-serif;
 }
 
+header, .header-modal-edit {
+  height: 85px;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+button:focus {
+  outline: black auto 1px;
+}
+
+input, textarea, button, select, a, svg {
+  -webkit-tap-highlight-color: rgba(0,0,0,0);
+}
+
 .hoverable {
   box-shadow: 0 0 0 0 rgba(0, 0, 0, 0.3);
   transition: box-shadow 500ms;
@@ -38,14 +54,6 @@ body {
     justify-content: center;
 }
 
-header {
-    height: 85px;
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
 .logo-full-home {
     width: 145.12px;
     margin-left: 32px;
@@ -77,6 +85,31 @@ header {
 
 .ReactModal__Overlay--before-close{
   opacity: 0;
+}
+
+.loader {
+  color: #2e2e2e;
+  font-size: 10px;
+  margin: 100px auto;
+  width: 0.8em;
+  height: 0.8em;
+  border-radius: 50%;
+  position: relative;
+  text-indent: -9999em;
+  -webkit-animation: load4 1.3s infinite linear;
+  animation: load4 1.3s infinite linear;
+  -webkit-transform: translateZ(0);
+  -ms-transform: translateZ(0);
+  transform: translateZ(0);
+}
+
+.no-naver {
+  width: 100%;
+  text-align: center;
+  margin-top: 50px;
+  color: gray;
+  font-size: large;
+  cursor: default;
 }
 
 #navers-title {
@@ -160,21 +193,16 @@ header {
   }
 }
 
-.loader {
-    color: #2e2e2e;
-    font-size: 10px;
-    margin: 100px auto;
-    width: 0.8em;
-    height: 0.8em;
-    border-radius: 50%;
-    position: relative;
-    text-indent: -9999em;
-    -webkit-animation: load4 1.3s infinite linear;
-    animation: load4 1.3s infinite linear;
-    -webkit-transform: translateZ(0);
-    -ms-transform: translateZ(0);
-    transform: translateZ(0);
+@media (min-width: 1570px){
+  .margin-header-left {
+    margin-left: 53px !important;
+  }
+  .margin-header-right {
+    margin-right: 53px !important;
+  }
 }
+
+
 @-webkit-keyframes load4 {
     0%,
     100% {
@@ -237,13 +265,4 @@ header {
     100%{
         opacity: 1;
         }
-}
-
-@media (min-width: 1570px){
-  .margin-header-left {
-    margin-left: 53px !important;
-  }
-  .margin-header-right {
-    margin-right: 53px !important;
-  }
 }

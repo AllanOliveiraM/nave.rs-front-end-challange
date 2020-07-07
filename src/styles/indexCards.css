@@ -53,7 +53,69 @@
     animation: slide-right 0.3s ease-in-out 0s both;
 }
 
-  @keyframes slide-right {
+.close-button {
+    cursor: pointer;
+    background-color: transparent;
+    border: none;
+    outline: none;
+}
+
+.delete-title {
+    width: 163px;
+    height: 36px;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 24px;
+    line-height: 36px;
+    margin: 0;
+}
+
+.delete-subtitle {
+    margin: 24px 0 21px 0;
+}
+
+.delete-footer-container{
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.cancel-delete-button {
+    border: 1px solid #212121;
+    width: 176px;
+    height: 40px;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 24px;
+    background: white;
+    margin: 12px;
+    cursor: pointer;
+}
+
+.ok-delete-button {
+    color: white;
+    border: 1px solid #212121;
+    width: 176px;
+    height: 40px;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 24px;
+    background: #212121;
+    margin: 12px;
+    cursor: pointer;
+}
+
+@media (max-width: 660px) {
+    .delete-footer-container{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+}
+
+@keyframes slide-right {
     0% {
         opacity: 0;
         transform: translateX(-30px);
@@ -65,4 +127,4 @@
         opacity: 1;
         transform: translateX(0);
     }
-  }
+}
