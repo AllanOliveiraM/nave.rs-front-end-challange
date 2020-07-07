@@ -76,7 +76,7 @@ Nenhum dos pacotes/bibliotecas utilizadas neste projeto foram utilizadas por mim
 - React: Primeiro projeto utilizando puramente a biblioteca e seus recursos.
 - Postman: Primeira vez utilizando o Postman para APIs.
 - Axios: Primeira vez utilizando para `HTTP requests` ao invés de jQuery.
-- Cookie: Primeira vez armazenando e autenticando `sessions` via `token` no lado do cliente.
+- Cookie: Primeira vez armazenando e validando `sessions` via `token` no lado do cliente apenas.
 
 #### Divergências
 
