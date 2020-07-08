@@ -11,7 +11,6 @@
 
 <br />
 
-# Ainda em Desenvolvimento!
 
 **Navedex** é um sistema Web Front End escrito em JavaScript utilizando Node.js e a biblioteca [React](https://reactjs.org/), e foi desenvolvido como teste proposto pela empresa [Nave.rs](https://nave.rs/) - [@naveteam](https://github.com/naveteam/), descrito no seu respectivo [repositório oficial](https://github.com/naveteam/front-end-challenge). <br /> <br />
 
