@@ -328,7 +328,8 @@ class IndexCard extends React.Component {
       }).catch((data)=>{
         this.setState({
           modalShowErrorIsOpen: true,
-          modalEditIsOpen: false
+          modalEditIsOpen: false,
+          modalShowMoreIsOpen: false
         })
       })
     }, 160)
