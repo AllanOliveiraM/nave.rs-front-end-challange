@@ -327,7 +327,8 @@ class IndexCard extends React.Component {
         })
       }).catch((data)=>{
         this.setState({
-          modalShowErrorIsOpen: true
+          modalShowErrorIsOpen: true,
+          modalEditIsOpen: false
         })
       })
     }, 160)
@@ -362,7 +363,8 @@ class IndexCard extends React.Component {
       this.props.loadingBarRef.complete()
       this.deleteThisClose()
       this.setState({
-        modalDeleteErrorIsOpen: true
+        modalDeleteErrorIsOpen: true,
+        modalEditIsOpen: false
       })
     })
   }
@@ -370,7 +372,8 @@ class IndexCard extends React.Component {
   showErrorOpen(){
     this.props.loadingBarRef.complete()
     this.setState({
-      modalShowErrorIsOpen: true
+      modalShowErrorIsOpen: true,
+      modalEditIsOpen: false
     })
   }
 
