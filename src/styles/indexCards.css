@@ -161,6 +161,41 @@
     margin: 24px 0 21px 0;
 }
 
+.image-show-more-container {
+    min-height: 280px;
+    max-height: 503px;
+    height: 50vw;
+    display: block;
+    overflow: hidden;
+}
+
+.image-show-more {
+    position: relative;
+    top: 0;
+    left: 0;
+    object-fit: cover;
+    min-width: 280px;
+    max-width: 503px;
+    width: 50vw;
+    min-height: 280px;
+    max-height: 503px;
+    height: 50vw;
+}
+
+@media (max-width: 659px) {
+}
+
+.container-p-0 {
+    padding: 0 !important;
+}
+
+.row-margin-0 {
+    margin: 0 !important;
+}
+
+.col-p-0 {
+    padding: 0 !important;
+}
 
 @media (max-width: 660px) {
     .delete-footer-container{

@@ -31,7 +31,12 @@ const customStylesModalShowMore = {
     right: 'auto',
     bottom: 'auto',
     marginRight: '-50%',
-    transform: 'translate(-50%, -50%)'
+    transform: 'translate(-50%, -50%)',
+    maxWidth: '1007px',
+    width: '95vw',
+    borderRadius: 'none',
+    padding: '0',
+    border: 'none'
   }
 }
 
@@ -99,7 +104,7 @@ class IndexCard extends React.Component {
   }
 
   showMore() {
-    this.props.loadingBarRef.continuousStart()
+    // this.props.loadingBarRef.continuousStart()
     setTimeout(() => {
       this.setState({
         modalShowMoreIsOpen: true
@@ -216,15 +221,15 @@ class IndexCard extends React.Component {
     if (!this.empty) {
       ReactImageAppear = this.props.ReactImageAppear
       SlidedRight = styled.div`
-                opacity: 0;
-                transform: translateX(-30px);
-                animation: ${slideRightKeyFrame} 0.3s ease-in-out ${this.props.animationDuration}s both;
-            `
+        opacity: 0;
+        transform: translateX(-30px);
+        animation: ${slideRightKeyFrame} 0.3s ease-in-out ${this.props.animationDuration}s both;
+      `
     } else {
       ReactImageAppear = ReactImageAppearEmpty
       SlidedRight = styled.div`
-                opacity: 1;
-            `
+        opacity: 1;
+      `
     }
 
     this.empty = true
@@ -237,13 +242,27 @@ class IndexCard extends React.Component {
           customStyles={customStylesModalShowMore}
           modalIsOpen={this.state.modalShowMoreIsOpen}
         >
-          <p>OKOK Show</p>
-          <button className='close-button zoom-in' onClick={this.showMoreClose} type='button'>
-            <CloseIcon />
-          </button>
+          <Helmet>
+            <style>{'body{overflow-y:hidden;}'}</style>
+          </Helmet>
+          <div className='container container-p-0'>
+            <div className='row row-margin-0'>
+              <div className='col col-2 col-p-0'>
+                <div className='image-show-more-container'>
+                <ReactImageAppear
+                  src={cardContentUrl}
+                  className='image-show-more'
+                  />
+                </div>
+              </div>
+              <div className='col col-2 col-p-0'>
+                <button className='close-button zoom-in' onClick={this.showMoreClose} type='button'>
+                  <CloseIcon />
+                </button>
+              </div>
+            </div>
+          </div>
         </Modal>
-
-
 
         {/* ok */}
         <Modal
