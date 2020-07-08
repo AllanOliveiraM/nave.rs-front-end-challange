@@ -1,8 +1,3 @@
-/*
-NEEDS REFACTORING AND ORGANIZATION
-*/
-
-
 import React            from 'react'
 import Axios            from 'axios'
 import Cookies          from 'universal-cookie'
