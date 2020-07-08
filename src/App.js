@@ -151,7 +151,6 @@ class LoginCenterCard extends React.Component {
       <div className='flexbox-center-x-y height-100'>
         <CardLogin>
           <form onSubmit={this.handleSubmit}>
-
             <div className='logo-full-container'>
               <LogoFull className='logo-full' />
             </div>
@@ -311,34 +310,38 @@ class ModalAddNaver extends React.Component {
 
   handleSubmit(event) {
     event.preventDefault()
-    let data = {
-      'job_role': this.state.office,
-      'admission_date': this.state.companytime,
-      'birthdate': this.state.years,
-      'project': this.state.projects,
-      'name': this.state.name,
-      'url': this.state.image
-    }
-    let config = {
-        headers: { Authorization: `Bearer ${this.props.authToken}` }
-    }
     loadingBarRef.continuousStart()
-    Axios.post(UrlAPI + '/navers',
-      data,
-      config
-    ).then((response)=> {
-      loadingBarRef.complete()
-      this.setState({
-        modalOkIsOpen: true,
-        modalOkDone: true
+    let admissionDate = this.state.companytime.split('-').reverse().join('/')
+    let birthdate = this.state.years.split('-').reverse().join('/')
+    setTimeout(()=>{
+      let data = {
+        'job_role': this.state.office,
+        'admission_date': admissionDate,
+        'birthdate': birthdate,
+        'project': this.state.projects,
+        'name': this.state.name,
+        'url': this.state.image
+      }
+      let config = {
+          headers: { Authorization: `Bearer ${this.props.authToken}` }
+      }
+      Axios.post(UrlAPI + '/navers',
+        data,
+        config
+      ).then((response)=> {
+        loadingBarRef.complete()
+        this.setState({
+          modalOkIsOpen: true,
+          modalOkDone: true
+        })
+      }).catch((data)=>{
+        loadingBarRef.complete()
+        this.setState({
+          modalOkIsOpen: true,
+          modalOkDone: false
+        })
       })
-    }).catch((data)=>{
-      loadingBarRef.complete()
-      this.setState({
-        modalOkIsOpen: true,
-        modalOkDone: false
-      })
-    })
+    }, 1000)
   }
 
 
@@ -411,13 +414,14 @@ class ModalAddNaver extends React.Component {
                   <p className='add-naver-title'>{stringAddNaver}</p>
                 </div>
                 <div>
-                  <form>
+                  <form onSubmit={this.handleSubmit}>
                     <div className='row'>
                       <div className='col col-2'>
                         <div className='center-media-inputs-add-navers'>
                           <div className='add-naver-input-container'>
                             <label className='add-naver-labels' htmlFor='name-naver-add' >{stringName}{this.state.nameMessage}</label>
                             <input
+                              required
                               className='add-naver-inputs'
                               id='name-naver-add'
                               type='text'
@@ -433,6 +437,7 @@ class ModalAddNaver extends React.Component {
                           <div className='add-naver-input-container'>
                             <label className='add-naver-labels-right' htmlFor='office-naver-add' >{stringOffice}{this.state.officeMessage}</label>
                             <input
+                              required
                               className='add-naver-inputs-right'
                               id='office-naver-add'
                               type='text'
@@ -448,9 +453,10 @@ class ModalAddNaver extends React.Component {
                           <div className='add-naver-input-container'>
                             <label className='add-naver-labels' htmlFor='years-naver-add' >{stringYears}</label>
                             <input
+                              required
                               className='add-naver-inputs'
                               id='years-naver-add'
-                              type="number"
+                              type="date"
                               placeholder={stringYears}
                               value={this.state.years}
                               onChange={this.handleYearsChange}
@@ -463,9 +469,10 @@ class ModalAddNaver extends React.Component {
                           <div className='add-naver-input-container'>
                             <label className='add-naver-labels-right' htmlFor='companytime-naver-add' >{stringCompanyTime}</label>
                             <input
+                              required
                               className='add-naver-inputs-right'
                               id='companytime-naver-add'
-                              type='text'
+                              type='date'
                               placeholder={stringCompanyTime}
                               value={this.state.companytime}
                               onChange={this.handleCompanyTimeChange}
@@ -478,6 +485,7 @@ class ModalAddNaver extends React.Component {
                           <div className='add-naver-input-container'>
                             <label className='add-naver-labels' htmlFor='projects-naver-add' >{stringProjects}</label>
                             <input
+                              required
                               className='add-naver-inputs'
                               id='projects-naver-add'
                               type='text'
@@ -493,6 +501,7 @@ class ModalAddNaver extends React.Component {
                           <div className='add-naver-input-container'>
                             <label className='add-naver-labels-right' htmlFor='image-naver-add' >{stringImage}</label>
                             <input
+                              required
                               type="url"
                               className='add-naver-inputs-right'
                               id='image-naver-add'
@@ -507,7 +516,6 @@ class ModalAddNaver extends React.Component {
                     <div className='add-naver-footer-container'>
                       <button
                         className='zoom-in save-add-naver-button'
-                        onClick={this.handleSubmit}
                         type='submit'>{stringSave}
                       </button>
                     </div>

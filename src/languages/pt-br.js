@@ -29,7 +29,7 @@ const languagePackage__PT_BR__ = {
     stringDeleteNaverError:        'Não foi possível excluir.',
     stringName:                    'Nome',
     stringOffice:                  'Cargo',
-    stringYears:                   'Idade',
+    stringYears:                   'Nascimento',
     stringCompanyTime:             'Tempo de empresa',
     stringProjects:                'Projetos que participou',
     stringImage:                   'URL da foto do Naver',
