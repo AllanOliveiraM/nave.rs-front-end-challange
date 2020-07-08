@@ -111,7 +111,7 @@ Nenhuma animação ou `feature` de interatividade, ou qualquer restrição foi m
 
 - Idade? Talvez seja um problema...
 
-Aparentemente, na prototipação, estava descrito que o usuário, ao adicionar um naver, devesse adicionar a sua idade. Porém, armazenar idades não é nada prático de se lidar e atualizar do lado do backend ao longo do tempo. Portanto, foi definido que o campo passa a ser a data de nascimento, possibilitando se necessário, o cálculo da idade.
+Aparentemente, na prototipação, estava descrito que o usuário, ao adicionar um naver, devesse preencher o input com a sua idade. Porém, armazenar idades não é nada prático de se lidar e atualizar do lado do backend ao longo do tempo. Portanto, foi definido que o campo passa a ser a data de nascimento, possibilitando se necessário, o cálculo da idade posteriormente.
 
 <br />
 <br />
