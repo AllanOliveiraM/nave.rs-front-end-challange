@@ -41,42 +41,48 @@ ReactImageAppearComponent    = ReactImageAppear
 
 
 // Language Mapping
-const consoleSecurityMessage      = languagePackage.consoleSecurityMessage
-const homeDOMTitle                = languagePackage.homeDOMTitle
-const homeDOMLoginTitle           = languagePackage.homeDOMLoginTitle
-const homeDOMEdit                 = languagePackage.homeDOMEdit
-const stringDOMAddNaverTitle      = languagePackage.stringDOMAddNaverTitle
-const stringExit                  = languagePackage.stringExit
-const stringEmail                 = languagePackage.stringEmail
-const stringPassword              = languagePackage.stringPassword
-const stringSubmit                = languagePackage.stringSubmit
-const stringLongData              = languagePackage.stringLongData
-const stringBadConnection         = languagePackage.stringBadConnection
-const stringWrongEmail            = languagePackage.stringWrongEmail
-const stringErrorLoadIndexContent = languagePackage.stringErrorLoadIndexContent
-const stringAddNaver              = languagePackage.stringAddNaver
-const stringNaversTitle           = languagePackage.stringNaversTitle
-const stringUserImageAlt          = languagePackage.stringUserImageAlt
-const stringDeleteNaver           = languagePackage.stringDeleteNaver
-const stringDeleteNaverSubTitle   = languagePackage.stringDeleteNaverSubTitle
-const stringCancel                = languagePackage.stringCancel
-const stringDelete                = languagePackage.stringDelete
-const stringNoNavers              = languagePackage.stringNoNavers
-const stringDeletedNaver          = languagePackage.stringDeletedNaver
-const stringDeletedNaverOk        = languagePackage.stringDeletedNaverOk
-const stringOops                  = languagePackage.stringOops
-const stringDeleteNaverError      = languagePackage.stringDeleteNaverError
-const stringName                  = languagePackage.stringName
-const stringOffice                = languagePackage.stringOffice
-const stringYears                 = languagePackage.stringYears
-const stringCompanyTime           = languagePackage.stringCompanyTime
-const stringProjects              = languagePackage.stringProjects
-const stringImage                 = languagePackage.stringImage
-const stringSave                  = languagePackage.stringSave
-const stringMinLengthThree        = languagePackage.stringMinLengthThree
-const stringCreatedNaver          = languagePackage.stringCreatedNaver
-const stringCreatedNaverSubTitle  = languagePackage.stringCreatedNaverSubTitle
-const stringWrongDataAddNavers    = languagePackage.stringWrongDataAddNavers
+const consoleSecurityMessage        = languagePackage.consoleSecurityMessage
+const homeDOMTitle                  = languagePackage.homeDOMTitle
+const homeDOMLoginTitle             = languagePackage.homeDOMLoginTitle
+const homeDOMEdit                   = languagePackage.homeDOMEdit
+const stringDOMAddNaverTitle        = languagePackage.stringDOMAddNaverTitle
+const stringExit                    = languagePackage.stringExit
+const stringEmail                   = languagePackage.stringEmail
+const stringPassword                = languagePackage.stringPassword
+const stringSubmit                  = languagePackage.stringSubmit
+const stringLongData                = languagePackage.stringLongData
+const stringBadConnection           = languagePackage.stringBadConnection
+const stringWrongEmail              = languagePackage.stringWrongEmail
+const stringErrorLoadIndexContent   = languagePackage.stringErrorLoadIndexContent
+const stringAddNaver                = languagePackage.stringAddNaver
+const stringNaversTitle             = languagePackage.stringNaversTitle
+const stringUserImageAlt            = languagePackage.stringUserImageAlt
+const stringDeleteNaver             = languagePackage.stringDeleteNaver
+const stringDeleteNaverSubTitle     = languagePackage.stringDeleteNaverSubTitle
+const stringCancel                  = languagePackage.stringCancel
+const stringDelete                  = languagePackage.stringDelete
+const stringNoNavers                = languagePackage.stringNoNavers
+const stringDeletedNaver            = languagePackage.stringDeletedNaver
+const stringDeletedNaverOk          = languagePackage.stringDeletedNaverOk
+const stringOops                    = languagePackage.stringOops
+const stringDeleteNaverError        = languagePackage.stringDeleteNaverError
+const stringName                    = languagePackage.stringName
+const stringOffice                  = languagePackage.stringOffice
+const stringYears                   = languagePackage.stringYears
+const stringCompanyTime             = languagePackage.stringCompanyTime
+const stringProjects                = languagePackage.stringProjects
+const stringImage                   = languagePackage.stringImage
+const stringSave                    = languagePackage.stringSave
+const stringMinLengthThree          = languagePackage.stringMinLengthThree
+const stringCreatedNaver            = languagePackage.stringCreatedNaver
+const stringCreatedNaverSubTitle    = languagePackage.stringCreatedNaverSubTitle
+const stringWrongDataAddNavers      = languagePackage.stringWrongDataAddNavers
+const stringBirth                   = languagePackage.stringBirth
+const stringAdmissionDate           = languagePackage.stringAdmissionDate
+const stringDoNotOkViewEdit         = languagePackage.stringDoNotOkViewEdit
+const stringEditNaver               = languagePackage.stringEditNaver
+const stringEditNaverUpdated        = languagePackage.stringEditNaverUpdated
+const stringEditNaverUpdatedSeccess = languagePackage.stringEditNaverUpdatedSeccess
 
 
 // Global Var's
@@ -85,6 +91,7 @@ const cookies             = new Cookies()
 const UrlAPI              = 'https://navedex-api.herokuapp.com/v1'
 const pathAPILogin        = '/users/login'
 const pathAPIListNavers   = '/navers'
+const pathAPIListNaversCMD= '/navers/'
 
 let isPendingAuthValidtn  = true
 let authTokenObject
@@ -325,7 +332,7 @@ class ModalAddNaver extends React.Component {
       let config = {
           headers: { Authorization: `Bearer ${this.props.authToken}` }
       }
-      Axios.post(UrlAPI + '/navers',
+      Axios.post(UrlAPI + pathAPIListNavers,
         data,
         config
       ).then((response)=> {
@@ -584,6 +591,13 @@ class Home extends React.Component {
         for (i = 0; i < indexData.length; i++) {
           indexCards.push(
             <IndexCard
+              pathAPIListNaversCMD={pathAPIListNaversCMD}
+              stringEditNaverUpdatedSeccess={stringEditNaverUpdatedSeccess}
+              stringEditNaverUpdated={stringEditNaverUpdated}
+              stringEditNaver={stringEditNaver}
+              stringDoNotOkViewEdit={stringDoNotOkViewEdit}
+              stringAdmissionDate={stringAdmissionDate}
+              stringBirth={stringBirth}
               stringName={stringName}
               stringOffice={stringOffice}
               stringYears={stringYears}

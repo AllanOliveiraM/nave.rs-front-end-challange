@@ -38,6 +38,12 @@ const languagePackage__PT_BR__ = {
     stringCreatedNaver:            'Naver criado',
     stringCreatedNaverSubTitle:    'Naver criado com sucesso!',
     stringWrongDataAddNavers:      'Verifique se os dados estão corretos e tente novamente!',
+    stringBirth:                   'Nascimento',
+    stringAdmissionDate:           'Data de Admissão',
+    stringDoNotOkViewEdit:         'Não foi possível visualizar/editar este Naver.',
+    stringEditNaver:               'Editar Naver',
+    stringEditNaverUpdated:        'Naver Atualizado',
+    stringEditNaverUpdatedSeccess: 'Naver atualizado com sucesso!'
 }
 
 

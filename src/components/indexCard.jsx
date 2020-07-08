@@ -199,9 +199,6 @@ class IndexCard extends React.Component {
 
   handleSubmit(event) {
     event.preventDefault()
-
-
-
     this.props.loadingBarRef.continuousStart()
     let admissionDate = this.state.companytime.split('-').reverse().join('/')
     let birthdate = this.state.years.split('-').reverse().join('/')
@@ -217,7 +214,7 @@ class IndexCard extends React.Component {
       let config = {
           headers: { Authorization: `Bearer ${this.props.authToken}` }
       }
-      Axios.put(this.props.UrlAPI + '/navers/'+ this.state.cardContentId,
+      Axios.put(this.props.UrlAPI + this.props.pathAPIListNaversCMD + this.state.cardContentId,
         data,
         config
       ).then((response)=> {
@@ -231,7 +228,6 @@ class IndexCard extends React.Component {
   }
 
 
-
   showMore(cardContentId) {
     this.props.loadingBarRef.continuousStart()
 
@@ -240,7 +236,7 @@ class IndexCard extends React.Component {
     }
   
     Axios.get(
-      this.props.UrlAPI + '/navers/'+ cardContentId,
+      this.props.UrlAPI + this.props.pathAPIListNaversCMD + cardContentId,
       authTokenObject
     ).then((response)=>{
 
@@ -302,7 +298,7 @@ class IndexCard extends React.Component {
       }
 
       Axios.get(
-        this.props.UrlAPI + '/navers/'+ cardContentId,
+        this.props.UrlAPI + this.props.pathAPIListNaversCMD + cardContentId,
         authTokenObject
       ).then((response)=>{
 
@@ -345,7 +341,7 @@ class IndexCard extends React.Component {
 
   deleteNaver(cardContentId) {
     this.props.loadingBarRef.continuousStart()
-    Axios.delete(this.props.UrlAPI + '/navers/' + cardContentId, {
+    Axios.delete(this.props.UrlAPI + this.props.pathAPIListNaversCMD + cardContentId, {
       headers: { Authorization: `Bearer ${this.props.authToken}` }
     }).then((response) => {
       if (response.status === 200) {
@@ -399,7 +395,6 @@ class IndexCard extends React.Component {
     })
   }
 
-  
 
   render() {
 
@@ -479,11 +474,11 @@ class IndexCard extends React.Component {
                   <div className='show-more-card-body-container'>
                     <p className='show-more-name-card'>{this.state.modalShowMoreContent.name}</p>
                     <p className='show-more-office-card'>{this.state.modalShowMoreContent.job_role}</p>
-                    <p className='show-more-subtitle-card'>Nascimento</p>
+                    <p className='show-more-subtitle-card'>{this.props.stringBirth}</p>
                     <p className='show-more-birthdate-card'>{this.state.modalShowMoreContentBirthdate}</p>
-                    <p className='show-more-subtitle-card'>Data de Admissão</p>
+                    <p className='show-more-subtitle-card'>{this.props.stringAdmissionDate}</p>
                     <p className='show-more-admission-date-card'>{this.state.modalShowMoreContentAdmissionDate}</p>
-                    <p className='show-more-subtitle-card'>Projetos que participou</p>
+                    <p className='show-more-subtitle-card'>{this.props.stringProjects}</p>
                     <p className='show-more-project-card'>{this.state.modalShowMoreContent.project}</p>
                   </div>
                   <div className='show-more-card-footer-container'>
@@ -556,7 +551,7 @@ class IndexCard extends React.Component {
               <CloseIcon />
             </button>
           </div>
-          <p className='delete-ok-subtitle' >Não foi possível visualizar/editar este Naver.</p>
+          <p className='delete-ok-subtitle' >{this.props.stringDoNotOkViewEdit}</p>
         </Modal>
 
         <Modal
@@ -587,7 +582,7 @@ class IndexCard extends React.Component {
                     <button className='close-button zoom-in' onClick={this.editThisClose} type='button'>
                       <ArrowBack />
                     </button>
-                    <p className='add-naver-title'>Editar Naver</p>
+                    <p className='add-naver-title'>{this.props.stringEditNaver}</p>
                   </div>
                   <div>
                     <form onSubmit={this.handleSubmit}>
@@ -708,12 +703,12 @@ class IndexCard extends React.Component {
           modalIsOpen={this.state.modalEditOkIsOpen}
         >
           <div className='delete-ok-header-container'>
-            <p className='delete-ok-title' >Naver Atualizado</p>
+            <p className='delete-ok-title' >{this.props.stringEditNaverUpdated}</p>
             <button className='close-button zoom-in' onClick={this.modalEditOkClose} type='button'>
               <CloseIcon />
             </button>
           </div>
-          <p className='delete-ok-subtitle' >Naver atualizado com sucesso!</p>
+          <p className='delete-ok-subtitle' >{this.props.stringEditNaverUpdatedSeccess}</p>
         </Modal>
 
         <SlidedRight>
