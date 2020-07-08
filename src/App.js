@@ -584,6 +584,14 @@ class Home extends React.Component {
         for (i = 0; i < indexData.length; i++) {
           indexCards.push(
             <IndexCard
+              stringName={stringName}
+              stringOffice={stringOffice}
+              stringYears={stringYears}
+              stringCompanyTime={stringCompanyTime}
+              stringProjects={stringProjects}
+              stringImage={stringImage}
+              stringSave={stringSave}
+              stringMinLengthThree={stringMinLengthThree}
               refreshResolveIndex={this.refreshResolveIndex}
               UrlAPI={UrlAPI}
               authToken={this.props.authToken}

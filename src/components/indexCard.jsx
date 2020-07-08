@@ -9,6 +9,8 @@ import Modal                 from '../components/modal'
 import CloseIcon             from '../components/closeIcon'
 import ReactImageAppearEmpty from '../components/reactImageAppearEmpty'
 import LogoFull              from '../components/logo'
+import ArrowBack             from '../components/arrowBack'
+
 
 import '../styles/indexCards.css'
 import '../tools/grid.css'
@@ -115,7 +117,19 @@ class IndexCard extends React.Component {
       modalDeleteOkIsOpen: false,
       modalDeleteErrorIsOpen: false,
       modalShowErrorIsOpen: false,
-      modalEditIsOpen: false
+      modalEditIsOpen: false,
+
+      modalEditOkIsOpen: false,
+      name: '',
+      nameMessage: '',
+      office: '',
+      officeMessage: '',
+      years: '',
+      companytime: '',
+      projects: '',
+      image: '',
+      cardContentId: ''
+      
     }
 
     this.empty = false
@@ -131,7 +145,92 @@ class IndexCard extends React.Component {
     this.deleteNaver = this.deleteNaver.bind(this)
     this.showErrorOpen = this.showErrorOpen.bind(this)
     this.showErrorClose = this.showErrorClose.bind(this)
+    this.handleNameChange = this.handleNameChange.bind(this)
+    this.handleOfficeChange = this.handleOfficeChange.bind(this)
+    this.handleYearsChange = this.handleYearsChange.bind(this)
+    this.handleCompanyTimeChange = this.handleCompanyTimeChange.bind(this)
+    this.handleProjectsTimeChange = this.handleProjectsTimeChange.bind(this)
+    this.handleImageChange = this.handleImageChange.bind(this)
+    this.handleSubmit = this.handleSubmit.bind(this)
+    this.modalEditOkClose = this.modalEditOkClose.bind(this)
+    this.modalEditOkOpen = this.modalEditOkOpen.bind(this)
   }
+
+
+  handleNameChange(event) {
+    if(this.state.name.length < 2){
+      this.setState({ nameMessage: this.props.stringMinLengthThree,
+      name: event.target.value
+    })
+    } else {
+      this.setState({ nameMessage: '',
+      name: event.target.value
+    })
+    }
+  }
+
+  handleOfficeChange(event) {
+    if(this.state.office.length < 2){
+      this.setState({ officeMessage: this.props.stringMinLengthThree,
+      office: event.target.value
+    })
+    } else {
+      this.setState({ officeMessage: '',
+      office: event.target.value
+    })
+    }
+  }
+
+  handleYearsChange(event) {
+    this.setState({ years: event.target.value })
+  }
+
+  handleCompanyTimeChange(event) {
+    this.setState({ companytime: event.target.value })
+  }
+
+  handleProjectsTimeChange(event) {
+    this.setState({ projects: event.target.value })
+  }
+
+  handleImageChange(event) {
+    this.setState({ image: event.target.value })
+  }
+
+  handleSubmit(event) {
+    event.preventDefault()
+
+
+
+    this.props.loadingBarRef.continuousStart()
+    let admissionDate = this.state.companytime.split('-').reverse().join('/')
+    let birthdate = this.state.years.split('-').reverse().join('/')
+    setTimeout(()=>{
+      let data = {
+        'job_role': this.state.office,
+        'admission_date': admissionDate,
+        'birthdate': birthdate,
+        'project': this.state.projects,
+        'name': this.state.name,
+        'url': this.state.image
+      }
+      let config = {
+          headers: { Authorization: `Bearer ${this.props.authToken}` }
+      }
+      Axios.put(this.props.UrlAPI + '/navers/'+ this.state.cardContentId,
+        data,
+        config
+      ).then((response)=> {
+        this.props.loadingBarRef.complete()
+        this.modalEditOkOpen()
+      }).catch((data)=>{
+        this.props.loadingBarRef.complete()
+        this.showErrorOpen()
+      })
+    }, 200)
+  }
+
+
 
   showMore(cardContentId) {
     this.props.loadingBarRef.continuousStart()
@@ -147,14 +246,14 @@ class IndexCard extends React.Component {
 
       let birthdate = response.data.birthdate.split('T')[0].split('-').reverse().join('/')
       let admissionDate = response.data.admission_date.split('T')[0].split('-').reverse().join('/')
-
+      this.props.loadingBarRef.complete()
       this.setState({
+        modalEditIsOpen: false,
         modalShowMoreIsOpen: true,
         modalShowMoreContent: response.data,
         modalShowMoreContentBirthdate: birthdate,
         modalShowMoreContentAdmissionDate: admissionDate
       })
-      this.props.loadingBarRef.complete()
     }).catch((data)=>{
       this.showErrorOpen()
     })
@@ -195,12 +294,41 @@ class IndexCard extends React.Component {
     })
   }
 
-  editThis() {
+  editThis(cardContentId) {
     this.props.loadingBarRef.continuousStart()
     setTimeout(() => {
-      this.setState({
-        modalEditIsOpen: true,
-        modalShowMoreIsOpen: false
+      let authTokenObject = {
+        headers: { Authorization: `Bearer ${this.props.authToken}` }
+      }
+
+      Axios.get(
+        this.props.UrlAPI + '/navers/'+ cardContentId,
+        authTokenObject
+      ).then((response)=>{
+
+        let birthdate = response.data.birthdate.split('T')[0]
+        let admissionDate = response.data.admission_date.split('T')[0]
+        this.props.loadingBarRef.complete()
+        this.setState({
+          modalEditIsOpen: true,
+          modalShowMoreIsOpen: false,
+
+          modalEditOkIsOpen: false,
+          name: response.data.name,
+          nameMessage: '',
+          office: response.data.job_role,
+          officeMessage: '',
+          years: birthdate,
+          companytime: admissionDate,
+          projects: response.data.project,
+          image: response.data.url,
+          cardContentId: cardContentId
+
+        })
+      }).catch((data)=>{
+        this.setState({
+          modalShowErrorIsOpen: true
+        })
       })
     }, 160)
   }
@@ -252,6 +380,22 @@ class IndexCard extends React.Component {
     })
   }
 
+  modalEditOkClose(){
+    this.setState({
+      modalEditOkIsOpen: false
+    })
+  }
+
+  modalEditOkOpen(){
+    this.props.refreshResolveIndex()
+    this.setState({
+      modalEditOkIsOpen: true,
+      modalEditIsOpen: false
+    })
+  }
+
+  
+
   render() {
 
     let cardContentName = this.props.cardContent.name
@@ -298,7 +442,6 @@ class IndexCard extends React.Component {
     let CardContentResolved = (
       <section className='col col-4 col-3 col-2'>
 
-        {/* to do */}
         <Modal
           customStyles={customStylesModalShowMore}
           modalIsOpen={this.state.modalShowMoreIsOpen}
@@ -343,7 +486,7 @@ class IndexCard extends React.Component {
                     onClick={this.deleteThis}
                     />
                     <EditIcon
-                      onClick={this.editThis}
+                      onClick={()=>this.editThis(cardContentId)}
                     />
                   </div>
                 </div>
@@ -352,7 +495,6 @@ class IndexCard extends React.Component {
           </div>
         </Modal>
 
-        {/* ok */}
         <Modal
           customStyles={customStylesModalDelete}
           modalIsOpen={this.state.modalDeleteIsOpen}
@@ -409,13 +551,9 @@ class IndexCard extends React.Component {
               <CloseIcon />
             </button>
           </div>
-          <p className='delete-ok-subtitle' >Não foi possível visualizar este Naver.</p>
+          <p className='delete-ok-subtitle' >Não foi possível visualizar/editar este Naver.</p>
         </Modal>
 
-
-
-
-        {/* to do */}
         <Modal
           customStyles={customStylesModalEdit}
           modalIsOpen={this.state.modalEditIsOpen}
@@ -437,11 +575,140 @@ class IndexCard extends React.Component {
             </div>
           </div>
           <div className='container'>
-            <p>OKOK Edit</p>
-            <button className='close-button zoom-in' onClick={this.editThisClose} type='button'>
+            <section className='container'>
+              <section className='add-naver-container'>
+                <section className='add-naver-sub-container'>
+                  <div className='add-naver-header'>
+                    <button className='close-button zoom-in' onClick={this.editThisClose} type='button'>
+                      <ArrowBack />
+                    </button>
+                    <p className='add-naver-title'>Editar Naver</p>
+                  </div>
+                  <div>
+                    <form onSubmit={this.handleSubmit}>
+                      <div className='row'>
+                        <div className='col col-2'>
+                          <div className='center-media-inputs-add-navers'>
+                            <div className='add-naver-input-container'>
+                              <label className='add-naver-labels' htmlFor='name-naver-add' >{this.props.stringName}{this.state.nameMessage}</label>
+                              <input
+                                required
+                                className='add-naver-inputs'
+                                id='name-naver-add'
+                                type='text'
+                                placeholder={this.props.stringName}
+                                value={this.state.name}
+                                onChange={this.handleNameChange}
+                              />
+                            </div>
+                          </div>
+                        </div>
+                        <div className='col col-2'>
+                          <div className='center-media-inputs-add-navers'>
+                            <div className='add-naver-input-container'>
+                              <label className='add-naver-labels-right' htmlFor='office-naver-add' >{this.props.stringOffice}{this.state.officeMessage}</label>
+                              <input
+                                required
+                                className='add-naver-inputs-right'
+                                id='office-naver-add'
+                                type='text'
+                                placeholder={this.props.stringOffice}
+                                value={this.state.office}
+                                onChange={this.handleOfficeChange}
+                              />
+                            </div>
+                          </div>
+                        </div>
+                        <div className='col col-2'>
+                          <div className='center-media-inputs-add-navers'>
+                            <div className='add-naver-input-container'>
+                              <label className='add-naver-labels' htmlFor='years-naver-add' >{this.props.stringYears}</label>
+                              <input
+                                required
+                                className='add-naver-inputs'
+                                id='years-naver-add'
+                                type="date"
+                                placeholder={this.props.stringYears}
+                                value={this.state.years}
+                                onChange={this.handleYearsChange}
+                              />
+                            </div>
+                          </div>
+                        </div>
+                        <div className='col col-2'>
+                          <div className='center-media-inputs-add-navers'>
+                            <div className='add-naver-input-container'>
+                              <label className='add-naver-labels-right' htmlFor='companytime-naver-add' >{this.props.stringCompanyTime}</label>
+                              <input
+                                required
+                                className='add-naver-inputs-right'
+                                id='companytime-naver-add'
+                                type='date'
+                                placeholder={this.props.stringCompanyTime}
+                                value={this.state.companytime}
+                                onChange={this.handleCompanyTimeChange}
+                              />
+                            </div>
+                          </div>
+                        </div>
+                        <div className='col col-2'>
+                          <div className='center-media-inputs-add-navers'>
+                            <div className='add-naver-input-container'>
+                              <label className='add-naver-labels' htmlFor='projects-naver-add' >{this.props.stringProjects}</label>
+                              <input
+                                required
+                                className='add-naver-inputs'
+                                id='projects-naver-add'
+                                type='text'
+                                placeholder={this.props.stringProjects}
+                                value={this.state.projects}
+                                onChange={this.handleProjectsTimeChange}
+                              />
+                            </div>
+                          </div>
+                        </div>
+                        <div className='col col-2'>
+                          <div className='center-media-inputs-add-navers'>
+                            <div className='add-naver-input-container'>
+                              <label className='add-naver-labels-right' htmlFor='image-naver-add' >{this.props.stringImage}</label>
+                              <input
+                                required
+                                type="url"
+                                className='add-naver-inputs-right'
+                                id='image-naver-add'
+                                placeholder={this.props.stringImage}
+                                value={this.state.image}
+                                onChange={this.handleImageChange}
+                              />
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div className='add-naver-footer-container'>
+                        <button
+                          className='zoom-in save-add-naver-button'
+                          type='submit'>{this.props.stringSave}
+                        </button>
+                      </div>
+                    </form>
+                  </div>
+                </section>
+              </section>
+            </section>
+          </div>
+        </Modal>
+
+        <Modal
+          customStyles={customStylesModalErrorShow}
+          modalIsOpen={this.state.modalEditOkIsOpen}
+        >
+          <div className='delete-ok-header-container'>
+            <p className='delete-ok-title' >Naver Atualizado</p>
+            <button className='close-button zoom-in' onClick={this.modalEditOkClose} type='button'>
               <CloseIcon />
             </button>
           </div>
+          <p className='delete-ok-subtitle' >Naver atualizado com sucesso!</p>
         </Modal>
 
         <SlidedRight>
@@ -462,7 +729,7 @@ class IndexCard extends React.Component {
                 onClick={this.deleteThis}
               />
               <EditIcon
-                onClick={this.editThis}
+                onClick={()=>this.editThis(cardContentId)}
               />
             </div>
           </div>

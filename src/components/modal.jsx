@@ -2,7 +2,7 @@ import React from 'react'
 import Modal from 'react-modal';
 
 
-Modal.setAppElement('#modals')
+Modal.setAppElement('#root')
 
 
 class IndexModal extends React.Component {
