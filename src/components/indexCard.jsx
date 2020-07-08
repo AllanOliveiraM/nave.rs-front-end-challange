@@ -326,6 +326,7 @@ class IndexCard extends React.Component {
 
         })
       }).catch((data)=>{
+        this.props.loadingBarRef.complete()
         this.setState({
           modalShowErrorIsOpen: true,
           modalEditIsOpen: false,
