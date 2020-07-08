@@ -13,6 +13,10 @@ header, .header-modal-edit {
   align-items: center;
 }
 
+header {
+  margin-top: 3px;
+}
+
 button:focus {
   outline: black auto 1px;
 }

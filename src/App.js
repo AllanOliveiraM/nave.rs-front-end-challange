@@ -341,7 +341,7 @@ class ModalAddNaver extends React.Component {
           modalOkDone: false
         })
       })
-    }, 1000)
+    }, 200)
   }
 
 

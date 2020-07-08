@@ -86,8 +86,9 @@ Em todos os aspectos, este sem dúvida foi o projeto que mais me trouxe novidade
 #### Dificuldades
 
 Não faz quase nenhum tempo significativo que iniciei os meus estudos em React, então, este projeto foi quase um Bootcamp!
-Nenhum dos pacotes/bibliotecas utilizadas neste projeto foram utilizadas por mim antes, o que demandou maiores estudos de como é a sua implementação e como são as suas características.
+Nenhum outro dos pacotes/bibliotecas neste projeto foram utilizadas por mim antes, o que demandou maiores estudos de como é a sua implementação e como são as suas características.
 
+- JavaScript: Iniciei os meus estudos de uma forma mais complexa da linguagem recentemente. Minha linguagem de domínio ainda é Python.
 - React: Primeiro projeto utilizando puramente a biblioteca e seus recursos.
 - Postman: Primeira vez utilizando o Postman para APIs.
 - Axios: Primeira vez utilizando para `HTTP requests` ao invés de jQuery.

@@ -64,6 +64,21 @@
     }
 }
 
+@media (min-width: 900px) {
+    .col-2-large {
+        width: 50% !important;
+    }
+}
+
+@media (min-width: 600px) {
+    .col-2-as-l {
+        width: 60%;
+    }
+    .col-2-as-r {
+        width: 40%;
+    }
+}
+
 @media (min-width: 980px) {
     .col-3 {
         width: 33.3333%

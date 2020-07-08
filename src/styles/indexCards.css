@@ -40,7 +40,7 @@
 }
 
 .zoom-in:hover {
-    transform: scale(1.05);
+    transform: scale(1.03);
 }
 
 .zoom-in:active {
@@ -164,7 +164,7 @@
 .image-show-more-container {
     min-height: 280px;
     max-height: 503px;
-    height: 50vw;
+    height: 503px;
     display: block;
     overflow: hidden;
 }
@@ -178,12 +178,101 @@
     max-width: 503px;
     width: 50vw;
     min-height: 280px;
-    max-height: 503px;
-    height: 50vw;
+    height: 503px;
 }
 
-@media (max-width: 659px) {
+.header-show-more-card-mobile {
+    width: 100%;
+    display: none;
+    justify-content: flex-end;
 }
+
+.header-show-more-card {
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.close-button-card-show-more {
+    margin: 21px 21px 0 0;
+}
+
+.show-more-name-card {
+    margin: 0;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 24px;
+    line-height: 36px;
+    color: black;
+}
+
+.show-more-card-body-container {
+    display: flex;
+    align-items: flex-start;
+    flex-direction: column;
+    height: 100%;
+    margin-left: 32px;
+}
+
+.show-more-card-pre-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 463px;
+}
+
+.show-more-card-footer-container {
+    display: flex;
+    justify-content: flex-start;
+    margin-left: 32px;
+    margin-bottom: 32px;
+}
+
+.show-more-office-card,
+.show-more-birthdate-card,
+.show-more-admission-date-card,
+.show-more-project-card {
+    font-style: normal;
+    font-weight: normal;
+    font-size: 16px;
+    line-height: 24px;
+    color: #212121;
+    margin: 10px 0 0 0;
+}
+
+.show-more-subtitle-card {
+    margin: 24px 0 0 0;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 24px;
+    color: #212121;
+}
+
+.show-more-card-body-container {
+    display: flex;
+    justify-content: flex-start;
+}
+
+@media (max-width: 899px) {
+    .image-show-more {
+        width: 100%;
+    }
+    .image-show-more-container {
+        display: flex;
+        justify-content: flex-start;
+    }
+}
+
+@media (max-width: 600px) {
+    .image-show-row-mobile {
+        display: none !important;
+    }
+    .show-more-card-body-container{
+        height: 350px;
+    }
+}
+
 
 .container-p-0 {
     padding: 0 !important;
