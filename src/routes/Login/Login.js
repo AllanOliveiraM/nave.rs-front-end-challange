@@ -13,6 +13,8 @@ import { loginSchema } from 'helpers/yup-schemas'
 import { ToastContainer, toast } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 
+import lang from 'assets/locale/pt-br.json'
+
 import './Login.css'
 
 const Login = () => {
@@ -27,7 +29,7 @@ const Login = () => {
       await login(values)
     } catch (error) {
       console.log(error)
-      notifyError('Dados incorretos!')
+      notifyError(lang.toasts.wrongData)
     }
   }
 
@@ -39,20 +41,20 @@ const Login = () => {
           name='email'
           autoComplete='email'
           register={register}
-          label='E-mail'
-          placeholder='exemplo@exemplo.com'
+          label={lang.accounts.email}
+          placeholder={lang.placeholders.email}
           error={errors.email?.message}
         />
         <Input
           name='password'
           autoComplete='password'
           register={register}
-          label='Senha'
-          placeholder='******'
+          label={lang.accounts.password}
+          placeholder={lang.placeholders.password}
           error={errors.password?.message}
           type='password'
         />
-        <Button isLoading={formState.isSubmitting}>Entrar</Button>
+        <Button isLoading={formState.isSubmitting}>{lang.accounts.logIn}</Button>
       </Column>
       <ToastContainer />
     </>

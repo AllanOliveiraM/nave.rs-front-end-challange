@@ -1,0 +1,21 @@
+{
+  "accounts": {
+    "email": "E-mail",
+    "password": "Senha",
+    "logIn": "Entrar",
+    "logOut": "Sair"
+  },
+  "placeholders": {
+    "email": "exemplo@exemplo.com",
+    "password": "*****"
+  },
+  "toasts": {
+    "wrongData": "Dados incorretos!"
+  },
+  "document": {
+    "titles": {
+      "loginPage": "Navedex - Login",
+      "homePage": "Navedex - Home"
+    }
+  }
+}
