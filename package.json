@@ -2,7 +2,7 @@
   "name": "react-boilerplate",
   "description": "Boilerplate da nave",
   "author": "Nave Team <tech@nave.rs>",
-  "license": "Private",
+  "license": "MIT",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
