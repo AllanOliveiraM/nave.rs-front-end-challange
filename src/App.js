@@ -12,6 +12,7 @@ import { useUser } from 'context/user-context'
 
 import Theme from 'theme'
 
+import 'sanitize.css/sanitize.css'
 import './assets/styles/global.css'
 
 const loadAuthenticatedApp = () => import('./AuthenticatedApp')
