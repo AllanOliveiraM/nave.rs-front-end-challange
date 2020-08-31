@@ -1,10 +1,20 @@
-import React from 'react'
-import PropTypes from 'prop-types'
+import React, { Children } from 'react'
 
-const Loader = ({ children = 'carregando' }) => <p>{children}</p>
+import './Loader.css'
 
-Loader.propTypes = {
-  children: PropTypes.oneOfType([PropTypes.string, PropTypes.element])
+const DefaultLoader = ({ useDefault, children }) => {
+  if (useDefault) {
+    return (
+      <div className='lds-ellipsis'>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+      </div>
+    )
+  } else {
+    return children || 'carregando'
+  }
 }
 
-export default Loader
+export default DefaultLoader

@@ -12,7 +12,6 @@ import { useUser } from 'context/user-context'
 
 import Theme from 'theme'
 
-import 'sanitize.css/sanitize.css'
 import './assets/styles/global.css'
 
 const loadAuthenticatedApp = () => import('./AuthenticatedApp')
@@ -30,7 +29,7 @@ const App = () => {
     // <Provider store={store}>
     <Theme>
       <Helmet titleTemplate='Nave.rs | %s' />
-      <Suspense fallback={<Loader />}>
+      <Suspense fallback={<Loader useDefault={true} />}>
         <Router>{user ? <AuthenticatedApp /> : <UnauthenticatedApp />}</Router>
       </Suspense>
     </Theme>
