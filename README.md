@@ -26,18 +26,6 @@ Email: `nallamo2016@gmail.com` Senha: `nave1234`<br />
 ### Dependências
 
 Use o comando `npm install` para preparar as dependências.
-São dependências do projeto, descritas no arquivo de controle `package.json`, os seguintes pacotes `node`:
-
-- axios: ^0.19.2
-- react: ^16.13.1
-- react-dom: ^16.13.1
-- react-helmet: ^6.1.0
-- react-image-appear: ^1.3.24
-- react-modal: ^3.11.2
-- react-scripts: 3.4.1
-- react-top-loading-bar: ^1.2.0
-- styled-components: ^5.1.1
-- universal-cookie: ^4.0.3
 
 <br />
 
