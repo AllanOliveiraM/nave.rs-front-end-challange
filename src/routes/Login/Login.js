@@ -18,8 +18,6 @@ import lang from 'assets/locale/pt-br.json'
 import './Login.css'
 
 const Login = () => {
-  const notifyError = message => toast.error(`${message}`)
-
   const { login } = useAuth()
 
   const { register, handleSubmit, errors, formState } = useForm({ validationSchema: loginSchema })
@@ -29,7 +27,7 @@ const Login = () => {
       await login(values)
     } catch (error) {
       console.log(error)
-      notifyError(lang.toasts.wrongData)
+      toast.error(lang.toasts.wrongData)
     }
   }
 
