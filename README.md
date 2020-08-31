@@ -25,7 +25,7 @@ Email: `nallamo2016@gmail.com` Senha: `nave1234`<br />
 
 ### Dependências
 
-Use o comando `npm install` para preparar as dependências.
+Use o comando `yarn` para preparar as dependências.
 
 <br />
 
@@ -33,16 +33,16 @@ Use o comando `npm install` para preparar as dependências.
 
 No diretório do projeto, você pode executar:
 
-#### `npm start`
+#### `yarn start`
 
 O comando `npm start` inicia o App em um servidor de desenvolvimento.<br />
 Abra [http://localhost:3000](http://localhost:3000) para visualizar no seu navegador.
 
-#### `npm test`
+#### `yarn test`
 
 Para testar o script, você pode usar o comando `npm test`. Visite a [documentação](https://facebook.github.io/create-react-app/docs/running-tests) para mais informações.
 
-#### `npm run build`
+#### `yarn run build`
 
 O comando `npm run build` cria uma versão de produção do website e a salva em um diretório `build` na raíz do projeto. <br />
 
