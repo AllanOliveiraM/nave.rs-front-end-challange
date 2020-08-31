@@ -19,23 +19,6 @@ const loadAuthenticatedApp = () => import('./AuthenticatedApp')
 const AuthenticatedApp = lazy(loadAuthenticatedApp)
 const UnauthenticatedApp = lazy(() => import('./UnauthenticatedApp'))
 
-const GlobalStyle = createGlobalStyle`
-* {
-  border: 0;
-  padding: 0;
-  margin: 0;
-  box-sizing: border-box;
-  outline: none;
-}
-
-button, a {
-  cursor: pointer;
-  &:disabled{
-    cursor: not-allowed;
-  }
-}
-`
-
 const App = () => {
   const { user } = useUser()
 
@@ -47,7 +30,6 @@ const App = () => {
     // <Provider store={store}>
     <Theme>
       <Helmet titleTemplate='Nave.rs | %s' />
-      <GlobalStyle />
       <Suspense fallback={<Loader />}>
         <Router>{user ? <AuthenticatedApp /> : <UnauthenticatedApp />}</Router>
       </Suspense>

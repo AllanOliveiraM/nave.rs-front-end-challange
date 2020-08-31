@@ -1,55 +1,69 @@
 :root {
-    --color-background: #ffffff;
-    --color-text-base: #212121;
+  --color-background: #ffffff;
+  --color-text-base: #212121;
+  --color-text-light: #f3f3f3;
+  --color-border-base: #212121;
+  --color-button-base: #212121;
 
-    font-size: 50%;
+  font-size: 50%;
 }
 
 @media (max-width: 310px) {
-    :root {
-        font-size: 40%;
-    }
+  :root {
+    font-size: 40%;
+  }
 }
 
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+  border: 0;
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  outline: none;
 }
 
 html,
 body,
 #root {
-    height: 100vh;
-    scroll-behavior: smooth;
+  height: 100vh;
+  scroll-behavior: smooth;
 }
 
 body {
-    background: var(--color-background);
+  background: var(--color-background);
 }
 
 #root {
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 body,
 input,
 button,
 textarea {
-    font-family: 'Montserrat', sans-serif;
-    font: 500 1.6rem Montserrat;
-    color: var(--color-text-base);
+  font-family: 'Montserrat', sans-serif;
+  font: 500 1.4rem Montserrat;
+  color: var(--color-text-base) !important;
+}
+
+button,
+a {
+  cursor: pointer;
+}
+
+button:disabled {
+  cursor: not-allowed;
 }
 
 .container {
-    width: 90vw;
-    max-width: 700px;
+  width: 90vw;
+  max-width: 700px;
 }
 
 @media (min-width: 700px) {
-    :root {
-        font-size: 62.5%;
-    }
+  :root {
+    font-size: 62.5%;
+  }
 }
