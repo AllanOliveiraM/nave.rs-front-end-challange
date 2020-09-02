@@ -6,6 +6,7 @@ import Helmet from 'react-helmet'
 // import store from './redux/store'
 
 import Loader from 'components/Loader'
+import FullPageContainer from 'components/FullPageContainer'
 
 import { useUser } from 'context/user-context'
 
@@ -30,7 +31,13 @@ const App = () => {
     <Theme>
       <GlobalStyles />
       <Helmet titleTemplate='Nave.rs | %s' />
-      <Suspense fallback={<Loader useDefault={true} />}>
+      <Suspense
+        fallback={
+          <FullPageContainer>
+            <Loader useDefault={true} />
+          </FullPageContainer>
+        }
+      >
         <Router>{user ? <AuthenticatedApp /> : <UnauthenticatedApp />}</Router>
       </Suspense>
     </Theme>
