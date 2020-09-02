@@ -1,18 +1,50 @@
-import React, { Fragment } from 'react'
+import React, { useState, useEffect } from 'react'
+import Helmet from 'react-helmet'
 
-import Button from 'components/Button'
+import { getCards } from 'services/navers'
+import { toast } from 'react-toastify'
 
-import { useAuth } from 'context/auth-context'
+import CardContainer from 'components/CardContainer'
 
-import lang from 'assets/locale/pt-br.json'
+import { CURRENT_LANGUAGE as lang } from 'helpers/constants'
 
 const Home = () => {
-  const { logout } = useAuth()
+  const [cards, setCards] = useState([])
+  const [loading, setLoading] = useState(true)
+
+  const validateUseData = data => {
+    if (Array.isArray(data)) {
+      if (data.length) {
+        setCards(data)
+        setLoading(false)
+      } else {
+        toast.info(lang.toasts.noCards)
+      }
+    } else {
+      toast.error(lang.toasts.cantResolveDataFromServer)
+      setLoading(false)
+    }
+  }
+
+  useEffect(() => {
+    const fetchCards = async () => {
+      try {
+        const data = await getCards()
+        validateUseData(data)
+      } catch {
+        toast.error(lang.toasts.cantConnectWithServer)
+      }
+    }
+    fetchCards()
+  }, [])
 
   return (
-    <Fragment>
-      <Button onClick={logout}>{lang.accounts.logOut}</Button>
-    </Fragment>
+    <>
+      <Helmet>
+        <title>{lang.document.titles.homePage}</title>
+      </Helmet>
+      <CardContainer loading={loading} cards={cards} />
+    </>
   )
 }
 
