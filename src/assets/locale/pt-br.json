@@ -3,7 +3,7 @@
     "email": "E-mail",
     "password": "Senha",
     "logIn": "Entrar",
-    "logOut": "Sair"
+    "logOut": "logout"
   },
   "placeholders": {
     "email": "exemplo@exemplo.com",
