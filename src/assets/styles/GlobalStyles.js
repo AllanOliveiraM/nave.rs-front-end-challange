@@ -47,6 +47,13 @@ const GlobalStyles = createGlobalStyle`
     cursor: not-allowed;
   }
   
+  h1 {
+    font-style: normal;
+    font-weight: 600;
+    font-size: 4rem;
+    line-height: 4.8rem;
+  }
+
   .container {
     width: 90vw;
     max-width: 700px;

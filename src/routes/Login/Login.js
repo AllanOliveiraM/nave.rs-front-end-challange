@@ -15,7 +15,7 @@ import { loginSchema } from 'helpers/yup-schemas'
 import { ToastContainer, toast } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 
-import lang from 'assets/locale/pt-br.json'
+import { CURRENT_LANGUAGE as lang } from 'helpers/constants'
 
 const Login = () => {
   const { login } = useAuth()

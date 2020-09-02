@@ -1,18 +1,16 @@
-import React, { Fragment } from 'react'
+import React from 'react'
 
-import Button from 'components/Button'
+import Header from 'components/Header'
+import HomeTitleSection from 'components/TitleSection'
 
-import { useAuth } from 'context/auth-context'
-
-import lang from 'assets/locale/pt-br.json'
+import { CURRENT_LANGUAGE as lang } from 'helpers/constants'
 
 const Home = () => {
-  const { logout } = useAuth()
-
   return (
-    <Fragment>
-      <Button onClick={logout}>{lang.accounts.logOut}</Button>
-    </Fragment>
+    <>
+      <Header />
+      <HomeTitleSection title={lang.pageComposition.titleElements.navers} />
+    </>
   )
 }
 
