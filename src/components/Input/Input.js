@@ -20,8 +20,8 @@ const InputComponent = ({ label, name, register, placeholder, error, disabled, t
 const Input = styled.input`
   height: 40px;
   border: 1px solid black;
-  border-radius: 4px;
   padding: 4px 8px;
+  border-radius: 0;
 `
 
 InputComponent.defaultProps = {

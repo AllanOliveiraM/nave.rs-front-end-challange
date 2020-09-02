@@ -1,6 +1,5 @@
 import React, { useEffect, Suspense, lazy } from 'react'
 import { BrowserRouter as Router } from 'react-router-dom'
-import { createGlobalStyle } from 'styled-components'
 import Helmet from 'react-helmet'
 // import { Provider } from 'react-redux'
 // import createHistory from 'history/createBrowserHistory'
@@ -11,9 +10,9 @@ import Loader from 'components/Loader'
 import { useUser } from 'context/user-context'
 
 import Theme from 'theme'
+import GlobalStyles from 'assets/styles/GlobalStyles'
 
 import 'sanitize.css/sanitize.css'
-import './assets/styles/global.css'
 
 const loadAuthenticatedApp = () => import('./AuthenticatedApp')
 const AuthenticatedApp = lazy(loadAuthenticatedApp)
@@ -29,6 +28,7 @@ const App = () => {
   return (
     // <Provider store={store}>
     <Theme>
+      <GlobalStyles />
       <Helmet titleTemplate='Nave.rs | %s' />
       <Suspense fallback={<Loader useDefault={true} />}>
         <Router>{user ? <AuthenticatedApp /> : <UnauthenticatedApp />}</Router>
