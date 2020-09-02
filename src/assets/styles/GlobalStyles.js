@@ -30,12 +30,6 @@ const GlobalStyles = createGlobalStyle`
     background: var(--color-background);
   }
   
-  #root {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-  
   body,
   input,
   button,

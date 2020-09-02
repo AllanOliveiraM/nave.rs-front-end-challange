@@ -2,6 +2,7 @@ import React from 'react'
 import { useForm } from 'react-hook-form'
 import styled from 'styled-components'
 
+import RootStyledDiv from 'components/FullPageContainer'
 import Column from 'components/Column'
 import Input from 'components/Input'
 import Button from 'components/Button'
@@ -31,7 +32,7 @@ const Login = () => {
   }
 
   return (
-    <>
+    <RootStyledDiv>
       <StyledColumn className='login-container' as='form' onSubmit={handleSubmit(onSubmit)} p={40} alignItems='center'>
         <StyledLogo className='logotype' />
         <Input
@@ -58,7 +59,7 @@ const Login = () => {
         </Button>
       </StyledColumn>
       <ToastContainer />
-    </>
+    </RootStyledDiv>
   )
 }
 
