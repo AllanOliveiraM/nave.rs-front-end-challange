@@ -5,6 +5,7 @@ export const styles = {
     small: 40
   },
   colors: {
-    black: '#000'
+    black: '#212121',
+    white: '#fff'
   }
 }
