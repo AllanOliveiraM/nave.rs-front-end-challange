@@ -9,6 +9,7 @@ import Loader from 'components/Loader'
 import FullPageContainer from 'components/FullPageContainer'
 
 import { useUser } from 'context/user-context'
+import { ToastContainer } from 'react-toastify'
 
 import Theme from 'theme'
 import GlobalStyles from 'assets/styles/GlobalStyles'
@@ -30,6 +31,7 @@ const App = () => {
     // <Provider store={store}>
     <Theme>
       <GlobalStyles />
+      <ToastContainer />
       <Helmet titleTemplate='Nave.rs | %s' />
       <Suspense
         fallback={

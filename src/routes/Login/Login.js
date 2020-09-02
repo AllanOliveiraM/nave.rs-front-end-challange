@@ -1,6 +1,7 @@
 import React from 'react'
 import { useForm } from 'react-hook-form'
 import styled from 'styled-components'
+import Helmet from 'react-helmet'
 
 import RootStyledDiv from 'components/FullPageContainer'
 import Column from 'components/Column'
@@ -12,10 +13,10 @@ import { useAuth } from 'context/auth-context'
 
 import { loginSchema } from 'helpers/yup-schemas'
 
-import { ToastContainer, toast } from 'react-toastify'
+import { toast } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 
-import lang from 'assets/locale/pt-br.json'
+import { CURRENT_LANGUAGE as lang } from 'helpers/constants'
 
 const Login = () => {
   const { login } = useAuth()
@@ -32,7 +33,10 @@ const Login = () => {
   }
 
   return (
-    <RootStyledDiv>
+    <RootStyledDiv className='in-animation'>
+      <Helmet>
+        <title>{lang.document.titles.loginPage}</title>
+      </Helmet>
       <StyledColumn className='login-container' as='form' onSubmit={handleSubmit(onSubmit)} p={40} alignItems='center'>
         <StyledLogo className='logotype' />
         <Input
@@ -58,7 +62,6 @@ const Login = () => {
           {lang.accounts.logIn}
         </Button>
       </StyledColumn>
-      <ToastContainer />
     </RootStyledDiv>
   )
 }

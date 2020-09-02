@@ -35,16 +35,16 @@ No diretório do projeto, você pode executar:
 
 #### `yarn start`
 
-O comando `npm start` inicia o App em um servidor de desenvolvimento.<br />
+O comando `yarn start` inicia o App em um servidor de desenvolvimento.<br />
 Abra [http://localhost:3000](http://localhost:3000) para visualizar no seu navegador.
 
 #### `yarn test`
 
-Para testar o script, você pode usar o comando `npm test`. Visite a [documentação](https://facebook.github.io/create-react-app/docs/running-tests) para mais informações.
+Para testar o script, você pode usar o comando `yarn test`. Visite a [documentação](https://facebook.github.io/create-react-app/docs/running-tests) para mais informações.
 
-#### `yarn run build`
+#### `yarn build`
 
-O comando `npm run build` cria uma versão de produção do website e a salva em um diretório `build` na raíz do projeto. <br />
+O comando `yarn build` cria uma versão de produção do website e a salva em um diretório `build` na raíz do projeto. <br />
 
 Para mais informações visite a [documentação](https://facebook.github.io/create-react-app/docs/deployment) oficial do React.
 
