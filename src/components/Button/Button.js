@@ -16,7 +16,8 @@ ButtonComponent.defaultProps = {
   width: 'regular',
   height: 'small',
   borderRadius: 4,
-  color: 'white'
+  color: 'white',
+  backgroundColor: 'black'
 }
 
 ButtonComponent.propTypes = {
@@ -30,4 +31,9 @@ ButtonComponent.propTypes = {
   ...propTypes.border
 }
 
-export default ButtonComponent
+const StyledButton = styled(ButtonComponent)`
+  border-radius: 0;
+  font-size: 1.4rem;
+`
+
+export default StyledButton
