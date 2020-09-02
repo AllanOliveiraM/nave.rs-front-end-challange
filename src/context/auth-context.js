@@ -4,6 +4,7 @@ import { useAsync } from 'react-async'
 import { login as authLogin } from 'services/auth'
 import { setAccessToken, setRefreshToken, clearToken, bootstrapAppData } from 'helpers'
 
+import FullPageContainer from 'components/FullPageContainer'
 import Loader from 'components/Loader'
 
 const AuthContext = createContext()
@@ -41,7 +42,11 @@ const AuthProvider = props => {
 
   if (!firstAttemptFinished) {
     if (isPending) {
-      return <Loader />
+      return (
+        <FullPageContainer>
+          <Loader useDefault={true} />
+        </FullPageContainer>
+      )
     }
 
     if (isRejected) {
