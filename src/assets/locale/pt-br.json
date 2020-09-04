@@ -3,7 +3,7 @@
     "email": "E-mail",
     "password": "Senha",
     "logIn": "Entrar",
-    "logOut": "logout"
+    "logOut": "Sair"
   },
   "placeholders": {
     "email": "exemplo@exemplo.com",
@@ -16,6 +16,11 @@
     "titles": {
       "loginPage": "Navedex - Login",
       "homePage": "Navedex - Home"
+    }
+  },
+  "pageComposition": {
+    "titleElements": {
+      "navers": "Navers"
     }
   }
 }

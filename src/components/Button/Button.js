@@ -1,13 +1,13 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
-import { space, layout, typography, color, border } from 'styled-system'
+import { space, layout, typography, color, border, backgroundColor } from 'styled-system'
 import propTypes from '@styled-system/prop-types'
 
-import Loader from 'components/Loader'
-
 const ButtonComponent = ({ children, isLoading, ...props }) => (
-  <Button {...props}>{isLoading ? <Loader /> : children}</Button>
+  <Button style={isLoading ? { backgroundColor: 'grey' } : {}} disabled={isLoading} {...props}>
+    {children}
+  </Button>
 )
 
 const Button = styled.button(space, layout, typography, color, border)
