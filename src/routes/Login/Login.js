@@ -67,14 +67,15 @@ const Login = () => {
 }
 
 const StyledColumn = styled(Column)`
+  max-width: 80vw;
   border: 1px solid black;
   border-radius: 0;
-  padding: 0 3.4rem 3.4rem;
   font-size: 1.4rem;
+  padding: 0 3.4rem 3.4rem;
 `
 
 const StyledLogo = styled(Logo)`
-  width: 23.5rem;
+  width: 80%;
   margin: 3.2rem 3.2rem;
   @media (min-width: 800px) {
     width: 23.5rem;

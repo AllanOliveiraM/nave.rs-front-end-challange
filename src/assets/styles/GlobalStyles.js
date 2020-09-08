@@ -2,12 +2,30 @@ import { createGlobalStyle } from 'styled-components'
 
 const GlobalStyles = createGlobalStyle`
 :root {
-    font-size: 60%;
+    font-size: 70%;
   }
-  
-  @media (max-width: 310px) {
+
+  @media (max-width: 275px) {
     :root {
-      font-size: 40%;
+      font-size: 3vw;
+    }
+  }
+
+  @media (min-width: 276px) and (max-width: 340px) {
+    :root {
+      font-size: 47%;
+    }
+  }
+
+  @media (min-width: 341px) and (max-width: 440px) {
+    :root {
+      font-size: 60%;
+    }
+  }
+
+  @media (min-width: 660px) {
+    :root {
+      font-size: 62.5%;
     }
   }
 
@@ -48,12 +66,6 @@ const GlobalStyles = createGlobalStyle`
     font-weight: 600;
     font-size: 4rem;
     line-height: 4.8rem;
-  }
-  
-  @media (min-width: 700px) {
-    :root {
-      font-size: 62.5%;
-    }
   }
 
   * {
