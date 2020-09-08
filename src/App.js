@@ -32,7 +32,7 @@ const App = () => {
     <Theme>
       <GlobalStyles />
       <ToastContainer />
-      <Helmet titleTemplate='Nave.rs | %s' />
+      <Helmet titleTemplate='Navedex | %s' />
       <Suspense
         fallback={
           <FullPageContainer>
