@@ -29,5 +29,10 @@
       "noCards": "Nada por aqui :(",
       "loading": "Carregando..."
     }
+  },
+  "pageComposition": {
+    "titleElements": {
+      "navers": "Navers"
+    }
   }
 }
