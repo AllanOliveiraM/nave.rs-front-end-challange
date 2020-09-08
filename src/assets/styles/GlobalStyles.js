@@ -10,7 +10,7 @@ const GlobalStyles = createGlobalStyle`
       font-size: 40%;
     }
   }
-  
+
   * {
     border: 0;
     padding: 0;
