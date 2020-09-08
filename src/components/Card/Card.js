@@ -41,9 +41,13 @@ const Card = styled.div`
 `
 
 const Image = styled(ReactImageAppear)`
-  max-width: 28rem;
-  width: 100%;
   cursor: pointer;
+  position: relative;
+  top: 0;
+  left: 0;
+  object-fit: cover;
+  width: 28rem;
+  height: 28rem;
 `
 
 const CardImageContainer = styled.div`
