@@ -12,20 +12,25 @@ const Home = () => {
   const [cards, setCards] = useState([])
   const [loading, setLoading] = useState(true)
 
+  const validateUseData = data => {
+    if (Array.isArray(data)) {
+      if (data.length) {
+        setCards(data)
+        setLoading(false)
+      } else {
+        toast.info(lang.toasts.noCards)
+      }
+    } else {
+      toast.error(lang.toasts.cantResolveDataFromServer)
+      setLoading(false)
+    }
+  }
+
   useEffect(() => {
     const fetchCards = async () => {
       try {
         const data = await getCards()
-        if (Array.isArray(data)) {
-          if (data.length) {
-            setCards(data)
-            setLoading(false)
-          } else {
-            toast.info(lang.toasts.noCards)
-          }
-        } else {
-          toast.error(lang.toasts.cantConnectWithServer)
-        }
+        validateUseData(data)
       } catch {
         toast.error(lang.toasts.cantConnectWithServer)
       }
