@@ -10,12 +10,24 @@
     "password": "*****"
   },
   "toasts": {
-    "wrongData": "Dados incorretos!"
+    "wrongData": "Dados incorretos!",
+    "noCards": "Nenhum Naver cadastrado!",
+    "cantResolveDataFromServer": "Não foi possível obter os dados do servidor.",
+    "cantConnectWithServer": "Não foi possível conectar-se ao servidor."
   },
   "document": {
     "titles": {
-      "loginPage": "Navedex - Login",
-      "homePage": "Navedex - Home"
+      "loginPage": "Login",
+      "homePage": "Home"
+    }
+  },
+  "pageComposition": {
+    "titleElements": {
+      "navers": "Navers"
+    },
+    "messages": {
+      "noCards": "Nada por aqui :(",
+      "loading": "Carregando..."
     }
   },
   "pageComposition": {

@@ -1,6 +1,7 @@
 import React from 'react'
 import { useForm } from 'react-hook-form'
 import styled from 'styled-components'
+import Helmet from 'react-helmet'
 
 import RootStyledDiv from 'components/FullPageContainer'
 import Column from 'components/Column'
@@ -12,7 +13,7 @@ import { useAuth } from 'context/auth-context'
 
 import { loginSchema } from 'helpers/yup-schemas'
 
-import { ToastContainer, toast } from 'react-toastify'
+import { toast } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 
 import { CURRENT_LANGUAGE as lang } from 'helpers/constants'
@@ -32,7 +33,10 @@ const Login = () => {
   }
 
   return (
-    <RootStyledDiv>
+    <RootStyledDiv className='in-animation'>
+      <Helmet>
+        <title>{lang.document.titles.loginPage}</title>
+      </Helmet>
       <StyledColumn className='login-container' as='form' onSubmit={handleSubmit(onSubmit)} p={40} alignItems='center'>
         <StyledLogo className='logotype' />
         <Input
@@ -58,20 +62,20 @@ const Login = () => {
           {lang.accounts.logIn}
         </Button>
       </StyledColumn>
-      <ToastContainer />
     </RootStyledDiv>
   )
 }
 
 const StyledColumn = styled(Column)`
+  max-width: 80vw;
   border: 1px solid black;
   border-radius: 0;
-  padding: 0 3.4rem 3.4rem;
   font-size: 1.4rem;
+  padding: 0 3.4rem 3.4rem;
 `
 
 const StyledLogo = styled(Logo)`
-  width: 23.5rem;
+  width: 80%;
   margin: 3.2rem 3.2rem;
   @media (min-width: 800px) {
     width: 23.5rem;

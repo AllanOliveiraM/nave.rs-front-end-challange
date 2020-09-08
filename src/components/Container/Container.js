@@ -13,7 +13,7 @@ const ContainerComponent = ({ children, as = Column, ...props }) => (
   </Container>
 )
 
-const Container = styled.div`
+const Container = styled.section`
   width: 100%;
   min-height: 100vh;
   margin-right: auto;
