@@ -3,6 +3,7 @@ import styled from 'styled-components'
 import ReactImageAppear from 'react-image-appear'
 
 import DeleteIcon from 'components/DeleteIcon'
+import EditIcon from 'components/EditIcon'
 
 const CardComponetnt = ({ card, ...props }) => {
   const handleImageClick = () => {}
@@ -23,6 +24,7 @@ const CardComponetnt = ({ card, ...props }) => {
         <CardSubtitle>{card?.job_role}</CardSubtitle>
         <CardFooter>
           <DeleteIcon />
+          <StyledEditIcon />
         </CardFooter>
       </Card>
     </CardSubContainer>
@@ -76,6 +78,10 @@ const CardSubtitle = styled.p`
 const CardFooter = styled.section`
   display: flex;
   justify-content: left;
+`
+
+const StyledEditIcon = styled(EditIcon)`
+  margin-left: 0.8rem;
 `
 
 export default CardComponetnt
