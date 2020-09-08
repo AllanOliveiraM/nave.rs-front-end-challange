@@ -12,7 +12,8 @@
   "toasts": {
     "wrongData": "Dados incorretos!",
     "noCards": "Nenhum Naver cadastrado!",
-    "cantConnectWithServer": "Não foi possível obter os dados do servidor."
+    "cantResolveDataFromServer": "Não foi possível obter os dados do servidor.",
+    "cantConnectWithServer": "Não foi possível conectar-se ao servidor."
   },
   "document": {
     "titles": {
