@@ -1,16 +1,16 @@
 import React from 'react'
 import styled from 'styled-components'
 
-import CardRow from 'components/RowEmpty'
-import CardColumn from 'components/ColumnEmpty'
+import CardRow from 'components/Row'
+import CardColumn from 'components/Column'
 import Card from 'components/Card'
 import { CURRENT_LANGUAGE as lang } from 'helpers/constants'
 
-const CardContainerComponent = ({ cards, loading, rowProps, columnProps, ...props }) => {
+const CardContainerComponent = ({ cards, isLoading, ...props }) => {
   const CardContent = () => {
     if (cards.length) {
       return cards.map(card => (
-        <CardColumn key={card.id} {...columnProps} className='col col-2 col-3 col-4'>
+        <CardColumn key={card.id} className='col col-2 col-3 col-4'>
           <Card className='in-animation' card={card} />
         </CardColumn>
       ))
@@ -25,9 +25,7 @@ const CardContainerComponent = ({ cards, loading, rowProps, columnProps, ...prop
 
   return (
     <CardContainer {...props} className='container'>
-      <CardRow {...rowProps} className='row'>
-        {loading ? <CardLoader /> : <CardContent />}
-      </CardRow>
+      <CardRow className='row'>{isLoading ? <CardLoader /> : <CardContent />}</CardRow>
     </CardContainer>
   )
 }
