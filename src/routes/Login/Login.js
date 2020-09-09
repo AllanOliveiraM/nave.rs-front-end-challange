@@ -37,10 +37,9 @@ const Login = () => {
       <Helmet>
         <title>{lang.document.titles.loginPage}</title>
       </Helmet>
-      <StyledColumn className='login-container' as='form' onSubmit={handleSubmit(onSubmit)} p={40} alignItems='center'>
-        <StyledLogo className='logotype' />
-        <Input
-          width='100%'
+      <StyledColumn as='form' onSubmit={handleSubmit(onSubmit)}>
+        <StyledLogo />
+        <StyledInput
           name='email'
           autoComplete='email'
           register={register}
@@ -48,8 +47,7 @@ const Login = () => {
           placeholder={lang.placeholders.email}
           error={errors.email?.message}
         />
-        <Input
-          width='100%'
+        <StyledInput
           name='password'
           autoComplete='password'
           register={register}
@@ -81,6 +79,11 @@ const StyledLogo = styled(Logo)`
     width: 23.5rem;
     margin: 4rem 7.2rem;
   }
+`
+
+const StyledInput = styled(Input)`
+  width: 100%;
+  margin-bottom: 3.2rem;
 `
 
 export default Login
