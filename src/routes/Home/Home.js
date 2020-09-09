@@ -43,7 +43,7 @@ const Home = () => {
       <Helmet>
         <title>{lang.document.titles.homePage}</title>
       </Helmet>
-      <CardContainer loading={loading} cards={cards} />
+      <CardContainer isLoading={loading} cards={cards} />
     </>
   )
 }
