@@ -1,20 +1,26 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 
 import './Loader.css'
 
-const DefaultLoader = ({ useDefault, children }) => {
+const Loader = ({ useDefault, children }) => {
   if (useDefault) {
     return (
       <div className='lds-ellipsis'>
-        <div></div>
-        <div></div>
-        <div></div>
-        <div></div>
+        <div />
+        <div />
+        <div />
+        <div />
       </div>
     )
-  } else {
-    return children || 'carregando'
   }
+
+  return children || 'carregando'
 }
 
-export default DefaultLoader
+Loader.propTypes = {
+  useDefault: PropTypes.bool,
+  children: PropTypes.element
+}
+
+export default Loader

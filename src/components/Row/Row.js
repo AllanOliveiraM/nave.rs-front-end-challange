@@ -1,5 +1,5 @@
 import styled from 'styled-components'
 
-const RowEmpty = styled.section``
+const Row = styled.section``
 
-export default RowEmpty
+export default Row

@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
-import { space, layout, typography, color, border, backgroundColor } from 'styled-system'
+import { space, layout, typography, color, border } from 'styled-system'
 import propTypes from '@styled-system/prop-types'
 
 const ButtonComponent = ({ children, isLoading, ...props }) => (

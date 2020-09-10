@@ -1,5 +1,5 @@
 import styled from 'styled-components'
 
-const ColumnEmpty = styled.section``
+const Column = styled.section``
 
-export default ColumnEmpty
+export default Column

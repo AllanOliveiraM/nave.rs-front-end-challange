@@ -1,9 +1,14 @@
 import React from 'react'
 import styled from 'styled-components'
+import PropTypes from 'prop-types'
 
+import Loader from 'components/Loader'
 import CardRow from 'components/Row'
 import CardColumn from 'components/Column'
 import Card from 'components/Card'
+import StyledFullPageContainer from './StyledFullPageContainer'
+import CardMessage from './CardMessage'
+
 import { CURRENT_LANGUAGE as lang } from 'helpers/constants'
 
 const CardContainerComponent = ({ cards, isLoading, ...props }) => {
@@ -19,13 +24,19 @@ const CardContainerComponent = ({ cards, isLoading, ...props }) => {
     }
   }
 
-  const CardLoader = () => {
-    return <CardMessage>{lang.pageComposition.messages.loading}</CardMessage>
+  if (isLoading) {
+    return (
+      <StyledFullPageContainer>
+        <Loader useDefault={true} />
+      </StyledFullPageContainer>
+    )
   }
 
   return (
     <CardContainer {...props} className='container'>
-      <CardRow className='row'>{isLoading ? <CardLoader /> : <CardContent />}</CardRow>
+      <CardRow className='row'>
+        <CardContent />
+      </CardRow>
     </CardContainer>
   )
 }
@@ -35,12 +46,14 @@ const CardContainer = styled.section`
   padding: 0 3.2rem;
 `
 
-const CardMessage = styled.p`
-  width: 100%;
-  font-size: 2.4rem;
-  margin-top: 12rem;
-  color: #b7b7b7;
-  text-align: center;
-`
+CardContainerComponent.defaultProps = {
+  cards: [],
+  isLoading: true
+}
+
+CardContainerComponent.propTypes = {
+  cards: PropTypes.array,
+  isLoading: PropTypes.bool
+}
 
 export default CardContainerComponent

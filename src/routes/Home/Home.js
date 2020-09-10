@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import Helmet from 'react-helmet'
 
-import { getCards } from 'services/navers'
+import { getNavers } from 'services/navers'
 import { toast } from 'react-toastify'
 
 import CardContainer from 'components/CardContainer'
@@ -29,7 +29,7 @@ const Home = () => {
   useEffect(() => {
     const fetchCards = async () => {
       try {
-        const data = await getCards()
+        const data = await getNavers()
         validateUseData(data)
       } catch {
         toast.error(lang.toasts.cantConnectWithServer)
