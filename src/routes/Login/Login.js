@@ -37,7 +37,7 @@ const Login = () => {
       <Helmet>
         <title>{lang.document.titles.loginPage}</title>
       </Helmet>
-      <StyledColumn as='form' onSubmit={handleSubmit(onSubmit)}>
+      <StyledColumn col={1} as='form' onSubmit={handleSubmit(onSubmit)}>
         <StyledLogo />
         <StyledInput
           name='email'

@@ -4,7 +4,7 @@ import Helmet from 'react-helmet'
 import { getNavers } from 'services/navers'
 import { toast } from 'react-toastify'
 
-import CardContainer from 'components/CardContainer'
+import CardSection from 'components/CardSection'
 
 import { CURRENT_LANGUAGE as lang } from 'helpers/constants'
 
@@ -19,6 +19,7 @@ const Home = () => {
         setLoading(false)
       } else {
         toast.info(lang.toasts.noCards)
+        setLoading(false)
       }
     } else {
       toast.error(lang.toasts.cantResolveDataFromServer)
@@ -43,7 +44,7 @@ const Home = () => {
       <Helmet>
         <title>{lang.document.titles.homePage}</title>
       </Helmet>
-      <CardContainer isLoading={loading} cards={cards} />
+      <CardSection isLoading={loading} cards={cards} />
     </>
   )
 }
