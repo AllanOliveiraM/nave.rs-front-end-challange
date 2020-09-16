@@ -43,7 +43,7 @@ const Login = () => {
       <StyledColumn as='form'>
         <StyledLogo />
         <Formik initialValues={initialValues} onSubmit={onSubmit} validationSchema={loginSchema}>
-          {({ errors, handleChange, handleBlur, handleSubmit, values }) => (
+          {({ errors, handleChange, handleBlur, handleSubmit, values, isSubmitting }) => (
             <>
               <StyledInput
                 name='email'
@@ -66,7 +66,7 @@ const Login = () => {
                 placeholder={lang.placeholders.password}
                 type='password'
               />
-              <Button type='submit' width='100%' isLoading={false} onClick={handleSubmit}>
+              <Button type='submit' width='100%' isLoading={isSubmitting} onClick={handleSubmit}>
                 {lang.accounts.logIn}
               </Button>
             </>
