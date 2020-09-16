@@ -43,12 +43,13 @@ const Login = () => {
       <StyledColumn as='form'>
         <StyledLogo />
         <Formik initialValues={initialValues} onSubmit={onSubmit} validationSchema={loginSchema}>
-          {({ errors, handleChange, handleSubmit, values }) => (
+          {({ errors, handleChange, handleBlur, handleSubmit, values }) => (
             <>
               <StyledInput
                 name='email'
                 autoComplete='email'
                 onChange={handleChange}
+                onBlur={handleBlur}
                 value={values.email}
                 error={errors.email}
                 label={lang.accounts.email}
@@ -58,6 +59,7 @@ const Login = () => {
                 name='password'
                 autoComplete='password'
                 onChange={handleChange}
+                onBlur={handleBlur}
                 value={values.password}
                 error={errors.password}
                 label={lang.accounts.password}
