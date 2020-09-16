@@ -2,18 +2,16 @@ import React, { useState } from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
 
-import DeleteIcon from 'components/DeleteIcon'
+import ReactImageAppear from 'react-image-appear'
+import HeadingsText from 'components/HeadingsText'
+import Text from 'components/Text'
 import Modal from 'components/Modal'
-import CardSubContainer from './CardSubContainer'
-import StyledImage from './StyledImage'
-import CardImageContainer from './CardImageContainer'
-import CardName from './CardName'
-import CardSubtitle from './CardSubtitle'
-import CardFooter from './CardFooter'
-import StyledEditIcon from './StyledEditIcon'
+import DeleteIcon from 'components/DeleteIcon'
+import EditIcon from 'components/EditIcon'
 
 const CardComponetnt = ({ card, ...props }) => {
   const [modalIsOpen, setModalIsOpen] = useState(false)
+
   const handleImageClick = () => {
     setModalIsOpen(true)
   }
@@ -21,7 +19,7 @@ const CardComponetnt = ({ card, ...props }) => {
   return (
     <>
       <Modal modalIsOpen={modalIsOpen} setModalIsOpen={setModalIsOpen} naverId={card?.id} />
-      <CardSubContainer>
+      <CardContainer>
         <Card {...props}>
           <CardImageContainer>
             <StyledImage
@@ -32,22 +30,62 @@ const CardComponetnt = ({ card, ...props }) => {
               src={card?.url}
             />
           </CardImageContainer>
-          <CardName>{card?.name}</CardName>
-          <CardSubtitle>{card?.job_role}</CardSubtitle>
+          <StyledCardTitle variant='smalltitle'>{card?.name}</StyledCardTitle>
+          <StyledCardSubtitle>{card?.job_role}</StyledCardSubtitle>
           <CardFooter>
             <DeleteIcon />
             <StyledEditIcon />
           </CardFooter>
         </Card>
-      </CardSubContainer>
+      </CardContainer>
     </>
   )
 }
 
-const Card = styled.div`
+const Card = styled.section`
   max-width: 28rem;
   width: 100%;
   margin-bottom: 3.2rem;
+`
+
+const CardContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  z-index: 0;
+`
+
+const CardImageContainer = styled.header`
+  height: 28rem;
+  display: block;
+  overflow: hidden;
+`
+
+const CardFooter = styled.footer`
+  text-align: left;
+`
+
+const StyledCardSubtitle = styled(Text)`
+  text-align: left;
+  margin-bottom: 1.25rem;
+`
+
+const StyledCardTitle = styled(HeadingsText)`
+  text-align: left;
+  margin: 1.25rem 0;
+`
+
+const StyledImage = styled(ReactImageAppear)`
+  cursor: pointer;
+  position: relative;
+  top: 0;
+  left: 0;
+  object-fit: cover;
+  width: 28rem;
+  height: 28rem;
+`
+
+const StyledEditIcon = styled(EditIcon)`
+  margin-left: 0.8rem;
 `
 
 CardComponetnt.defaultProps = {
