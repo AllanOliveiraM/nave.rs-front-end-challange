@@ -1,13 +1,12 @@
 import React from 'react'
 import { Route, Redirect, Switch } from 'react-router-dom'
 
-import { useLoadBar } from 'context/loadbar-context'
-
 import LoadingBar from 'react-top-loading-bar'
 import Header from 'components/Header'
 import HomeTitleSection from 'components/TitleSection'
 import Home from 'routes/Home'
 
+import { useLoadBar } from 'context/loadbar-context'
 import { CURRENT_LANGUAGE as lang } from 'helpers/constants'
 
 const AuthenticatedApp = () => {
