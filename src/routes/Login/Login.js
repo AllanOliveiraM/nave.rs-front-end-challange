@@ -10,11 +10,8 @@ import Button from 'components/Button'
 import Logo from 'components/Logo'
 
 import { useAuth } from 'context/auth-context'
-
 import { loginSchema } from 'helpers/yup-schemas'
-
 import { toast } from 'react-toastify'
-import 'react-toastify/dist/ReactToastify.css'
 
 import { CURRENT_LANGUAGE as lang } from 'helpers/constants'
 
@@ -43,25 +40,17 @@ const Login = () => {
       <StyledColumn as='form'>
         <StyledLogo />
         <Formik initialValues={initialValues} onSubmit={onSubmit} validationSchema={loginSchema}>
-          {({ errors, handleChange, handleBlur, handleSubmit, values, isSubmitting }) => (
+          {({ handleSubmit, isSubmitting }) => (
             <>
               <StyledInput
                 name='email'
                 autoComplete='email'
-                onChange={handleChange}
-                onBlur={handleBlur}
-                value={values.email}
-                error={errors.email}
                 label={lang.accounts.email}
                 placeholder={lang.placeholders.email}
               />
               <StyledInput
                 name='password'
                 autoComplete='password'
-                onChange={handleChange}
-                onBlur={handleBlur}
-                value={values.password}
-                error={errors.password}
                 label={lang.accounts.password}
                 placeholder={lang.placeholders.password}
                 type='password'

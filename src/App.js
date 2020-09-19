@@ -14,6 +14,7 @@ import { ToastContainer } from 'react-toastify'
 import Theme from 'theme'
 import GlobalStyles from 'assets/styles/GlobalStyles'
 
+import 'react-toastify/dist/ReactToastify.css'
 import 'sanitize.css/sanitize.css'
 
 const loadAuthenticatedApp = () => import('./AuthenticatedApp')
