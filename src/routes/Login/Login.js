@@ -1,5 +1,5 @@
 import React from 'react'
-import { useForm } from 'react-hook-form'
+import { Formik } from 'formik'
 import styled from 'styled-components'
 import Helmet from 'react-helmet'
 
@@ -10,18 +10,13 @@ import Button from 'components/Button'
 import Logo from 'components/Logo'
 
 import { useAuth } from 'context/auth-context'
-
 import { loginSchema } from 'helpers/yup-schemas'
-
 import { toast } from 'react-toastify'
-import 'react-toastify/dist/ReactToastify.css'
 
 import { CURRENT_LANGUAGE as lang } from 'helpers/constants'
 
 const Login = () => {
   const { login } = useAuth()
-
-  const { register, handleSubmit, errors, formState } = useForm({ validationSchema: loginSchema })
 
   const onSubmit = async values => {
     try {
@@ -32,6 +27,11 @@ const Login = () => {
     }
   }
 
+  const initialValues = {
+    email: '',
+    password: ''
+  }
+
   return (
     <RootStyledDiv className='in-animation'>
       <Helmet>
@@ -39,26 +39,28 @@ const Login = () => {
       </Helmet>
       <StyledColumn col={1} as='form' onSubmit={handleSubmit(onSubmit)}>
         <StyledLogo />
-        <StyledInput
-          name='email'
-          autoComplete='email'
-          register={register}
-          label={lang.accounts.email}
-          placeholder={lang.placeholders.email}
-          error={errors.email?.message}
-        />
-        <StyledInput
-          name='password'
-          autoComplete='password'
-          register={register}
-          label={lang.accounts.password}
-          placeholder={lang.placeholders.password}
-          error={errors.password?.message}
-          type='password'
-        />
-        <Button width='100%' isLoading={formState.isSubmitting}>
-          {lang.accounts.logIn}
-        </Button>
+        <Formik initialValues={initialValues} onSubmit={onSubmit} validationSchema={loginSchema}>
+          {({ handleSubmit, isSubmitting }) => (
+            <>
+              <StyledInput
+                name='email'
+                autoComplete='email'
+                label={lang.accounts.email}
+                placeholder={lang.placeholders.email}
+              />
+              <StyledInput
+                name='password'
+                autoComplete='password'
+                label={lang.accounts.password}
+                placeholder={lang.placeholders.password}
+                type='password'
+              />
+              <Button type='submit' width='100%' isLoading={isSubmitting} onClick={handleSubmit}>
+                {lang.accounts.logIn}
+              </Button>
+            </>
+          )}
+        </Formik>
       </StyledColumn>
     </RootStyledDiv>
   )

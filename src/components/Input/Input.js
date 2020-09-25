@@ -4,15 +4,23 @@ import styled from 'styled-components'
 
 import Text from 'components/Text'
 
-const InputComponent = ({ label, name, register, placeholder, error, disabled, type, ...props }) => (
-  <>
-    {label && <Text mb={5}>{label}</Text>}
-    <Input {...props} name={name} ref={register} placeholder={placeholder} error={error} type={type} />
-    <Text position='absolute' bottom={0} color='red' variant='small'>
-      {error}
-    </Text>
-  </>
-)
+import { useField } from 'formik'
+
+const InputComponent = ({ label, register, placeholder, disabled, type, ...props }) => {
+  const [field, meta] = useField(props)
+
+  console.log(field)
+
+  return (
+    <>
+      {label && <Text mb={5}>{label}</Text>}
+      <Input {...field} {...props} ref={register} placeholder={placeholder} type={type} />
+      <Text position='absolute' bottom={0} color='red' variant='small'>
+        {meta.touched && meta.error ? meta.error : null}
+      </Text>
+    </>
+  )
+}
 
 const Input = styled.input`
   height: 40px;
