@@ -30,10 +30,16 @@
       "loading": "Carregando..."
     },
     "cards": {
-      "yearsOld" : "Nascimento",
+      "yearsOld": "Nascimento",
       "timeOfWork": "Entrou na empresa",
       "projects": "Projetos que participou"
-
+    },
+    "modal": {
+      "subtitles": {
+        "age": "Idade",
+        "admissionDate": "Admissão",
+        "projects": "Projetos que participou"
+      }
     }
   }
 }

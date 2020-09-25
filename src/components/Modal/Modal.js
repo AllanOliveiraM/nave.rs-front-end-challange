@@ -3,6 +3,8 @@ import ReactDOM from 'react-dom'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
 
+import Text from 'components/Text'
+import HeadingsText from 'components/HeadingsText'
 import FullPageContainer from 'components/FullPageContainer'
 import ReactImageAppear from 'react-image-appear'
 import CloseIconComponent from 'components/CloseIcon'
@@ -80,7 +82,20 @@ const Modal = ({ naverId, setModalIsOpen, ...props }) => {
               />
             </IconContainer>
             <ContentContainer>
-              <ModalMainContainer>oi</ModalMainContainer>
+              <ModalMainContainer>
+                <StyledHeadingsText variant='title'>{modalData?.name}</StyledHeadingsText>
+                <StyledText variant='regular'>{modalData?.job_role}</StyledText>
+                <StyledHeadingsText variant='subtitle'>{lang.pageComposition.modal.subtitles.age}</StyledHeadingsText>
+                <StyledText>{resolveDate(modalData?.birthdate)}</StyledText>
+                <StyledHeadingsText variant='subtitle'>
+                  {lang.pageComposition.modal.subtitles.admissionDate}
+                </StyledHeadingsText>
+                <StyledText>{resolveDate(modalData?.admission_date)}</StyledText>
+                <StyledHeadingsText variant='subtitle'>
+                  {lang.pageComposition.modal.subtitles.projects}
+                </StyledHeadingsText>
+                <StyledText>{modalData?.project}</StyledText>
+              </ModalMainContainer>
               <ModalFooterContainer>oi</ModalFooterContainer>
             </ContentContainer>
           </BackgroundContainer>
@@ -172,11 +187,24 @@ const ContentContainer = styled.div`
 `
 
 const ModalMainContainer = styled.div`
+  display: flex;
+  justify-content: left;
+  flex-direction: column;
   margin: 0 3.2rem;
 `
 
 const ModalFooterContainer = styled.div`
+  display: flex;
+  justify-content: left;
   margin: 0 3.2rem 2.4rem 3.2rem;
+`
+
+const StyledText = styled(Text)`
+  text-align: left;
+`
+
+const StyledHeadingsText = styled(HeadingsText)`
+  text-align: left;
 `
 
 ModalComponent.propTypes = {
