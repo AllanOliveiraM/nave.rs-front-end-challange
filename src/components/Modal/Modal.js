@@ -3,12 +3,15 @@ import ReactDOM from 'react-dom'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
 
+import EditIcon from 'components/EditIcon'
+import DeleteIcon from 'components/DeleteIcon'
 import Text from 'components/Text'
 import HeadingsText from 'components/HeadingsText'
 import FullPageContainer from 'components/FullPageContainer'
 import ReactImageAppear from 'react-image-appear'
 import CloseIconComponent from 'components/CloseIcon'
 
+import { useHistory } from 'react-router-dom'
 import { toast } from 'react-toastify'
 import { useLoadBar } from 'context/loadbar-context'
 import { showNaver } from 'services/navers'
@@ -31,6 +34,8 @@ const Modal = ({ naverId, setModalIsOpen, ...props }) => {
   const resolveDate = date => {
     return date.split('T')[0].split('-').reverse().join('/')
   }
+
+  const history = useHistory()
 
   useEffect(() => {
     const fetchNaver = async () => {
@@ -96,7 +101,10 @@ const Modal = ({ naverId, setModalIsOpen, ...props }) => {
                 </StyledHeadingsText>
                 <StyledText>{modalData?.project}</StyledText>
               </ModalMainContainer>
-              <ModalFooterContainer>oi</ModalFooterContainer>
+              <ModalFooterContainer>
+                <DeleteIcon />
+                <StyledEditIcon onClick={() => history.push(`/details/${modalData?.id}`)} />
+              </ModalFooterContainer>
             </ContentContainer>
           </BackgroundContainer>
         </ModalMain>
@@ -166,15 +174,15 @@ const Image = styled(ReactImageAppear)`
   left: 0;
   object-fit: cover;
   width: 100%;
-  height: 40rem;
-  @media (min-width: ${MEDIATABLET}px) {
-    min-height: 40.3rem;
+  height: 20rem;
+  @media (min-width: ${MEDIATABLET - 250}px) {
+    height: 26rem;
   }
-  @media (min-width: ${MEDIATABLET + 200}px) {
-    min-height: 45.3rem;
+  @media (min-width: ${MEDIATABLET}px) {
+    height: 40rem;
   }
   @media (min-width: ${MEDIADESKTOP}px) {
-    min-height: 50.3rem;
+    height: 48rem;
   }
 `
 
@@ -196,15 +204,39 @@ const ModalMainContainer = styled.div`
 const ModalFooterContainer = styled.div`
   display: flex;
   justify-content: left;
-  margin: 0 3.2rem 2.4rem 3.2rem;
+  margin: 3.2rem 3.2rem 2.4rem 3.2rem;
 `
 
 const StyledText = styled(Text)`
+  margin-top: 0.05rem;
   text-align: left;
+  @media (min-width: ${MEDIATABLET}px) {
+    margin-top: 0.7rem;
+  }
+  @media (min-width: ${MEDIADESKTOP}px) {
+    margin-top: 1rem;
+  }
+  @media (max-width: 290px) {
+    font-size: calc(4vw + 5px);
+  }
 `
 
 const StyledHeadingsText = styled(HeadingsText)`
+  margin-top: 0.6rem;
   text-align: left;
+  @media (min-width: ${MEDIATABLET + 80}px) {
+    margin-top: 1rem;
+  }
+  @media (min-width: ${MEDIADESKTOP}px) {
+    margin-top: 1.6rem;
+  }
+  @media (max-width: 290px) {
+    font-size: calc(5vw + 5px);
+  }
+`
+
+const StyledEditIcon = styled(EditIcon)`
+  margin-left: 0.8rem;
 `
 
 ModalComponent.propTypes = {

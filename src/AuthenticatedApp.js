@@ -19,6 +19,8 @@ const AuthenticatedApp = () => {
       <HomeTitleSection className='in-animation' title={lang.pageComposition.titleElements.navers} />
       <Switch>
         <Route path='/home' component={Home} />
+        <Route path='/create' component={Home} />
+        <Route path='/details/:id' component={Home} />
         <Redirect to='/home' />
       </Switch>
     </>

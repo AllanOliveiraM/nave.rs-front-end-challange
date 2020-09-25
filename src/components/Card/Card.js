@@ -9,12 +9,16 @@ import Modal from 'components/Modal'
 import DeleteIcon from 'components/DeleteIcon'
 import EditIcon from 'components/EditIcon'
 
+import { useHistory } from 'react-router-dom'
+
 const CardComponetnt = ({ card, ...props }) => {
   const [modalIsOpen, setModalIsOpen] = useState(false)
 
   const handleImageClick = () => {
     setModalIsOpen(true)
   }
+
+  const history = useHistory()
 
   return (
     <>
@@ -34,7 +38,7 @@ const CardComponetnt = ({ card, ...props }) => {
           <StyledCardSubtitle>{card?.job_role}</StyledCardSubtitle>
           <CardFooter>
             <DeleteIcon />
-            <StyledEditIcon />
+            <StyledEditIcon onClick={() => history.push(`/details/${card?.id}`)} />
           </CardFooter>
         </Card>
       </CardContainer>
