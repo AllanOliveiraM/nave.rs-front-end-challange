@@ -79,6 +79,10 @@ const Modal = ({ naverId, setModalIsOpen, ...props }) => {
                 }}
               />
             </IconContainer>
+            <ContentContainer>
+              <ModalMainContainer>oi</ModalMainContainer>
+              <ModalFooterContainer>oi</ModalFooterContainer>
+            </ContentContainer>
           </BackgroundContainer>
         </ModalMain>
       </StyledFullPageContainer>
@@ -157,6 +161,22 @@ const Image = styled(ReactImageAppear)`
   @media (min-width: ${MEDIADESKTOP}px) {
     min-height: 50.3rem;
   }
+`
+
+const ContentContainer = styled.div`
+  width: 100%;
+  height: calc(100% - 35px);
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+`
+
+const ModalMainContainer = styled.div`
+  margin: 0 3.2rem;
+`
+
+const ModalFooterContainer = styled.div`
+  margin: 0 3.2rem 2.4rem 3.2rem;
 `
 
 ModalComponent.propTypes = {

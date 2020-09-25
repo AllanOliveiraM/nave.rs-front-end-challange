@@ -16,7 +16,7 @@ const HeaderComponent = ({ children, displayLogout, ...props }) => {
       <StyledLogo />
       <RightContainer>
         {children}
-        {displayLogout ? <ButtonHeader logout={logout} /> : null}
+        {displayLogout ? <ButtonHeader action={logout} /> : null}
       </RightContainer>
     </Header>
   )
