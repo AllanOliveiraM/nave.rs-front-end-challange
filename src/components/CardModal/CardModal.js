@@ -18,7 +18,7 @@ import { showNaver } from 'services/navers'
 
 import { MEDIATABLET, MEDIADESKTOP, CURRENT_LANGUAGE as lang } from 'helpers/constants'
 
-const ModalComponent = ({ modalIsOpen, ...props }) => {
+const CardModalComponent = ({ modalIsOpen, ...props }) => {
   useEffect(() => {
     if (!modalIsOpen) {
       document.body.style.overflow = 'auto'
@@ -239,9 +239,9 @@ const StyledEditIcon = styled(EditIcon)`
   margin-left: 0.8rem;
 `
 
-ModalComponent.propTypes = {
+CardModalComponent.propTypes = {
   naverId: PropTypes.string,
   setModalIsOpen: PropTypes.func
 }
 
-export default ModalComponent
+export default CardModalComponent

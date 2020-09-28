@@ -5,7 +5,7 @@ import styled from 'styled-components'
 import ReactImageAppear from 'react-image-appear'
 import HeadingsText from 'components/HeadingsText'
 import Text from 'components/Text'
-import Modal from 'components/Modal'
+import CardModal from 'components/CardModal'
 import DeleteIcon from 'components/DeleteIcon'
 import EditIcon from 'components/EditIcon'
 
@@ -22,7 +22,7 @@ const CardComponetnt = ({ card, ...props }) => {
 
   return (
     <>
-      <Modal modalIsOpen={modalIsOpen} setModalIsOpen={setModalIsOpen} naverId={card?.id} />
+      <CardModal modalIsOpen={modalIsOpen} setModalIsOpen={setModalIsOpen} naverId={card?.id} />
       <CardContainer>
         <Card {...props}>
           <CardImageContainer>
