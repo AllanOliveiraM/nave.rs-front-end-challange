@@ -37,7 +37,7 @@ const Login = () => {
       <Helmet>
         <title>{lang.document.titles.loginPage}</title>
       </Helmet>
-      <StyledColumn col={1} as='form' onSubmit={handleSubmit(onSubmit)}>
+      <StyledColumn as='form'>
         <StyledLogo />
         <Formik initialValues={initialValues} onSubmit={onSubmit} validationSchema={loginSchema}>
           {({ handleSubmit, isSubmitting }) => (
