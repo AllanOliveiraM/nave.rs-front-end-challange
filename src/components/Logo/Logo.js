@@ -1,8 +1,8 @@
 import React from 'react'
 
-const LogoFull = props => {
+const Logo = ({ width, height, fill, ...props }) => {
   return (
-    <svg width={236} height={60} viewBox='0 0 236 60' fill='none' {...props}>
+    <svg width={width} height={height} viewBox='0 0 236 60' fill='fill' {...props}>
       <path
         fillRule='evenodd'
         clipRule='evenodd'
@@ -28,4 +28,10 @@ const LogoFull = props => {
   )
 }
 
-export default LogoFull
+Logo.defaultProps = {
+  width: 236,
+  height: 60,
+  fill: 'none'
+}
+
+export default Logo

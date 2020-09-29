@@ -28,6 +28,18 @@
     "messages": {
       "noCards": "Nada por aqui :(",
       "loading": "Carregando..."
+    },
+    "cards": {
+      "yearsOld": "Nascimento",
+      "timeOfWork": "Entrou na empresa",
+      "projects": "Projetos que participou"
+    },
+    "modal": {
+      "subtitles": {
+        "age": "Idade",
+        "admissionDate": "Admissão",
+        "projects": "Projetos que participou"
+      }
     }
   }
 }

@@ -13,17 +13,16 @@ const ContainerComponent = ({ children, as = Column, ...props }) => (
   </Container>
 )
 
-const Container = styled.section`
+const Container = styled.div`
   width: 100%;
   min-height: 100vh;
-  margin-right: auto;
   margin-left: auto;
-  padding: 20px;
-  max-width: 360px;
+  margin-right: auto;
+  padding: 0 3.2rem;
 
   @media (min-width: ${MEDIADESKTOP}px) {
     max-width: ${MEDIADESKTOP + 80}px;
-    padding: 40px;
+    padding: 0 4rem;
   }
 
   ${space}

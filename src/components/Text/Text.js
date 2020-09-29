@@ -21,14 +21,17 @@ const TextComponent = styled.p(
         lineHeight: '24px'
       },
       [REGULAR]: {
+        fontWeight: 'normal',
         fontSize: 16,
-        lineHeight: '25px'
+        lineHeight: '24px'
       },
       [SMALL]: {
+        fontWeight: 'normal',
         fontSize: 14,
         lineHeight: '17px'
       },
       [TINY]: {
+        fontWeight: 'normal',
         fontSize: 12,
         lineHeight: '17px'
       }
@@ -48,6 +51,10 @@ TextComponent.propTypes = {
   ...propTypes.typography,
   ...propTypes.color,
   ...propTypes.position
+}
+
+TextComponent.defaultProps = {
+  variant: REGULAR
 }
 
 export default TextComponent

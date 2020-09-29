@@ -1,23 +1,24 @@
 import React from 'react'
 import styled from 'styled-components'
+import PropTypes from 'prop-types'
 
-const HomeTitleSectionComponent = ({ title, ...props }) => {
+const TitleSectionComponent = ({ title, ...props }) => {
   return (
-    <TitleSectionComponent {...props}>
+    <TitleSection {...props}>
       <Title>{title}</Title>
-    </TitleSectionComponent>
+    </TitleSection>
   )
+}
+
+const TitleSection = ({ children, ...props }) => {
+  return <Section {...props}>{children}</Section>
 }
 
 const Title = styled.h1`
   margin-left: 3.2rem;
 `
 
-const TitleSectionComponent = ({ children, ...props }) => {
-  return <TitleSection {...props}>{children}</TitleSection>
-}
-
-const TitleSection = styled.section`
+const Section = styled.section`
   width: 100%;
   height: 12rem;
   display: flex;
@@ -25,4 +26,9 @@ const TitleSection = styled.section`
   align-items: center;
 `
 
-export default HomeTitleSectionComponent
+TitleSectionComponent.propTypes = {
+  title: PropTypes.string,
+  children: PropTypes.element
+}
+
+export default TitleSectionComponent
