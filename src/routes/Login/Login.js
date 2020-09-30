@@ -67,7 +67,8 @@ const Login = () => {
 }
 
 const StyledColumn = styled(Column)`
-  max-width: 80vw;
+  max-width: 44.8rem;
+  width: 80vw;
   border: 1px solid black;
   border-radius: 0;
   font-size: 1.4rem;

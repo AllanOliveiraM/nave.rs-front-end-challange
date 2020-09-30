@@ -18,17 +18,7 @@ import { showNaver } from 'services/navers'
 
 import { MEDIATABLET, MEDIADESKTOP, CURRENT_LANGUAGE as lang } from 'helpers/constants'
 
-const CardModalComponent = ({ modalIsOpen, ...props }) => {
-  useEffect(() => {
-    if (!modalIsOpen) {
-      document.body.style.overflow = 'auto'
-    }
-  }, [modalIsOpen])
-
-  return <>{modalIsOpen ? <Modal {...props} /> : null}</>
-}
-
-const Modal = ({ naverId, setModalIsOpen, ...props }) => {
+const CardModalComponent = ({ naverId, modalIsOpen, setModalIsOpen, ...props }) => {
   const [modalData, setModalData] = useState({})
   const { loadBarContinuousStart, loadBarComplete } = useLoadBar()
   const resolveDate = date => {
@@ -59,11 +49,18 @@ const Modal = ({ naverId, setModalIsOpen, ...props }) => {
       }
     }
 
-    fetchNaver()
-  }, [])
+    if (modalIsOpen) {
+      fetchNaver()
+    }
+  }, [modalIsOpen])
 
   if (!modalData?.loaded) {
-    return <></>
+    return null
+  }
+
+  if (!modalIsOpen) {
+    document.body.style.overflow = 'auto'
+    return null
   }
 
   return ReactDOM.createPortal(
@@ -240,8 +237,9 @@ const StyledEditIcon = styled(EditIcon)`
 `
 
 CardModalComponent.propTypes = {
-  naverId: PropTypes.string,
-  setModalIsOpen: PropTypes.func
+  naverId: PropTypes.string.isRequired,
+  modalIsOpen: PropTypes.bool.isRequired,
+  setModalIsOpen: PropTypes.func.isRequired
 }
 
 export default CardModalComponent

@@ -9,8 +9,6 @@ import { useField } from 'formik'
 const InputComponent = ({ label, register, placeholder, disabled, type, ...props }) => {
   const [field, meta] = useField(props)
 
-  console.log(field)
-
   return (
     <>
       {label && <Text mb={5}>{label}</Text>}
